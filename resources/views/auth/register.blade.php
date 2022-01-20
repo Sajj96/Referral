@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="phone">{{ __('Phone number') }}</label>
-                                    <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone">
+                                    <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone" style="padding: 10px 150px;">
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

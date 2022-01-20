@@ -37,6 +37,7 @@ for (var i = 0; i < countryData.length; i++) {
     addressDropdown.appendChild(optionNode);
   }
   // set it's initial value
+  $("#selectbox").val(optionValue).find("option[value=" + optionValue +"]").attr('selected', true);
   addressDropdown.value = it.getSelectedCountryData().iso2;
   
   // listen to the telephone input for changes
