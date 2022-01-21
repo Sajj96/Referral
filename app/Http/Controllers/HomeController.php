@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show the payment information page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPaymentInformationPage()
+    {
+        return view('payment');
+    }
 }
