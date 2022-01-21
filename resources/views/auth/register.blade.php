@@ -108,4 +108,12 @@
         </div>
     </div>
 </section>
+@section('js-libraries')
+<script src="{{ asset('assets/bundles/jquery-pwstrength/jquery.pwstrength.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/jquery-selectric/jquery.selectric.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/intl-tel-input/js/intlTelInput.min.js')}}"></script>
+@endsection
+@section('page-specific-js')
+<script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
+@endsection
 @endsection

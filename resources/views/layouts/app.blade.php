@@ -28,12 +28,12 @@
     </div>
     <!-- General JS Scripts -->
     <script src="{{ asset('assets/js/app.min.js')}}"></script>
-    <!-- JS Libraies -->
-    <script src="{{ asset('assets/bundles/jquery-pwstrength/jquery.pwstrength.min.js')}}"></script>
-    <script src="{{ asset('assets/bundles/jquery-selectric/jquery.selectric.min.js')}}"></script>
-    <script src="{{ asset('assets/bundles/intl-tel-input/js/intlTelInput.min.js')}}"></script>
+    <!-- JS Libraries -->
+    @section('js-libraries')
+    @show
     <!-- Page Specific JS File -->
-    <script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
+    @section('page-specific-js')
+    @show
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js')}}"></script>
     <!-- Custom JS File -->
