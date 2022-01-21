@@ -10,6 +10,15 @@
                         <h4>{{ __('Register') }}</h4>
                     </div>
                     <div class="card-body">
+                        @if(!empty($_GET['ref']))
+                        <div class="alert alert-primary alert-has-icon">
+                            <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                            <div class="alert-body">
+                                You were invited by:
+                                <span class="alert-title"> {{ $_GET['ref'] }}</span>
+                            </div>
+                        </div>
+                        @endif
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="row">
@@ -44,12 +53,14 @@
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="phone">{{ __('Phone number') }}</label>
-                                    <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone" style="padding: 10px 150px;">
+                                    <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone" style="padding: 10px 80px 10px 90px">
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="valid-msg" class="hide">✓ Valid</span>
+                                    <span id="error-msg" class="hide"></span>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,12 +91,6 @@
                                     <label for="country">{{ __('Country') }}</label>
                                     <select name="country" id="address-country" class="form-control @error('country') is-invalid @enderror custom-select">
                                     </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                                    <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
                                 </div>
                             </div>
                             <div class="form-group">
