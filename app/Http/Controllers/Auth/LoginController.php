@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -85,14 +86,17 @@ class LoginController extends Controller
             $login_type => $request->input('login')
         ]);
 
-        if (Auth::attempt($request->only($login_type, 'password'))) {
+        $remember = $request->has('remember') ? true : false; 
+
+        if (Auth::attempt([$login_type => $request->input('login'), 'password' => $request->input('password'),'active' => User::USER_STATUS_ACTIVE], $remember)) {
             return redirect()->intended($this->redirectPath());
         }
 
         return redirect()->back()
             ->withInput()
             ->withErrors([
-                'login' => 'These credentials do not match our records.',
+                'login' => 'Incorrect Username, Password or Inactive User',
+                'password' => 'Incorrect Password'
             ]);
 
     }

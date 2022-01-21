@@ -91,6 +91,8 @@ class RegisterController extends Controller
             'referrer_id' => $referrer ? $referrer->id : null,
             'password'    => Hash::make($data['password']),
             'country'     => $data['country'],
+            'package'     => $data['package'],
+            'active'      => User::USER_STATUS_BLOCKED
         ]);
     }
 }

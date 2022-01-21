@@ -12,14 +12,14 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                             @csrf
+                            @error('login')
+                                <span class="invalid" role="alert">
+                                    <strong style="color:red;">{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <div class="form-group">
                                 <label for="email">{{ __('Username or Email') }}</label>
-                                <input id="email" type="email" class="form-control{{ $errors->has('username') || $errors->has('email') ? ' is-invalid' : '' }}" name="login" value="{{ old('username') ?: old('email') }}" tabindex="1" required autofocus placeholder="Username or Email">
-                                @if ($errors->any())
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @endif
+                                <input type="text" class="form-control @error('login') is-invalid @enderror" name="login" value="{{ old('username') ?: old('email') }}" tabindex="1" required autofocus placeholder="Username or Email">
                             </div>
                             <div class="form-group">
                                 <div class="d-block">
@@ -33,16 +33,11 @@
                                     @endif
                                 </div>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required autocomplete="current-password" placeholder="*********">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="remember-me">{{ __('Remember Me') }}</label>
+                                    <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
                                 </div>
                             </div>
                             <div class="form-group">

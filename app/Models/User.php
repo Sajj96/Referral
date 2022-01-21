@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const USER_STATUS_ACTIVE    = 1;
+    const USER_STATUS_BLOCKED   = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +28,7 @@ class User extends Authenticatable
         'phone',
         'password',
         'country',
+        'active',
     ];
 
     /**
