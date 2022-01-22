@@ -128,18 +128,21 @@
             </li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.png" class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
                 <div class="dropdown-menu dropdown-menu-right pullDown">
-                    <div class="dropdown-title">Hello Sarah Smith</div>
+                    <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
                     <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
+										fa-user"></i> {{ __('Profile') }}
                     </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                        Activities
+                     {{ __('Activities') }}
                     </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                        Settings
+                     {{ __('Settings') }}
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="auth-login.html" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
-                        Logout
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                     {{ __('Logout') }}
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>
@@ -153,41 +156,42 @@
             <ul class="sidebar-menu">
                 <li class="menu-header">Main</li>
                 <li class="dropdown active">
-                    <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>{{ __('Dashboard') }}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="link"></i><span>Invite a Friend</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="link"></i><span>{{ __('Invite a Friend')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>My Team</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
-                        <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
+                        <li><a class="nav-link" href="widget-chart.html">{{ __('Level 1')}}</a></li>
+                        <li><a class="nav-link" href="widget-data.html">{{ __('Level 2')}}</a></li>
+                        <li><a class="nav-link" href="widget-data.html">{{ __('Level 3')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="check-square"></i><span>Pay For Client</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="check-square"></i><span>{{ __('Pay For Client')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>Withdrawal</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="chat.html">Chat</a></li>
-                        <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                        <li><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li><a class="nav-link" href="calendar.html">Calendar</a></li>
+                        <li><a class="nav-link" href="chat.html">{{ __('Withdraw History')}}</a></li>
+                        <li><a class="nav-link" href="portfolio.html">{{ __('Withdraw Main')}}</a></li>
+                        <li><a class="nav-link" href="blog.html">{{ __('Withdraw Trivia')}} &amp; {{ __('Video')}}</a></li>
+                        <li><a class="nav-link" href="calendar.html">{{ __('Withdraw Blog')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="help-circle"></i><span>Trivia Questions</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="trending-up"></i><span>Ads Clicking</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="trending-up"></i><span>{{ __('Ads Clicking')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="meh"></i><span>Meme Creation</span></a>
+                    <a href="index.html" class="nav-link"><i data-feather="meh"></i><span>{{ __('Meme Creation')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="refresh-ccw"></i><span>Spins</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="refresh-ccw"></i><span>{{ __('Spins')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
                         <li><a class="nav-link" href="email-compose.html">Compose</a></li>

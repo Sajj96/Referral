@@ -10,9 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- General CSS Files -->
+    @section('general-css')
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/bundles/bootstrap-social/bootstrap-social.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/bundles/intl-tel-input/css/intlTelInput.css')}}">
+    @show
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">

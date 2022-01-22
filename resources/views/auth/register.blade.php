@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('general-css')
+<link rel="stylesheet" href="{{ asset('assets/bundles/intl-tel-input/css/intlTelInput.css')}}">
+@endsection
+
 @section('content')
 <section class="section">
     <div class="container mt-5">
