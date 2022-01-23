@@ -190,14 +190,6 @@
                 <li class="dropdown">
                     <a href="index.html" class="nav-link"><i data-feather="meh"></i><span>{{ __('Meme Creation')}}</span></a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="refresh-ccw"></i><span>{{ __('Spins')}}</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
-                        <li><a class="nav-link" href="email-compose.html">Compose</a></li>
-                        <li><a class="nav-link" href="email-read.html">read</a></li>
-                    </ul>
-                </li>
             </ul>
         </aside>
     </div>
