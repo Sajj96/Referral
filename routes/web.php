@@ -22,3 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/payment', [App\Http\Controllers\HomeController::class, 'showPaymentInformationPage'])->name('payment');
+
+Route::group(['prefix' => 'referral'], function(){
+    Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
+});

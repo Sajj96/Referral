@@ -155,11 +155,11 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="menu-header">Main</li>
-                <li class="dropdown active">
-                    <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>{{ __('Dashboard') }}</span></a>
+                <li class="dropdown">
+                    <a href="{{ route('home')}}" class="nav-link"><i data-feather="monitor"></i><span>{{ __('Dashboard') }}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="link"></i><span>{{ __('Invite a Friend')}}</span></a>
+                    <a href="{{ route('referral')}}" class="nav-link"><i data-feather="link"></i><span>{{ __('Invite a Friend')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
