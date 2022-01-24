@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('referrer_id')->nullable();
             $table->foreign('referrer_id')->references('id')->on('users');
             $table->string('country');
+            $table->tinyInteger('user_type');
             $table->string('package')->nullable();
             $table->tinyInteger('active');
             $table->rememberToken();
