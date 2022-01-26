@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- General CSS Files -->
-    @section('general-css')
     <link rel="stylesheet" href="{{ asset('assets/css/app.min.css')}}">
+    @section('general-css')
     <link rel="stylesheet" href="{{ asset('assets/bundles/bootstrap-social/bootstrap-social.css')}}">
     @show
     <!-- Template CSS -->

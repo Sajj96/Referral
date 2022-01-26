@@ -27,3 +27,7 @@ Route::get('/payment', [App\Http\Controllers\HomeController::class, 'showPayment
 Route::group(['prefix' => 'referral'], function(){
     Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
 });
+
+Route::group(['prefix' => 'video'], function(){
+    Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
+});

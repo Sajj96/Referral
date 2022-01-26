@@ -132,13 +132,13 @@
                     <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> {{ __('Profile') }}
                     </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                     {{ __('Activities') }}
+                        {{ __('Activities') }}
                     </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                     {{ __('Settings') }}
+                        {{ __('Settings') }}
                     </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
-                     {{ __('Logout') }}
+                        {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -185,7 +185,7 @@
                     <a href="index.html" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="trending-up"></i><span>{{ __('Ads Clicking')}}</span></a>
+                    <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}} &amp; {{ __('Ads')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="index.html" class="nav-link"><i data-feather="meh"></i><span>{{ __('Meme Creation')}}</span></a>
