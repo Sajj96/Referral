@@ -20,14 +20,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/payment', [App\Http\Controllers\HomeController::class, 'showPaymentInformationPage'])->name('payment');
 
-Route::group(['prefix' => 'referral'], function(){
-    Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
-});
+Route::middleware(['auth','active.user'])->group(function ()
+{
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'video'], function(){
-    Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
+    Route::group(['prefix' => 'referral'], function(){
+        Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
+    });
+    
+    Route::group(['prefix' => 'video'], function(){
+        Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
+    });
 });

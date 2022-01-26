@@ -14,6 +14,8 @@ class User extends Authenticatable
 
     const USER_STATUS_ACTIVE    = 1;
     const USER_STATUS_BLOCKED   = 0;
+    const ADMIN_USER            = 1;
+    const CLIENT_USER           = 0;
 
     /**
      * The attributes that are mass assignable.

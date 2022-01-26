@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateUsersTable extends Migration
 {
@@ -24,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('referrer_id')->nullable();
             $table->foreign('referrer_id')->references('id')->on('users');
             $table->string('country');
-            $table->tinyInteger('user_type');
+            $table->tinyInteger('user_type')->default(User::CLIENT_USER);
             $table->string('package')->nullable();
             $table->tinyInteger('active');
             $table->rememberToken();

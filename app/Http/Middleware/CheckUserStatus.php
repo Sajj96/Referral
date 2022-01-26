@@ -20,7 +20,7 @@ class CheckUserStatus
         $user = Auth::user();
 
         if($user->active == 0) {
-            return view('payment');
+            return response()->view('payment');
         }
 
         return $next($request);
