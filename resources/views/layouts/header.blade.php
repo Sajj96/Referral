@@ -1,3 +1,8 @@
+<?php 
+use Illuminate\Support\Facades\Auth;
+$user = Auth::user();
+$username = strtoupper(substr($user->name,0,2));
+?>
 <div class="main-wrapper main-wrapper-1">
     <div class="navbar-bg"></div>
     <nav class="navbar navbar-expand-lg main-navbar sticky">
@@ -126,7 +131,7 @@
                     </div>
                 </div>
             </li>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="assets/img/user.png" class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" data-initial="<?php echo $username; ?>"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
                 <div class="dropdown-menu dropdown-menu-right pullDown">
                     <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
                     <a href="profile.html" class="dropdown-item has-icon"> <i class="far
@@ -150,7 +155,7 @@
     <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-                <a href="index.html"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span class="logo-name">Otika</span>
+                <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logo.png')}}" class="header-logo" /> <span class="logo-name">Otika</span>
                 </a>
             </div>
             <ul class="sidebar-menu">
@@ -164,7 +169,7 @@
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="widget-chart.html">{{ __('Level 1')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('team.level1')}}">{{ __('Level 1')}}</a></li>
                         <li><a class="nav-link" href="widget-data.html">{{ __('Level 2')}}</a></li>
                         <li><a class="nav-link" href="widget-data.html">{{ __('Level 3')}}</a></li>
                     </ul>

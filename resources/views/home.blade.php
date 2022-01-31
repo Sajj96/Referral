@@ -2,44 +2,6 @@
 
 @section('content')
 @include('layouts.header')
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-
-                    <ul class="list-group mt-3">
-                        <li class="list-group-item">Username: {{ Auth::user()->username }}</li>
-                        <li class="list-group-item">Email: {{ Auth::user()->email }}</li>
-                        <li class="list-group-item">Referral link: {{ Auth::user()->referral_link }}</li>
-                        <li class="list-group-item">Referrer: {{ Auth::user()->referrer->name ?? 'Not Specified' }}</li>
-                        <li class="list-group-item">Refferal count: {{ count(Auth::user()->referrals)  ?? '0' }}</li>
-                    </ul>
-                    <div class="" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">

@@ -29,6 +29,10 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'referral'], function(){
         Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
     });
+
+    Route::group(['prefix' => 'team'], function(){
+        Route::get('/level_one', [App\Http\Controllers\TeamController::class, 'levelOne'])->name('team.level1');
+    });
     
     Route::group(['prefix' => 'video'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
