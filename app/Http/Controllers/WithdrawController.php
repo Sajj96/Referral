@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReferralController extends Controller
+class WithdrawController extends Controller
 {
-     /**
-     * Show the referral page.
+    /**
+     * Show the withdraw history page.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('referral');
+        return view('withdraw.history');
     }
 }

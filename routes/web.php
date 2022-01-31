@@ -33,6 +33,10 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'team'], function(){
         Route::get('/', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
     });
+
+    Route::group(['prefix' => 'withdraw'], function(){
+        Route::get('/', [App\Http\Controllers\WithdrawController::class, 'index'])->name('withdraw.history');
+    });
     
     Route::group(['prefix' => 'video'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');

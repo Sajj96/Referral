@@ -21,68 +21,9 @@
             </ul>
         </div>
         <ul class="navbar-nav navbar-right">
-            <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
-                    <span class="badge headerBadge1">
-                        6 </span> </a>
-                <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
-                    <div class="dropdown-header">
-                        Messages
-                        <div class="float-right">
-                            <a href="#">Mark All As Read</a>
-                        </div>
-                    </div>
-                    <div class="dropdown-list-content dropdown-list-message">
-                        <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-											text-white"> <img alt="image" src="assets/img/users/user-1.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">John
-                                    Deo</span>
-                                <span class="time messege-text">Please check your mail !!</span>
-                                <span class="time">2 Min Ago</span>
-                            </span>
-                        </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                                <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                                    Smith</span> <span class="time messege-text">Request for leave
-                                    application</span>
-                                <span class="time">5 Min Ago</span>
-                            </span>
-                        </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                                <img alt="image" src="assets/img/users/user-5.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">Jacob
-                                    Ryan</span> <span class="time messege-text">Your payment invoice is
-                                    generated.</span> <span class="time">12 Min Ago</span>
-                            </span>
-                        </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                                <img alt="image" src="assets/img/users/user-4.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">Lina
-                                    Smith</span> <span class="time messege-text">hii John, I have upload
-                                    doc
-                                    related to task.</span> <span class="time">30
-                                    Min Ago</span>
-                            </span>
-                        </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                                <img alt="image" src="assets/img/users/user-3.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">Jalpa
-                                    Joshi</span> <span class="time messege-text">Please do as specify.
-                                    Let me
-                                    know if you have any query.</span> <span class="time">1
-                                    Days Ago</span>
-                            </span>
-                        </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                                <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle">
-                            </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                                    Smith</span> <span class="time messege-text">Client Requirements</span>
-                                <span class="time">2 Days Ago</span>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="dropdown-footer text-center">
-                        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                    </div>
-                </div>
-            </li>
             <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
-                </a>
+                <span class="badge headerBadge1">
+                        6 </span></a>
                 <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
                     <div class="dropdown-header">
                         Notifications
@@ -170,10 +111,9 @@
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="chat.html">{{ __('Withdraw History')}}</a></li>
-                        <li><a class="nav-link" href="portfolio.html">{{ __('Withdraw Main')}}</a></li>
-                        <li><a class="nav-link" href="blog.html">{{ __('Withdraw Trivia')}} &amp; {{ __('Video')}}</a></li>
-                        <li><a class="nav-link" href="calendar.html">{{ __('Withdraw Blog')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraw.history')}}">{{ __('History')}}</a></li>
+                        <li><a class="nav-link" href="portfolio.html">{{ __('Withdraw')}}</a></li>
+                        <li><a class="nav-link" href="blog.html">{{ __('Trivia')}} &amp; {{ __('Video')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
