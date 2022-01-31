@@ -1,8 +1,3 @@
-<?php 
-use Illuminate\Support\Facades\Auth;
-$user = Auth::user();
-$username = strtoupper(substr($user->name,0,2));
-?>
 <div class="main-wrapper main-wrapper-1">
     <div class="navbar-bg"></div>
     <nav class="navbar navbar-expand-lg main-navbar sticky">
@@ -131,7 +126,7 @@ $username = strtoupper(substr($user->name,0,2));
                     </div>
                 </div>
             </li>
-            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" data-initial="<?php echo $username; ?>"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" data-initial="{{strtoupper(substr(Auth::user()->name,0,2))}}"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
                 <div class="dropdown-menu dropdown-menu-right pullDown">
                     <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
                     <a href="profile.html" class="dropdown-item has-icon"> <i class="far

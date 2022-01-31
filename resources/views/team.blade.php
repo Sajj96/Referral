@@ -16,7 +16,8 @@
                         <div class="card-header">
                             <h4>{{ __('Downlines')}}</h4>
                             <div class="card-header-action">
-                                <a href="#" class="btn btn-primary">{{ __('Level 1')}}</a>
+                                <a href="#" class="btn btn-info">{{ __('Level 1')}}</a>
+                                <a href="#" class="btn btn-primary">{{ count(Auth::user()->referrals)  ?? '0' }} {{ __('References')}}</a>
                             </div>
                         </div>
                         <div class="card-body">
