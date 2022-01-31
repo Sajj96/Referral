@@ -13,11 +13,11 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function levelOne()
+    public function index()
     {
         $user = Auth::user();
         $downlines = User::where('referrer_id', $user->id)->get();
         $serial = 1;
-        return view('team.level_one', compact('downlines', 'serial'));
+        return view('team', compact('downlines', 'serial'));
     }
 }

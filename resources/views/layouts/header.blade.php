@@ -167,12 +167,7 @@ $username = strtoupper(substr($user->name,0,2));
                     <a href="{{ route('referral')}}" class="nav-link"><i data-feather="link"></i><span>{{ __('Invite a Friend')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('team.level1')}}">{{ __('Level 1')}}</a></li>
-                        <li><a class="nav-link" href="widget-data.html">{{ __('Level 2')}}</a></li>
-                        <li><a class="nav-link" href="widget-data.html">{{ __('Level 3')}}</a></li>
-                    </ul>
+                    <a href="{{ route('team')}}" class="nav-link"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="index.html" class="nav-link"><i data-feather="check-square"></i><span>{{ __('Pay For Client')}}</span></a>

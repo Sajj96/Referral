@@ -14,7 +14,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Level 1 Downlines')}}</h4>
+                            <h4>{{ __('Downlines')}}</h4>
+                            <div class="card-header-action">
+                                <a href="#" class="btn btn-primary">{{ __('Level 1')}}</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
