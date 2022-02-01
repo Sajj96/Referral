@@ -16,6 +16,7 @@
                         <div class="card-header">
                             <h4>{{ __('Withdrawal details')}}</h4>
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
                             @if(count($errors) > 0)
                             <div class="alert alert-danger alert-dismissible show fade">
@@ -40,6 +41,7 @@
                             </div>
                             @endif
                             <form id="wizard_with_validation" method="POST" action="{{ route('withdraw.payment')}}">
+                                @csrf
                                 <fieldset>
                                     <div class="form-group">
                                         <label>{{ __('Select balance')}}</label>

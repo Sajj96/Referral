@@ -31,13 +31,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($withdraws as $key=>$rows)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $serial++ }}</td>
+                                            <td>{{ $rows->created_at }}</td>
+                                            <td>{{ $rows->amount }}</td>
+                                            <td>{{ $rows->phone }}</td>
+                                            @if($rows->status == 0)
+                                            <td><div class="badge badge-light badge-shadow">Pending</div></td>
+                                            @elseif($rows->status == 1)
+                                            <td><div class="badge badge-success badge-shadow">Paid</div></td>
+                                            @else
+                                            <td><div class="badge badge-danger badge-shadow">Cancelled</div></td>
+                                            @endif
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
