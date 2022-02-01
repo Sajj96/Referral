@@ -57,9 +57,7 @@
                 </div>
             </div>
         </div>
-</div>
-</div>
-</section>
+    </section>
 </div>
 @include('layouts.footer')
 @section('js-libraries')

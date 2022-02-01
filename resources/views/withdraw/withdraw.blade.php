@@ -49,27 +49,27 @@
                                             <option value="main">{{ __('Main balance')}}</option>
                                             <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video')}} </option>
                                         </select>
-                                        <div class="help-info">Current balance: TZS 0</div>
+                                        <div class="help-info">{{ __('Current balance: TZS 0')}}</div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Phone</label>
+                                        <label>{{ __('Phone')}}</label>
                                         <input type="tel" name="phone" value="{{ Auth::user()->phone }}" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label>Amount to withdraw</label>
+                                        <label>{{ __('Amount to withdraw')}}</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    TZS
+                                                    {{ __('TZS')}}
                                                 </div>
                                             </div>
                                             <input min="12000" max="20000" type="text" name="amount" class="form-control currency" required>
                                         </div>
-                                        <div class="help-info">You can withdraw an anmount not less than TZS 12,000 and not more than TZS 20,000 per day.</div>
+                                        <div class="help-info">{{ __('You can withdraw an anmount not less than TZS 12,000 and not more than TZS 20,000 per day.')}}</div>
                                     </div>
                                 </fieldset>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary mr-1" type="submit">Withdraw</button>
+                                    <button class="btn btn-primary mr-1" type="submit">{{ __('Withdraw')}}</button>
                                 </div>
                             </form>
                         </div>

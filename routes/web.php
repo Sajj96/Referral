@@ -43,4 +43,8 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'video'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
     });
+
+    Route::group(['prefix' => 'questions'], function(){
+        Route::get('/', [App\Http\Controllers\QuestionController::class, 'index'])->name('questions');
+    });
 });

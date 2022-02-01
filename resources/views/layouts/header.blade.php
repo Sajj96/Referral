@@ -116,7 +116,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="index.html" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
+                    <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}} &amp; {{ __('Ads')}}</span></a>
