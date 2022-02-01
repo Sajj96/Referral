@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="table-1">
+                                <table class="table table-striped" id="tableExport">
                                     <thead>
                                         <tr>
                                             <th class="text-center">
@@ -52,7 +52,12 @@
 @section('js-libraries')
 <script src="{{ asset('assets/bundles/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.flash.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/jszip.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/pdfmake.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
+<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.print.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>

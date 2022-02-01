@@ -1,4 +1,84 @@
+.hide{display: none;}
 
+.my-video-dimensions {
+    width: 100%;
+    height: 400px;
+} 
+
+.my-video-dimensions.vjs-fluid {
+    padding-top: 56.25%;
+}
+
+.video-js .vjs-big-play-button:before{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Ionicons", "Questrial" !important;
+	cursor: pointer;
+}
+
+.video-js .vjs-big-play-button:before{
+	text-align: center;
+}
+
+.video-js .vjs-big-play-button:before{
+	content: "\f488";
+}
+
+.video-js .vjs-big-play-button {
+	font-size: 600%;
+	line-height: 100px;
+	height: 100px;
+	width: 100px;
+	display: block;
+	position: absolute;
+	text-indent: 5px;
+	top: calc(50% - 50px);
+	left: calc(50% - 50px);
+	padding: 0;
+	text-align: center;
+	cursor: pointer;
+	background: rgba(0,0,0,.15);
+	color: #fff;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	outline: none;
+	-webkit-backdrop-filter: blur(20px) saturate(1.5) brightness(1.2);
+	backdrop-filter: blur(20px) saturate(1.5) brightness(1.2);
+}
+
+.vjs-controls-disabled .vjs-big-play-button,
+.vjs-has-started .vjs-big-play-button,
+.vjs-using-native-controls .vjs-big-play-button,
+.vjs-error .vjs-big-play-button {
+	display: none;
+}
+
+.vjs-icon-play-circle:before {
+	content: "\f488";
+}
+
+.video-js .vjs-control-text {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	visibility: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/*
+Next step:
+
+Customize https://plyr.io
+
+*/
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
 
 /*# sourceMappingURL=custom.css.map */

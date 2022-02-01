@@ -35,7 +35,9 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'withdraw'], function(){
-        Route::get('/', [App\Http\Controllers\WithdrawController::class, 'index'])->name('withdraw.history');
+        Route::get('/', [App\Http\Controllers\WithdrawController::class, 'index'])->name('withdraw');
+        Route::post('/', [App\Http\Controllers\WithdrawController::class, 'getPaid'])->name('withdraw.payment');
+        Route::get('/history', [App\Http\Controllers\WithdrawController::class, 'show'])->name('withdraw.history');
     });
     
     Route::group(['prefix' => 'video'], function(){
