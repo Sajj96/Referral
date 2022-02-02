@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Withdraw History')}}</h4>
+                            <h4>{{ __('Transaction History')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -27,6 +27,7 @@
                                             <th>{{ __('Date')}}</th>
                                             <th>{{ __('Amount')}}</th>
                                             <th>{{ __('Phone')}}</th>
+                                            <th>{{ __('Type')}}</th>
                                             <th>{{ __('Status')}}</th>
                                         </tr>
                                     </thead>
@@ -37,6 +38,7 @@
                                             <td>{{ $rows->created_at }}</td>
                                             <td>{{ $rows->amount }}</td>
                                             <td>{{ $rows->phone }}</td>
+                                            <td>{{ $rows->transaction_type }}</td>
                                             @if($rows->status == 0)
                                             <td><div class="badge badge-light badge-shadow">Pending</div></td>
                                             @elseif($rows->status == 1)

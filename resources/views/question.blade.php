@@ -58,10 +58,11 @@
             <div class="row result_box">
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>{{ __('You\'ve completed the Quiz!')}}</h4>
-                        </div>
                         <div class="card-body">
+                            <div class="icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4 class="complete_text">{{ __('You\'ve completed the Quiz!')}}</h4>
                             <div class="score_text">
 
                             </div>

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Withdraw;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
-class WithdrawController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Show the withdraw page.
@@ -16,7 +16,7 @@ class WithdrawController extends Controller
      */
     public function index()
     {
-        return view('withdraw.withdraw');
+        return view('transaction.withdraw');
     }
 
     /**
@@ -26,9 +26,9 @@ class WithdrawController extends Controller
      */
     public function show()
     {
-        $withdraws = Withdraw::where('user_id', Auth::user()->id)->get();
+        $withdraws = Transaction::where('user_id', Auth::user()->id)->get();
         $serial = 1;
-        return view('withdraw.history', compact('withdraws','serial'));
+        return view('transaction.history', compact('withdraws','serial'));
     }
 
     /**
@@ -49,12 +49,13 @@ class WithdrawController extends Controller
         }
 
         try {
-            $withdraw = new Withdraw;
+            $withdraw = new Transaction;
             $withdraw->balance = $request->balance;
             $withdraw->user_id = Auth::user()->id;
             $withdraw->phone = $request->phone;
             $withdraw->amount = $request->amount;
-            $withdraw->status = Withdraw::WITHDRAW_PENDING;
+            $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
+            $withdraw->status = Transaction::WITHDRAW_PENDING;
             if($withdraw->save()) {
                 return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS'.$request->amount.'. Please wait for confirmation!.');
             }
