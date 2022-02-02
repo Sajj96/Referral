@@ -38,6 +38,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('history');
         Route::post('/', [App\Http\Controllers\TransactionController::class, 'getPaid'])->name('payment');
         Route::get('/withdraw', [App\Http\Controllers\TransactionController::class, 'show'])->name('withdraw');
+        Route::get('/pay_for_client', [App\Http\Controllers\TransactionController::class, 'showInactiveClients'])->name('pay_for_client');
     });
     
     Route::group(['prefix' => 'video'], function(){

@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class TransactionController extends Controller
 {
     /**
-     * Show the withdraw page.
+     * Show the history page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,7 +23,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the withdraw history page.
+     * Show the withdraw page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,6 +34,18 @@ class TransactionController extends Controller
 
     /**
      * Show the withdraw page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showInactiveClients()
+    {
+        $downlines = User::where('referrer_id', Auth::user()->id)->where('active', 0)->get();
+        $serial = 1;
+        return view('transaction.pay_for_client', compact('downlines', 'serial'));
+    }
+
+    /**
+     * Show the get paid page.
      *
      * @return \Illuminate\Http\Response
      */
