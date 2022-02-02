@@ -111,7 +111,7 @@
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('withdraw.history')}}">{{ __('History')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('History')}}</a></li>
                         <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Withdraw')}}</a></li>
                     </ul>
                 </li>

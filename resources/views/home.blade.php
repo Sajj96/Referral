@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="row ">
-            <div class="col-xl-4 col-lg-6">
+            <div class="col-xl-3 col-lg-6">
                 <div class="card l-bg-purple">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6">
+            <div class="col-xl-3 col-lg-6">
                 <div class="card l-bg-green">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="far fa-smile"></i></div>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6">
+            <div class="col-xl-3 col-lg-6">
                 <div class="card l-bg-cyan">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="far fa-question-circle"></i></div>
@@ -151,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-6">
+            <div class="col-xl-3 col-lg-6">
                 <div class="card l-bg-orange">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="fas fa-play-circle"></i></div>

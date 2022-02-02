@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             @endif
-                            <form id="wizard_with_validation" method="POST" action="{{ route('withdraw.payment')}}">
+                            <form id="wizard_with_validation" method="POST" action="{{ route('payment')}}">
                                 @csrf
                                 <fieldset>
                                     <div class="form-group">
