@@ -57,7 +57,7 @@ class TransactionController extends Controller
             'amount'  => 'required|numeric'
         ]);
 
-        if($validator->failed()) {
+        if($validator->fails()) {
             return redirect()->route('withdraw')->with('error','Only valid details are required!');
         }
 

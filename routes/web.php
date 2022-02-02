@@ -48,4 +48,9 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'questions'], function(){
         Route::get('/', [App\Http\Controllers\QuestionController::class, 'index'])->name('questions');
     });
+
+    Route::group(['prefix' => 'user'], function(){
+        Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
+        Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
+    });
 });

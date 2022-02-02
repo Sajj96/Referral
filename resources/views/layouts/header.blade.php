@@ -70,13 +70,8 @@
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <figure class="avatar mr-2 avatar-sm bg-success text-white" data-initial="{{strtoupper(substr(Auth::user()->name,0,2))}}"></figure> <span class="d-sm-none d-lg-inline-block"></span></a>
                 <div class="dropdown-menu dropdown-menu-right pullDown">
                     <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
-                    <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+                    <a href="{{ route('profile')}}" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> {{ __('Profile') }}
-                    </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                        {{ __('Activities') }}
-                    </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                        {{ __('Settings') }}
-                    </a>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
                         {{ __('Logout') }}
