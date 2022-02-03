@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->string('phone');
             $table->string('balance');
             $table->double('amount');
+            $table->double('amount_deposit');
             $table->string('transaction_type');
             $table->integer('status');
             $table->timestamps();

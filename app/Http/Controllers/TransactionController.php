@@ -67,6 +67,7 @@ class TransactionController extends Controller
             $withdraw->user_id = Auth::user()->id;
             $withdraw->phone = $request->phone;
             $withdraw->amount = $request->amount;
+            $withdraw->amount_deposit = $request->deposit;
             $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
             $withdraw->status = Transaction::WITHDRAW_PENDING;
             if($withdraw->save()) {

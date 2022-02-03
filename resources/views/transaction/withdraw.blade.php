@@ -47,12 +47,12 @@
                                         <label>{{ __('Select balance')}}</label>
                                         <select class="custom-select" name="balance" required>
                                             <option value="main">{{ __('Main balance')}}</option>
-                                            <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video')}} </option>
+                                            <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video balance')}} </option>
                                         </select>
                                         <div class="help-info">{{ __('Current balance: TZS 0')}}</div>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{ __('Phone')}}</label>
+                                        <label>{{ __('Phone Number')}}</label>
                                         <input type="tel" name="phone" value="{{ Auth::user()->phone }}" class="form-control" readonly>
                                     </div>
                                     <div class="form-group">
@@ -63,9 +63,21 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input min="12000" max="20000" type="text" name="amount" class="form-control currency" required>
+                                            <input min="12000" max="20000" type="text" name="amount" id="amount" class="form-control currency" required>
                                         </div>
-                                        <div class="help-info">{{ __('You can withdraw an anmount not less than TZS 12,000 and not more than TZS 20,000 per day.')}}</div>
+                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS 12,000 and not more than TZS 20,000 per day.')}}</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ __('Amount to deposit')}}</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    {{ __('TZS')}}
+                                                </div>
+                                            </div>
+                                            <input type="text" name="deposit" id="deposit" class="form-control currency" required readonly>
+                                        </div>
+                                        <div class="help-info"><strong>{{ __('Fee: TZS 900.00')}}</strong></div>
                                     </div>
                                 </fieldset>
                                 <div class="card-footer text-right">
@@ -82,8 +94,9 @@
 @include('layouts.footer')
 @section('js-libraries')
 <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/cleave-js/dist/cleave.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
-<script src="{{ asset('assets/js/page/form-wizard.js')}}"></script>
+<script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection
 @endsection

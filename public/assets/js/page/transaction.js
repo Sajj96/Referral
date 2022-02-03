@@ -1,6 +1,11 @@
 'use strict';
 $(function () {
 
+    var cleaveC = new Cleave('.currency', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
+
     //Advanced form with validation
     var form = $('#wizard_with_validation').show();
 
@@ -20,6 +25,11 @@ $(function () {
             }
         }
     });
-
-
+    
+    $('#amount').on('blur', () => {
+        var amount = $('#amount').val();
+        amount = parseFloat(amount.replace(/,/g, ''));
+        var deposit = amount - 900;
+        $('#deposit').val(deposit);
+    });
 });

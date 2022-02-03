@@ -35,7 +35,7 @@
                                         @foreach($withdraws as $key=>$rows)
                                         <tr>
                                             <td>{{ $serial++ }}</td>
-                                            <td>{{ $rows->created_at }}</td>
+                                            <td>{{ ($rows->created_at)->format('Y-m-d H:m:s') }}</td>
                                             <td>{{ $rows->amount }}</td>
                                             <td>{{ $rows->phone }}</td>
                                             <td>{{ $rows->transaction_type }}</td>
