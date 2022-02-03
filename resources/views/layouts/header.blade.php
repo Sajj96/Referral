@@ -111,20 +111,20 @@
                 </li>
                 @if(Auth::user()->user_type == 1)
                 <li class="dropdown">
+                    <a href="{{ route('history')}}" class="nav-link"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
+                </li>
+                @else
+                <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('history')}}">{{ __('History')}}</a></li>
                         <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Withdraw')}}</a></li>
                     </ul>
                 </li>
-                @else
-                <li class="dropdown">
-                    <a href="{{ route('history')}}" class="nav-link"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
-                </li>
                 @endif
                 @if(Auth::user()->user_type == 1)
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Trivia Questions')}}</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('history')}}">{{ __('Participants')}}</a></li>
                         <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Create Question')}}</a></li>
@@ -137,7 +137,7 @@
                 @endif
                 @if(Auth::user()->user_type == 1)
                 <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Videos')}}</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="video"></i><span>{{ __('Videos')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('history')}}">{{ __('Play list')}}</a></li>
                         <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Upload Video')}}</a></li>

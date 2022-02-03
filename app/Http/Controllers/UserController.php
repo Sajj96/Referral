@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     /**
+     * Show the users page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('profile');
+    }
+
+    /**
      * Show the profile page.
      *
      * @return \Illuminate\Http\Response
