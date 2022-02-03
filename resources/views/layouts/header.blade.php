@@ -116,9 +116,9 @@
                 <li class="dropdown">
                     <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}} &amp; {{ __('Ads')}}</span></a>
                 </li>
-                <li class="dropdown">
+                <!-- <li class="dropdown">
                     <a href="#" class="nav-link"><i data-feather="meh"></i><span>{{ __('Meme Creation')}}</span></a>
-                </li>
+                </li> -->
             </ul>
         </aside>
     </div>

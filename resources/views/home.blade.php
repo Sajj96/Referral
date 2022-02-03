@@ -1,9 +1,99 @@
 @extends('layouts.app')
 
+@section('general-css')
+<link rel="stylesheet" href="{{ asset('assets/bundles/jqvmap/dist/jqvmap.min.css')}}">
+@endsection
+
 @section('content')
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
+    @if(Auth::user()->user_type == 1)
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-cyan">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4 class="pull-right">New Clients</h4>
+                        </div>
+                        <div class="card-body pull-right">
+                            10,225
+                        </div>
+                    </div>
+                    <div class="card-chart">
+                        <canvas id="chart-1" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-purple">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4 class="pull-right">Delivered Order</h4>
+                        </div>
+                        <div class="card-body pull-right">
+                            2,857
+                        </div>
+                    </div>
+                    <div class="card-chart">
+                        <canvas id="chart-2" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-green">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4 class="pull-right">Total Earning</h4>
+                        </div>
+                        <div class="card-body pull-right">
+                            $17,458
+                        </div>
+                    </div>
+                    <div class="card-chart">
+                        <canvas id="chart-3" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Revenue Chart</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
+                                <h5 class="m-b-0">$675</h5>
+                                <p class="text-muted font-14 m-b-0">Weekly Earnings</p>
+                            </li>
+                            <li class="list-inline-item p-r-30"><i data-feather="arrow-down-circle" class="col-orange"></i>
+                                <h5 class="m-b-0">$1,587</h5>
+                                <p class="text-muted font-14 m-b-0">Monthly Earnings</p>
+                            </li>
+                            <li class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
+                                <h5 class="mb-0 m-b-0">$45,965</h5>
+                                <p class="text-muted font-14 m-b-0">Yearly Earnings</p>
+                            </li>
+                        </ul>
+                        <div id="revenue"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @else
     <section class="section">
         <div class="row ">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -97,8 +187,8 @@
             </div>
         </div>
         <div class="row ">
-            <div class="col-xl-3 col-lg-6">
-                <div class="card l-bg-purple">
+            <div class="col-xl-4 col-lg-6">
+                <div class="card l-bg-green">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="fas fa-money-bill-alt"></i></div>
                         <div class="card-content">
@@ -107,33 +197,11 @@
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <p class="mb-0 text-sm">
-                                <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
-                <div class="card l-bg-green">
-                    <div class="card-statistic-3">
-                        <div class="card-icon card-icon-large"><i class="far fa-smile"></i></div>
-                        <div class="card-content">
-                            <h4 class="card-title">{{ __('Meme Earnings')}}</h4>
-                            <span class="font-20">TZS 524</span>
-                            <div class="progress mt-1 mb-1" data-height="8">
-                                <div class="progress-bar l-bg-purple" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <p class="mb-0 text-sm">
-                                <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
                 <div class="card l-bg-cyan">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="far fa-question-circle"></i></div>
@@ -143,37 +211,36 @@
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <p class="mb-0 text-sm">
-                                <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-4 col-lg-6">
                 <div class="card l-bg-orange">
                     <div class="card-statistic-3">
                         <div class="card-icon card-icon-large"><i class="fas fa-play-circle"></i></div>
                         <div class="card-content">
-                            <h4 class="card-title">{{ __('Video')}} &amp; {{ __('Ads Earning')}}</h4>
+                            <h4 class="card-title">{{ __('Video Earnings')}}</h4>
                             <span class="font-20">TZS 2,658</span>
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <p class="mb-0 text-sm">
-                                <span class="mr-2"><i class="fa fa-arrow-up"></i> 10%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
 </div>
 @include('layouts.footer')
+@section('js-libraries')
+<script src="{{ asset('assets/bundles/chartjs/chart.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/jquery.sparkline.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/jqvmap/dist/jquery.vmap.min.js')}}"></script>
+@endsection
 @section('page-specific-js')
-<script src="{{ asset('assets/js/page/index.js')}}"></script>
+<script src="{{ asset('assets/js/page/widget-chart.js')}}"></script>
 @endsection
 @endsection
