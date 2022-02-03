@@ -35,8 +35,8 @@
                                         @foreach($withdraws as $key=>$rows)
                                         <tr>
                                             <td>{{ $serial++ }}</td>
-                                            <td>{{ ($rows->created_at)->format('Y-m-d H:m:s') }}</td>
-                                            <td>{{ $rows->amount }}</td>
+                                            <td>{{ ($rows->created_at)->format('M d Y') }}</td>
+                                            <td>{{ number_format($rows->amount,2) }}</td>
                                             <td>{{ $rows->phone }}</td>
                                             <td>{{ $rows->transaction_type }}</td>
                                             @if($rows->status == 0)

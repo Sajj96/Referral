@@ -1,11 +1,6 @@
 'use strict';
 $(function () {
 
-    var cleaveC = new Cleave('.currency', {
-        numeral: true,
-        numeralThousandsGroupStyle: 'thousand'
-    });
-
     //Advanced form with validation
     var form = $('#wizard_with_validation').show();
 

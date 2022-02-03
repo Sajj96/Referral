@@ -71,7 +71,7 @@ class TransactionController extends Controller
             $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
             $withdraw->status = Transaction::WITHDRAW_PENDING;
             if($withdraw->save()) {
-                return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS'.$request->amount.'. Please wait for confirmation!.');
+                return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS '.$request->amount.'. Please wait for confirmation!.');
             }
         } catch (\Exception $e) {
             return redirect()->route('withdraw')->with('error','Something went wrong while withdrawing!');

@@ -63,7 +63,7 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input min="12000" max="20000" type="text" name="amount" id="amount" class="form-control currency" required>
+                                            <input min="12000" max="20000" type="number" name="amount" id="amount" class="form-control" required>
                                         </div>
                                         <div class="help-info">{{ __('You can withdraw an amount not less than TZS 12,000 and not more than TZS 20,000 per day.')}}</div>
                                     </div>
@@ -75,7 +75,7 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input type="text" name="deposit" id="deposit" class="form-control currency" required readonly>
+                                            <input type="number" max="20000" name="deposit" id="deposit" class="form-control" required readonly>
                                         </div>
                                         <div class="help-info"><strong>{{ __('Fee: TZS 900.00')}}</strong></div>
                                     </div>
@@ -94,7 +94,6 @@
 @include('layouts.footer')
 @section('js-libraries')
 <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/cleave-js/dist/cleave.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
