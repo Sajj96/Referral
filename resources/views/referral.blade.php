@@ -40,16 +40,16 @@
                         </div>
                         <div class="card-footer text-center pt-0">
                             <div class="font-weight-bold mb-2 text-small">{{ __('Share on Social')}}</div>
-                            <a href="https://www.facebook.com/" class="btn btn-social btn-facebook">
+                            <a href="https://www.facebook.com/" class="btn btn-social btn-facebook" data-toggle="tooltip" title="Facebook">
                                 <span class="fab fa-facebook"></span> Facebook
                             </a>
-                            <a href="https://twitter.com/" class="btn btn-social btn-twitter">
+                            <a href="https://twitter.com/" class="btn btn-social btn-twitter" data-toggle="tooltip" title="Twitter">
                                 <span class="fab fa-twitter"></span> Twitter
                             </a>
-                            <a href="https://www.linkedin.com/" class="btn btn-social btn-linkedin">
-                                <span class="fab fa-linkedin"></span> Linkedin
+                            <a href="https://www.linkedin.com/" class="btn btn-social btn-linkedin" data-toggle="tooltip" title="LinkedIn">
+                                <span class="fab fa-linkedin"></span> LinkedIn
                             </a>
-                            <a href="https://www.instagram.com/" class="btn btn-social btn-instagram">
+                            <a href="https://www.instagram.com/" class="btn btn-social btn-instagram" data-toggle="tooltip" title="Instagram">
                                 <span class="fab fa-instagram"></span> Instagram
                             </a>
                         </div>
