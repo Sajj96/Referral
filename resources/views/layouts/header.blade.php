@@ -97,12 +97,19 @@
                 <li class="dropdown">
                     <a href="{{ route('referral')}}" class="nav-link"><i data-feather="link"></i><span>{{ __('Invite a Friend')}}</span></a>
                 </li>
+                @if(Auth::user()->user_type == 1)
+                <li class="dropdown">
+                    <a href="{{ route('users')}}" class="nav-link"><i data-feather="users"></i><span>{{ __('Users')}}</span></a>
+                </li>
+                @else
                 <li class="dropdown">
                     <a href="{{ route('team')}}" class="nav-link"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
                 </li>
+                @endif
                 <li class="dropdown">
                     <a href="{{ route('pay_for_client')}}" class="nav-link"><i data-feather="check-square"></i><span>{{ __('Pay For Client')}}</span></a>
                 </li>
+                @if(Auth::user()->user_type == 1)
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
                     <ul class="dropdown-menu">
@@ -110,12 +117,37 @@
                         <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Withdraw')}}</a></li>
                     </ul>
                 </li>
+                @else
+                <li class="dropdown">
+                    <a href="{{ route('history')}}" class="nav-link"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>
+                </li>
+                @endif
+                @if(Auth::user()->user_type == 1)
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Trivia Questions')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('Participants')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Create Question')}}</a></li>
+                    </ul>
+                </li>
+                @else
                 <li class="dropdown">
                     <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                 </li>
+                @endif
+                @if(Auth::user()->user_type == 1)
                 <li class="dropdown">
-                    <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}} &amp; {{ __('Ads')}}</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Videos')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('Play list')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Upload Video')}}</a></li>
+                    </ul>
                 </li>
+                @else
+                <li class="dropdown">
+                    <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}}</span></a>
+                </li>
+                @endif
                 <!-- <li class="dropdown">
                     <a href="#" class="nav-link"><i data-feather="meh"></i><span>{{ __('Meme Creation')}}</span></a>
                 </li> -->
