@@ -49,7 +49,7 @@
                                             @else
                                             <td><div class="badge badge-light badge-shadow">Inactive</div></td>
                                             @endif
-                                            <td><a href="#" class="btn btn-outline-primary">Detail</a></td>
+                                            <td><a href="{{ route('user.details', $rows->id)}}" class="btn btn-outline-primary">Detail</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

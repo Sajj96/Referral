@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website"/>
-	<meta property="og:url" content="{{ Auth::user()->referral_link }}"/>
+	<meta property="og:url" content="env('APP_URL')"/>
 	<meta property="og:title" content=""/>
 	<meta property="og:description" content="DELASKA Agency - Earn with Us"/>
 	<meta property="og:image" content=""/>
 	<meta property="twitter:card" content="summary_large_image"/>
-	<meta property="twitter:url" content="{{ Auth::user()->referral_link }}"/>
+	<meta property="twitter:url" content="env('APP_URL')"/>
 	<meta property="twitter:title" content=""/>
 	<meta property="twitter:description" content="DELASKA Agency - Earn with Us"/>
 	<meta property="twitter:image" content=""/>

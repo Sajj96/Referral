@@ -50,7 +50,10 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'user'], function(){
-        Route::get('/all', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+        Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+        Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
+        Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');
+        Route::post('/deactivate/{id}', [App\Http\Controllers\UserController::class, 'deactivateUser'])->name('user.deactivate');
         Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
         Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
