@@ -108,7 +108,7 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('history')}}">{{ __('Participants')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Create Question')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('question.create')}}">{{ __('Create Question')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

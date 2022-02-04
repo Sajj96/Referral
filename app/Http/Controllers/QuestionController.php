@@ -13,6 +13,16 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('question');
+        return view('question.questions');
+    }
+
+    /**
+     * Show the questions page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        return view('question.create');
     }
 }
