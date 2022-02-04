@@ -3,7 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta property="og:type" content="website"/>
+	<meta property="og:url" content="{{ Auth::user()->referral_link }}"/>
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content="DELASKA Agency - Earn with Us"/>
+	<meta property="og:image" content=""/>
+	<meta property="twitter:card" content="summary_large_image"/>
+	<meta property="twitter:url" content="{{ Auth::user()->referral_link }}"/>
+	<meta property="twitter:title" content=""/>
+	<meta property="twitter:description" content="DELASKA Agency - Earn with Us"/>
+	<meta property="twitter:image" content=""/>
+	<meta property="twitter:image:alt" content="Company logo"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

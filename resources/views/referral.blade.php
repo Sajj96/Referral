@@ -40,13 +40,13 @@
                         </div>
                         <div class="card-footer text-center pt-0">
                             <div class="font-weight-bold mb-2 text-small">{{ __('Share on Social')}}</div>
-                            <a href="https://www.facebook.com/" class="btn btn-social btn-facebook" data-toggle="tooltip" title="Facebook">
+                            <a href="https://www.facebook.com/sharer.php?u={{ Auth::user()->referral_link }}" class="btn btn-social btn-facebook" data-toggle="tooltip" title="Facebook">
                                 <span class="fab fa-facebook"></span> Facebook
                             </a>
-                            <a href="https://twitter.com/" class="btn btn-social btn-twitter" data-toggle="tooltip" title="Twitter">
+                            <a href="https://twitter.com/intent/tweet?hashtags=&original_referer={{ Auth::user()->referral_link }}&related=undefined&source=tweetbutton&text=DELASKA:%20AGENTS%20Click%20the%20link%20below%20to%20register%20and%20start%20earning&url={{ Auth::user()->referral_link }}&via=DELASKA" class="btn btn-social btn-twitter" data-toggle="tooltip" title="Twitter">
                                 <span class="fab fa-twitter"></span> Twitter
                             </a>
-                            <a href="https://www.linkedin.com/" class="btn btn-social btn-linkedin" data-toggle="tooltip" title="LinkedIn">
+                            <a href="https://www.linkedin.com/shareArticle?url={{ Auth::user()->referral_link }}&title=DELASKA:%20AGENTS%20Click%20the%20link%20below%20to%20register%20and%20start%20earning&summary=some%20summary%20if%20you%20want&source={{ Auth::user()->referral_link }}" class="btn btn-social btn-linkedin" data-toggle="tooltip" title="LinkedIn">
                                 <span class="fab fa-linkedin"></span> LinkedIn
                             </a>
                             <a href="https://www.instagram.com/" class="btn btn-social btn-instagram" data-toggle="tooltip" title="Instagram">
