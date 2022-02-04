@@ -17,9 +17,21 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $withdraws = Transaction::where('user_id', Auth::user()->id)->get();
+        $transactions = Transaction::all();
         $serial = 1;
-        return view('transaction.history', compact('withdraws','serial'));
+        return view('transaction.history', compact('transactions','serial'));
+    }
+
+    /**
+     * Show the history page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userTransactions()
+    {
+        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        $serial = 1;
+        return view('transaction.history', compact('transactions','serial'));
     }
 
     /**

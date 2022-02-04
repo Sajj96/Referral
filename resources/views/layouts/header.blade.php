@@ -102,7 +102,7 @@
                     <a href="{{ route('users')}}" class="nav-link"><i data-feather="users"></i><span>{{ __('Users')}}</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('history')}}" class="nav-link"><i data-feather="credit-card"></i><span>{{ __('Transactions')}}</span></a>
+                    <a href="{{ route('transaction')}}" class="nav-link"><i data-feather="credit-card"></i><span>{{ __('Transactions')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>

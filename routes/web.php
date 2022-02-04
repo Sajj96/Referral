@@ -35,8 +35,9 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'transaction'], function(){
-        Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('history');
+        Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
         Route::post('/', [App\Http\Controllers\TransactionController::class, 'getPaid'])->name('payment');
+        Route::get('/me', [App\Http\Controllers\TransactionController::class, 'userTransactions'])->name('history');
         Route::get('/withdraw', [App\Http\Controllers\TransactionController::class, 'show'])->name('withdraw');
         Route::get('/pay_for_client', [App\Http\Controllers\TransactionController::class, 'showInactiveClients'])->name('pay_for_client');
     });

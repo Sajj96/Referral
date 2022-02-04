@@ -32,7 +32,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($withdraws as $key=>$rows)
+                                        @foreach($transactions as $key=>$rows)
                                         <tr>
                                             <td>{{ $serial++ }}</td>
                                             <td>{{ ($rows->created_at)->format('M d Y') }}</td>
