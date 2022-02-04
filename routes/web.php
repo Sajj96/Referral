@@ -50,7 +50,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\QuestionController::class, 'index'])->name('questions');
     });
 
-    Route::group(['prefix' => 'user'], function(){
+    Route::group(['middleware' => 'user.type', 'prefix' => 'user'], function(){
         Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users');
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
         Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');
