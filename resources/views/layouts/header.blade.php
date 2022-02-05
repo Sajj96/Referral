@@ -86,7 +86,8 @@
     <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-                <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logo.png')}}" class="header-logo" /> <span class="logo-name">SmartPesa</span>
+                <a href="index.html"> <img alt="image" src="{{ asset('assets/img/logo3.png')}}" class="header-logo" />
+                <span class="logo-name"><span class="first-part">DEL</span><span class="second-part">ASKA</span></span>
                 </a>
             </div>
             <ul class="sidebar-menu">

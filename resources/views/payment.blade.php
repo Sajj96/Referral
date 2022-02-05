@@ -12,7 +12,7 @@
                   <div class="card-body">
                     <ul class="list-unstyled">
                       <li class="media">
-                        <img class="mr-3 img-fluid" src="{{ asset('assets/img/mpesa.jpg')}}" alt="Generic placeholder image">
+                        <img class="mr-1 img-fluid" src="{{ asset('assets/img/Tanzania-Mpesa-logo.jpeg')}}" alt="Generic placeholder image">
                         <div class="media-body">
                           <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(VODACOM)</h5>
                           <ol>
