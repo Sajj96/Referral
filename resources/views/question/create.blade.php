@@ -3,6 +3,7 @@
 @section('general-css')
 <link rel="stylesheet" href="{{ asset('assets/bundles/summernote/summernote-bs4.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/bundles/jquery-selectric/selectric.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
 @endsection
 
 @section('content')
@@ -16,8 +17,32 @@
                         <div class="card-header">
                             <h4>{{ __('Create Trivia Questions')}}</h4>
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
-                            <form action="" method="post">
+                            @if(count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    @foreach ($errors->all() as $error)
+                                    {{ $error }}
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+                            @if(\Session::has('message'))
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    {{ \Session::get('message')}}
+                                </div>
+                            </div>
+                            @endif
+                            <form action="{{ route('question.create')}}" method="post">
+                                @csrf
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Question')}}</label>
                                     <div class="col-sm-12 col-md-7">
@@ -55,6 +80,7 @@
 <script src="{{ asset('assets/bundles/summernote/summernote-bs4.js')}}"></script>
 <script src="{{ asset('assets/bundles/jquery-selectric/jquery.selectric.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/create-post.js')}}"></script>
