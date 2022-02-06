@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class QuestionController extends Controller
 {
@@ -16,12 +18,30 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->user_type == 1) {
-            $questions = Question::all();
-            $serial = 1;
-            return view('question.questions', compact('questions', 'serial'));
+        $questions = Question::all();
+        $questionsList = array();
+
+        foreach($questions as $key=>$rows){
+            $questionsList[] = array(
+                "numb" => $rows->id,
+                "question" => $rows->question,
+                "answer" => $rows->answer,
+                "options" => explode(",", $rows->options)
+            );
         }
-        return view('question.questions');
+        return view('question.questions', compact('questionsList'));
+    }
+
+    /**
+     * Show the questions page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getList()
+    {
+        $questions = Question::all();
+        $serial = 1;
+        return view('question.questions_list', compact('questions', 'serial'));
     }
 
     /**
@@ -63,4 +83,25 @@ class QuestionController extends Controller
             return redirect()->route('question.show')->with('error','Something went wrong while creating a question!');
         }
     }
+
+    /**
+     * Add questions score.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addScore(Request $request)
+    {
+        try {
+            $score = DB::table('question_scores')->insert([
+                'user_id' => $request->user_id,
+                'score'   => $request->score,
+                'created_at' => (new Carbon('now'))->format('Y-m-d H:m:s'),
+                'updated_at' => (new Carbon('now'))->format('Y-m-d H:m:s')
+            ]);
+            return $score;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
 }

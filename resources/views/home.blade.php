@@ -234,6 +234,7 @@
     @endif
 </div>
 @include('layouts.footer')
+@if(Auth::user()->user_type == 1)
 @section('js-libraries')
 <script src="{{ asset('assets/bundles/chartjs/chart.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/jquery.sparkline.min.js')}}"></script>
@@ -243,4 +244,5 @@
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/widget-chart.js')}}"></script>
 @endsection
+@endif
 @endsection

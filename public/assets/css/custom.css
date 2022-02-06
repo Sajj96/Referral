@@ -218,9 +218,13 @@
     display: none;
 }
 
+.result_box .result_info {
+    text-align-last: center;
+}
+
 .result_box .icon{
     font-size: 100px;
-    color: #3abaf4;
+    color: #16234D;
     margin-bottom: 10px;
 }
 
@@ -230,14 +234,11 @@
 }
 
 .result_box .score_text span{
-    display: flex;
-    margin: 10px 0;
     font-size: 18px;
     font-weight: 500;
 }
 
 .result_box .score_text span p{
-    padding: 0 4px;
     font-weight: 600;
 }
 
@@ -256,7 +257,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
-    border: 1px solid #3abaf4;
+    border: 1px solid #16234D;
     transition: all 0.3s ease;
 }
 

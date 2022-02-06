@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website"/>
 	<meta property="og:url" content="env('APP_URL')"/>
-	<meta property="og:title" content=""/>
+	<meta property="og:title" content="DELASKA"/>
 	<meta property="og:description" content="DELASKA Agency - Earn with Us"/>
-	<meta property="og:image" content=""/>
+	<meta property="og:image" content="{{ asset('assets/img/logo1.png')}}"/>
 	<meta property="twitter:card" content="summary_large_image"/>
 	<meta property="twitter:url" content="env('APP_URL')"/>
 	<meta property="twitter:title" content=""/>
 	<meta property="twitter:description" content="DELASKA Agency - Earn with Us"/>
-	<meta property="twitter:image" content=""/>
+	<meta property="twitter:image" content="{{ asset('assets/img/logo1.png')}}"/>
 	<meta property="twitter:image:alt" content="Company logo"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css')}}">
-    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/favicon.ico')}}" />
+    <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo3.png')}}" />
 </head>
 <body>
     <div id="app">
