@@ -52,6 +52,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::post('/create', [App\Http\Controllers\QuestionController::class, 'create'])->name('question.create')->middleware('user.type');
         Route::get('/list', [App\Http\Controllers\QuestionController::class, 'getList'])->name('question.list')->middleware('user.type');
         Route::post('/score', [App\Http\Controllers\QuestionController::class, 'addScore'])->name('question.score');
+        Route::get('/participants', [App\Http\Controllers\QuestionController::class, 'getParticipants'])->name('question.participants')->middleware('user.type');
     });
 
     Route::group(['middleware' => 'user.type', 'prefix' => 'user'], function(){

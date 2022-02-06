@@ -109,7 +109,7 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('question.list')}}">{{ __('Questions')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('Participants')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('question.participants')}}">{{ __('Participants')}}</a></li>
                         <li><a class="nav-link" href="{{ route('question.show')}}">{{ __('Create Question')}}</a></li>
                     </ul>
                 </li>

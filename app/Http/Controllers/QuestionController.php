@@ -104,4 +104,20 @@ class QuestionController extends Controller
         }
     }
 
+    /**
+     * Show question participants.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getParticipants(Request $request)
+    {
+        $participants = DB::table('question_scores')
+                        ->join('users', 'question_scores.user_id', '=','users.id')
+                        ->select(DB::raw('SUM(score) as score'),DB::raw('users.username'))
+                        ->groupBy(DB::raw('users.id'))
+                        ->get();
+        $serial = 1;
+        return view('question.participants', compact('participants','serial'));
+    }
+
 }
