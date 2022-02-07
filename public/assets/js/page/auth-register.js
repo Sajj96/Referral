@@ -1,5 +1,10 @@
 "use strict";
 
+$(document).on('keyup', '#username',function() {
+  var text = $(this).val();
+  $(this).val(text.replace(/[^A-Za-z0-9]/g,''));
+});
+
 $(".pwstrength").pwstrength();
 
 // get the country data from the plugin

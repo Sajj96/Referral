@@ -38,6 +38,10 @@
                                 <div class="form-group col-6">
                                     <label for="username">{{ __('Username') }}</label>
                                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
+                                    <small class="form-text text-muted">
+                                        Your user must be only one word, can contain letters and numbers, and must not contain
+                                        spaces, special characters, or emoji.
+                                    </small>
                                     @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,18 +54,18 @@
                                     <label for="email">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address">
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="phone">{{ __('Phone number') }}</label>
                                     <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone" style="padding: 10px 80px 10px 90px">
                                     @error('phone')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                     <span id="valid-msg" class="hide">✓ Valid</span>
                                     <span id="error-msg" class="hide"></span>
