@@ -18,8 +18,8 @@
                                         <div class="card-statistic-3">
                                             <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                                             <div class="card-content">
-                                                <h4 class="card-title">{{ __('References')}}</h4>
-                                                <span class="font-20">{{ count(Auth::user()->referrals)  ?? '0' }}</span>
+                                                <h4 class="card-title">{{ __('Active Referrals')}}</h4>
+                                                <span class="font-20">{{ count($activeReferrals)  ?? '0' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -48,9 +48,6 @@
                             </a>
                             <a href="https://www.linkedin.com/shareArticle?url={{ Auth::user()->referral_link }}&title=DELASKA:%20AGENTS%20Click%20the%20link%20below%20to%20register%20and%20start%20earning&summary=some%20summary%20if%20you%20want&source={{ Auth::user()->referral_link }}" class="btn btn-social btn-linkedin" data-toggle="tooltip" title="LinkedIn">
                                 <span class="fab fa-linkedin"></span> LinkedIn
-                            </a>
-                            <a href="https://www.instagram.com/" class="btn btn-social btn-instagram" data-toggle="tooltip" title="Instagram">
-                                <span class="fab fa-instagram"></span> Instagram
                             </a>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -88,5 +89,17 @@ class User extends Authenticatable
     public function referrals()
     {
         return $this->hasMany(User::class, 'referrer_id', 'id');
+    }
+
+    /**
+     * A user active referrals.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activeReferrals()
+    {
+        return User::where('referrer_id', Auth::user()->id)
+                    ->where('active', User::USER_STATUS_ACTIVE)
+                    ->get();
     }
 }
