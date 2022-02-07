@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-@section('general-css')
-<link rel="stylesheet" href="{{ asset('assets/bundles/datatables/datatables.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
-@endsection
-
 @section('content')
 @include('layouts.header')
 <div class="main-content">
@@ -63,9 +58,9 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input min="12000" max="20000" type="number" name="amount" id="amount" class="form-control" required>
+                                            <input min="{{ $setting->minimum }}" max="{{ $setting->maximum }}" type="number" name="amount" id="amount" class="form-control" required>
                                         </div>
-                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS 12,000 and not more than TZS 20,000 per day.')}}</div>
+                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS')}} {{ $setting->minimum }} {{ __('and not more than TZS')}} {{ $setting->maximum }} {{ __('per day.')}}</div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Amount to deposit')}}</label>
@@ -75,9 +70,9 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input type="number" max="20000" name="deposit" id="deposit" class="form-control" required readonly>
+                                            <input type="number" max="{{ $setting->maximum }}" name="deposit" id="deposit" class="form-control" required readonly>
                                         </div>
-                                        <div class="help-info"><strong>{{ __('Fee: TZS 900.00')}}</strong></div>
+                                        <div class="help-info"><strong>{{ __('Fee: TZS ')}}{{ number_format($setting->deducted,2)}}</strong></div>
                                     </div>
                                 </fieldset>
                                 <div class="card-footer text-right">
@@ -96,6 +91,9 @@
 <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var deducted = <?php echo $setting->deducted; ?>
+</script>
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection
 @endsection

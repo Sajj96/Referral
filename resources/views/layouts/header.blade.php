@@ -73,9 +73,11 @@
                 <div class="dropdown-menu dropdown-menu-right pullDown">
                     <div class="dropdown-title">Hello {{ Auth::user()->username }}</div>
                     <a href="{{ route('profile')}}" class="dropdown-item has-icon"> <i class="far fa-user"></i> {{ __('Profile') }} </a>
-                    </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+                    @if(Auth::user()->user_type == 1)
+                    </a> <a href="{{ route('setting')}}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                         {{ __('Settings')}}
                     </a>
+                    @endif
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
                         {{ __('Logout') }}

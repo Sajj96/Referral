@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class TransactionController extends Controller
 {
@@ -41,7 +43,8 @@ class TransactionController extends Controller
      */
     public function show()
     {
-        return view('transaction.withdraw');
+        $setting = DB::table('setting')->first();
+        return view('transaction.withdraw', compact('setting'));
     }
 
     /**
@@ -87,6 +90,35 @@ class TransactionController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('withdraw')->with('error','Something went wrong while withdrawing!');
+        }
+    }
+
+    public function settings()
+    {
+        return view('setting');
+    }
+
+    public function saveSettings(Request $request)
+    {
+        try {
+
+            if($request->minimum > $request->maximum) {
+                return redirect()->route('setting')->with('error','Minimum withdraw must be less than Maximum withdraw');
+            }
+
+            $setting = DB::table('setting')->insert([
+                'referral_amount' => $request->referral_amount,
+                'minimum' => $request->minimum,
+                'maximum'   => $request->maximum,
+                'deducted'   => $request->deducted,
+                'created_at' => (new Carbon('now'))->format('Y-m-d H:m:s'),
+                'updated_at' => (new Carbon('now'))->format('Y-m-d H:m:s')
+            ]);
+            if($setting){
+                return redirect()->route('setting')->with('success','Transaction setting are saved');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('setting')->with('error','Something went wrong while modifying settings!');
         }
     }
 }

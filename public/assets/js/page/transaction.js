@@ -24,7 +24,7 @@ $(function () {
     $('#amount').on('blur', () => {
         var amount = $('#amount').val();
         amount = parseFloat(amount.replace(/,/g, ''));
-        var deposit = amount - 900;
+        var deposit = amount - deducted;
         $('#deposit').val(deposit);
     });
 });
