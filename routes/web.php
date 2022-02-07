@@ -31,7 +31,9 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'team'], function(){
-        Route::get('/', [App\Http\Controllers\TeamController::class, 'index'])->name('team');
+        Route::get('/', [App\Http\Controllers\TeamController::class, 'index'])->name('team.level1');
+        Route::get('/level_two', [App\Http\Controllers\TeamController::class, 'showLevelTwo'])->name('team.level2');
+        Route::get('/level_three', [App\Http\Controllers\TeamController::class, 'showLevelThree'])->name('team.level3');
     });
 
     Route::group(['prefix' => 'transaction'], function(){
