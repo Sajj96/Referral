@@ -32,6 +32,7 @@
     <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo3.png')}}" />
 </head>
 <body>
+    <div class="loader"></div>
     <div id="app">
         <main class="py-4">
             @yield('content')

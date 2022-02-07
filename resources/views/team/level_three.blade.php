@@ -17,8 +17,8 @@
                             <h4>{{ __('Downlines')}}</h4>
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-info">{{ __('Level 3')}}</a>
-                                <a href="#" class="btn btn-primary">{{ count($downlines)  ?? '0' }} {{ __('Referral')}}</a>
-                                <a href="#" class="btn btn-success">{{ __('Total Earned TZS ')}} {{ count($downlines) * 5000  ?? '0.00' }} </a>
+                                <a href="#" class="btn btn-primary">{{ $downlines[0]->username != null ? count($downlines) : '0' }} {{ __('Referral')}}</a>
+                                <a href="#" class="btn btn-success">{{ __('Total Earned TZS ')}} {{ $downlines[0]->username != null ? count($downlines) * 5000  : '0.00' }} </a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -36,21 +36,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if($downlines[0]->username != null)
                                         @foreach($downlines as $key=>$rows)
                                         <tr>
                                             <td>
-                                                {{ $rows->phone != null ? $serial++ : '' }}
+                                                {{ $serial++ }}
                                             </td>
                                             <td>{{ $rows->username }}</td>
                                             <td>{{ $rows->phone }}</td>
-                                            <td>{{ $rows->phone != null ? number_format(5000,2) : '' }}</td>
+                                            <td>{{ number_format(5000,2) }}</td>
                                             @if($rows->active == 1)
-                                            <td><div class="badge badge-success badge-shadow">{{ $rows->phone != null ? __('Active') : ''}}</div></td>
+                                            <td>
+                                                <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
+                                            </td>
                                             @else
-                                            <td><div class="badge badge-light badge-shadow">{{ $rows->phone != null ? __('Inactive') : ''}}</div></td>
+                                            <td>
+                                                <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                            </td>
                                             @endif
                                         </tr>
                                         @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
