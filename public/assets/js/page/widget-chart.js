@@ -186,6 +186,60 @@ var myChart = new Chart(sales_chart, {
   }
 });
 
+var sales_chart = document.getElementById("chart-4").getContext('2d');
+
+var myChart = new Chart(sales_chart, {
+  type: 'lineShadow',
+  data: {
+    labels: ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001'],
+    datasets: [{
+      label: 'Sales',
+      data: [63, 82, 52, 50, 31, 70, 50, 70, 62, 44, 40, 21],
+      borderWidth: 2,
+      backgroundColor: balance_chart_bg_color,
+      borderWidth: 3,
+      borderColor: '#ffa426',
+      pointBorderWidth: 0,
+      pointBorderColor: 'transparent',
+      pointRadius: 3,
+      pointBackgroundColor: 'transparent',
+      pointHoverBackgroundColor: 'rgba(120, 107, 236,1)',
+    }]
+  },
+  options: {
+    layout: {
+      padding: {
+        bottom: -1,
+        left: -1
+      }
+    },
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+        gridLines: {
+          display: false,
+          drawBorder: false,
+        },
+        ticks: {
+          beginAtZero: true,
+          display: false
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          drawBorder: false,
+          display: false,
+        },
+        ticks: {
+          display: false
+        }
+      }]
+    },
+  }
+});
+
 // revenue chart 
 var options = {
   chart: {

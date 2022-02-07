@@ -11,14 +11,14 @@
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2">
                     <div class="card-icon shadow-primary bg-cyan">
-                        <i class="fas fa-hiking"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">New Clients</h4>
+                            <h4 class="pull-right">All Users</h4>
                         </div>
                         <div class="card-body pull-right">
                             10,225
@@ -29,14 +29,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2">
-                    <div class="card-icon shadow-primary bg-purple">
-                        <i class="fas fa-drafting-compass"></i>
+                    <div class="card-icon shadow-primary bg-orange">
+                        <i class="fas fa-users"></i>
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">Delivered Order</h4>
+                            <h4 class="pull-right">Active Users</h4>
+                        </div>
+                        <div class="card-body pull-right">
+                            10,225
+                        </div>
+                    </div>
+                    <div class="card-chart">
+                        <canvas id="chart-4" height="80"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="card card-statistic-2">
+                    <div class="card-icon shadow-primary bg-purple">
+                        <i class="fas fa-money-bill-alt"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4 class="pull-right">Withdrawal</h4>
                         </div>
                         <div class="card-body pull-right">
                             2,857
@@ -47,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-statistic-2">
                     <div class="card-icon shadow-primary bg-green">
                         <i class="fas fa-dollar-sign"></i>
