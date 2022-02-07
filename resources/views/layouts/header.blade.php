@@ -122,13 +122,11 @@
                 </li>
                 @else
                 <li class="dropdown">
-                    <a href="{{ route('team')}}" class="nav-link"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('My Team')}}</span></a>
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('History')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Withdraw')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('team.level1')}}">{{ __('Level One')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('team.level2')}}">{{ __('Level Two')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('team.level3')}}">{{ __('Level Three')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
