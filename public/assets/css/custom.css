@@ -10,7 +10,9 @@
     width: 100%;
     height: 400px;
 } 
-
+.error {
+    color: #CB191F !important;
+}
 .my-video-dimensions.vjs-fluid {
     padding-top: 56.25%;
 }

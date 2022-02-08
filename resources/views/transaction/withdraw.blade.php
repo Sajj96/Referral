@@ -39,12 +39,12 @@
                                 @csrf
                                 <fieldset>
                                     <div class="form-group">
-                                        <label>{{ __('Select balance')}}</label>
+                                        <label>{{ __('Balance')}}</label>
                                         <select class="custom-select" name="balance" required>
-                                            <option value="main">{{ __('Main balance')}}</option>
-                                            <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video balance')}} </option>
+                                            <option value="main" selected>{{ __('Main balance')}}</option>
+                                            <!-- <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video balance')}} </option> -->
                                         </select>
-                                        <div class="help-info">{{ __('Current balance: TZS 0')}}</div>
+                                        <div class="help-info">{{ __('Current balance: TZS')}} {{ number_format($balance,2) }}</div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Phone Number')}}</label>

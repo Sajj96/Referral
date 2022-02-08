@@ -31,7 +31,8 @@ class Transaction extends Model
         $activeUsers = User::where('referrer_id', Auth::user()->id)
                             ->where('active', User::USER_STATUS_ACTIVE)
                             ->get();
-        $totalEarnings = count($activeUsers) * $referral_amount;
+        $countActiveUser = count($activeUsers) ?? 0;
+        $totalEarnings = $countActiveUser * $referral_amount;
         return $totalEarnings;
     }
 
@@ -47,8 +48,11 @@ class Transaction extends Model
                         ->where('transaction_type', $this::TYPE_EXPENSES)
                         ->where('user_id', Auth::user()->id)
                         ->max('amount');
-        $expenses_amount = $expenses != null ? $expenses : 0;
-        $balance = $totalEarnings - $expenses_amount;
+        $withdrawn = $this->getUserWithdrawnAmount();
+
+        $expenses_amount = $expenses ?? 0;
+        $withdrawn_amount = $withdrawn ?? 0;
+        $balance = $totalEarnings - ($withdrawn_amount - $expenses_amount);
         return $balance;
     }
 
@@ -63,7 +67,7 @@ class Transaction extends Model
                         ->where('transaction_type', $this::TYPE_EXPENSES)
                         ->where('user_id', Auth::user()->id)
                         ->sum('amount');
-        $expenses_amount = $expenses != null ? $expenses : 0;
+        $expenses_amount = $expenses ?? 0;
         return $expenses_amount;
     }
 
@@ -78,7 +82,7 @@ class Transaction extends Model
                         ->where('transaction_type', $this::TYPE_WITHDRAW)
                         ->where('user_id', Auth::user()->id)
                         ->sum('amount');
-        $withdrawn_amount = $withdrawn != null ? $withdrawn : 0;
+        $withdrawn_amount = $withdrawn ?? 0;
         return $withdrawn_amount;
     }
 }

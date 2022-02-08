@@ -44,7 +44,10 @@ class TransactionController extends Controller
     public function show()
     {
         $setting = DB::table('setting')->first();
-        return view('transaction.withdraw', compact('setting'));
+        $transactions = new Transaction();
+        $balance = $transactions->getUserBalance();
+
+        return view('transaction.withdraw', compact('setting','balance'));
     }
 
     /**
@@ -78,9 +81,15 @@ class TransactionController extends Controller
 
         try {
 
-            $fee = DB::table('setting')->first()->deducted;
+            $setting = DB::table('setting')->first();
+            $transactions = new Transaction();
+            $balance = $transactions->getUserBalance();
 
-            $fee_amount = $fee != null ? $fee : 0;
+            $fee_amount = $setting->deducted != null ? $setting->deducted : 0;
+
+            if($request->amount > $balance) {
+                return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw.');
+            }
 
             $withdraw = new Transaction;
             $withdraw->balance = $request->balance;
