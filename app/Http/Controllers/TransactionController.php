@@ -20,8 +20,12 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::all();
-        $serial = 1;
-        return view('transaction.history', compact('transactions','serial'));
+        $withdraw_requests = Transaction::where('transaction_type',Transaction::TYPE_WITHDRAW)
+                                         ->where('status',0)
+                                         ->get();
+        $serial_1 = 1;
+        $serial_2 = 1;
+        return view('transaction.admin_history', compact('transactions','withdraw_requests','serial_1','serial_2'));
     }
 
     /**

@@ -50,3 +50,10 @@ $('#tableExport').DataTable({
     'copy', 'csv', 'excel', 'pdf', 'print'
   ]
 });
+
+$('#tableExport1').DataTable({
+  dom: 'Bfrtip',
+  buttons: [
+    'copy', 'csv', 'excel', 'pdf', 'print'
+  ]
+});
