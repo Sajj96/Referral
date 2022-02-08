@@ -85,4 +85,32 @@ class Transaction extends Model
         $withdrawn_amount = $withdrawn ?? 0;
         return $withdrawn_amount;
     }
+
+    /**
+     * Get user system earnings.
+     *
+     * @return float
+     */
+    public function getSystemEarnings()
+    {
+        $earning = DB::table('transactions')
+                        ->sum('fee');
+        $earning_amount = $earning ?? 0;
+        return $earning_amount;
+    }
+
+    /**
+     * Get user system earnings.
+     *
+     * @return float
+     */
+    public function getWithdrawRequests()
+    {
+        $withdraw_request = DB::table('transactions')
+                        ->where('transaction_type', $this::TYPE_WITHDRAW)
+                        ->where('status', $this::WITHDRAW_PENDING)
+                        ->get();
+        $numRequest = count($withdraw_request) ?? 0;
+        return $numRequest;
+    }
 }

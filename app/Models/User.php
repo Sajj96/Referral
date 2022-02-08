@@ -102,4 +102,18 @@ class User extends Authenticatable
                     ->where('active', User::USER_STATUS_ACTIVE)
                     ->get();
     }
+
+    public function getAllUsers()
+    {
+        $user = User::all();
+        $users_number = count($user) ?? 0;
+        return $users_number;
+    }
+
+    public function getAllActiveUsers()
+    {
+        $user = User::where('active',1)->get();
+        $users_number = count($user) ?? 0;
+        return $users_number;
+    }
 }

@@ -18,10 +18,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">All Users</h4>
+                            <h4 class="pull-right">{{ __('All Users')}}</h4>
                         </div>
                         <div class="card-body pull-right">
-                            10,225
+                            {{ $all_users }}
                         </div>
                     </div>
                     <div class="card-chart">
@@ -36,10 +36,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">Active Users</h4>
+                            <h4 class="pull-right">{{ __('Active Users')}}</h4>
                         </div>
                         <div class="card-body pull-right">
-                            10,225
+                            {{ $active_users }}
                         </div>
                     </div>
                     <div class="card-chart">
@@ -54,10 +54,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">Withdrawal</h4>
+                            <h4 class="pull-right">{{ __('Withdraws')}}</h4>
                         </div>
                         <div class="card-body pull-right">
-                            2,857
+                            {{ $withdraw_requests }}
                         </div>
                     </div>
                     <div class="card-chart">
@@ -72,10 +72,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4 class="pull-right">Total Earning</h4>
+                            <h4 class="pull-right">{{ __('Total Earnings')}}</h4>
                         </div>
                         <div class="card-body pull-right">
-                            $17,458
+                            TZS {{ $system_earnings }}
                         </div>
                     </div>
                     <div class="card-chart">
