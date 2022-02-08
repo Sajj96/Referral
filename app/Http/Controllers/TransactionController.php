@@ -77,14 +77,21 @@ class TransactionController extends Controller
         }
 
         try {
+
+            $fee = DB::table('setting')->first()->deducted;
+
+            $fee_amount = $fee != null ? $fee : 0;
+
             $withdraw = new Transaction;
             $withdraw->balance = $request->balance;
             $withdraw->user_id = Auth::user()->id;
             $withdraw->phone = $request->phone;
             $withdraw->amount = $request->amount;
             $withdraw->amount_deposit = $request->deposit;
+            $withdraw->fee = $fee_amount;
             $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
             $withdraw->status = Transaction::WITHDRAW_PENDING;
+
             if($withdraw->save()) {
                 return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS '.$request->amount.'. Please wait for confirmation!.');
             }
@@ -95,7 +102,8 @@ class TransactionController extends Controller
 
     public function settings()
     {
-        return view('setting');
+        $settings = DB::table('setting')->first();
+        return view('setting', compact('settings'));
     }
 
     public function saveSettings(Request $request)

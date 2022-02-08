@@ -47,7 +47,7 @@
                                                         {{ __('TZS')}}
                                                     </div>
                                                 </div>
-                                                <input type="number" name="referral_amount" id="referral_amount" class="form-control" required>
+                                                <input type="number" name="referral_amount" id="referral_amount" value="{{ $settings->referral_amount }}" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group col-6">
@@ -58,7 +58,7 @@
                                                         {{ __('TZS')}}
                                                     </div>
                                                 </div>
-                                                <input type="number" name="deducted" id="deducted" class="form-control" required>
+                                                <input type="number" name="deducted" id="deducted" value="{{ $settings->deducted }}" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group col-6">
@@ -69,7 +69,7 @@
                                                         {{ __('TZS')}}
                                                     </div>
                                                 </div>
-                                                <input type="number" name="minimum" id="minimum" class="form-control" required>
+                                                <input type="number" name="minimum" id="minimum" value="{{ $settings->minimum }}" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group col-6">
@@ -80,7 +80,7 @@
                                                         {{ __('TZS')}}
                                                     </div>
                                                 </div>
-                                                <input type="number" name="maximum" id="maximum" class="form-control" required>
+                                                <input type="number" name="maximum" id="maximum" value="{{ $settings->maximum }}" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

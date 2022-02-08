@@ -94,7 +94,7 @@ class User extends Authenticatable
     /**
      * A user active referrals.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return active user's referral number
      */
     public function activeReferrals()
     {
