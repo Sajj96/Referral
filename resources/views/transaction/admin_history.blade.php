@@ -106,8 +106,8 @@
                                                     </td>
                                                     @endif
                                                     <td>
-                                                        <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Edit">Accept</a>
-                                                        <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')">Decline</a>
+                                                        <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept"><i class="fas fa-check"></i></a>
+                                                        <a class="btn btn-danger btn-action" id="swal-6" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -133,8 +133,10 @@
 <script src="{{ asset('assets/bundles/datatables/export-tables/pdfmake.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
 <script src="{{ asset('assets/bundles/datatables/export-tables/buttons.print.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/sweetalert/sweetalert.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
+<script src="{{ asset('assets/js/page/sweetalert.js')}}"></script>
 @endsection
 @endsection
