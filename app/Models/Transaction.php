@@ -45,9 +45,40 @@ class Transaction extends Model
         $totalEarnings = $this->getUserTotalEarnings();
         $expenses = DB::table('transactions')
                         ->where('transaction_type', $this::TYPE_EXPENSES)
+                        ->where('user_id', Auth::user()->id)
                         ->max('amount');
         $expenses_amount = $expenses != null ? $expenses : 0;
         $balance = $totalEarnings - $expenses_amount;
         return $balance;
+    }
+
+    /**
+     * Get user expenses.
+     *
+     * @return float
+     */
+    public function getUserExpenses()
+    {
+        $expenses = DB::table('transactions')
+                        ->where('transaction_type', $this::TYPE_EXPENSES)
+                        ->where('user_id', Auth::user()->id)
+                        ->sum('amount');
+        $expenses_amount = $expenses != null ? $expenses : 0;
+        return $expenses_amount;
+    }
+
+    /**
+     * Get user withdrawn amount.
+     *
+     * @return float
+     */
+    public function getUserWithdrawnAmount()
+    {
+        $withdrawn = DB::table('transactions')
+                        ->where('transaction_type', $this::TYPE_WITHDRAW)
+                        ->where('user_id', Auth::user()->id)
+                        ->sum('amount');
+        $withdrawn_amount = $withdrawn != null ? $withdrawn : 0;
+        return $withdrawn_amount;
     }
 }

@@ -18,7 +18,6 @@
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-info">{{ __('Level 2')}}</a>
                                 <a href="#" class="btn btn-primary">{{ $downlines[0]->username != null ? count($downlines) : '0' }} {{ __('Referral')}}</a>
-                                <a href="#" class="btn btn-success">{{ __('Total Earned TZS ')}} {{ $downlines[0]->username != null ? count($activeReferrals) * 5000  : '0.00' }} </a>
                             </div>
                         </div>
                         <div class="card-body">
