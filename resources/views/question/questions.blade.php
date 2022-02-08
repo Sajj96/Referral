@@ -21,7 +21,11 @@
                             </ol>
                         </div>
                         <div class="card-footer text-right">
+                            @if(count($questionsList) != 0)
                             <button class="btn btn-primary start">{{ __('Start quiz')}}</button>
+                            @else
+                            {{ __('There is no Quiz currenctly')}}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -30,7 +34,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Answer, Learn and Earn')}}</h4>
+                            <h4>{{ __('Answer and Earn')}}</h4>
                             <div class="card-header-action">
                                 <div class="btn btn-info"><span class="time_left_txt">{{ __('Time Left')}}</span> <span class="timer_sec">15</span></div>
                             </div>
