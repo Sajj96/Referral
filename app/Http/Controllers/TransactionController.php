@@ -21,7 +21,7 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::all();
         $withdraw_requests = Transaction::where('transaction_type',Transaction::TYPE_WITHDRAW)
-                                         ->where('status',0)
+                                         ->where('status',Transaction::WITHDRAW_PENDING)
                                          ->get();
         $serial_1 = 1;
         $serial_2 = 1;
@@ -140,6 +140,33 @@ class TransactionController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('setting')->with('error','Something went wrong while modifying settings!');
+        }
+    }
+
+    public function acceptWithdraw(Request $request)
+    {
+        try {
+            $withdraw = Transaction::find($request->withdraw_id);
+            $withdraw->status = Transaction::WITHDRAW_SUCCESS;
+            if($withdraw->save()){
+                return redirect()->route('transaction')->with('success','Withdraw request accepted!');
+            }
+        } catch (\Exception $e) {
+            $withdraw = Transaction::find($request->id);
+            return redirect()->route('transaction')->with('error',$e->getMessage());
+        }
+    }
+
+    public function declineWithdraw(Request $request)
+    {
+        try {
+            $withdraw = Transaction::find($request->id);
+            $withdraw->status = Transaction::WITHDRAW_CANCELLED;
+            if($withdraw->save()){
+                return redirect()->route('transaction')->with('success','Withdraw request declined!');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('transaction')->with('error','Something went wrong while cancelling withdraw request!');
         }
     }
 }

@@ -45,7 +45,7 @@ class Transaction extends Model
     {
         $totalEarnings = $this->getUserTotalEarnings();
         $expenses = DB::table('transactions')
-                        ->where('transaction_type', $this::TYPE_EXPENSES)
+                        ->where('transaction_type', self::TYPE_EXPENSES)
                         ->where('user_id', Auth::user()->id)
                         ->max('amount');
         $withdrawn = $this->getUserWithdrawnAmount();
@@ -64,7 +64,7 @@ class Transaction extends Model
     public function getUserExpenses()
     {
         $expenses = DB::table('transactions')
-                        ->where('transaction_type', $this::TYPE_EXPENSES)
+                        ->where('transaction_type', self::TYPE_EXPENSES)
                         ->where('user_id', Auth::user()->id)
                         ->sum('amount');
         $expenses_amount = $expenses ?? 0;
@@ -79,7 +79,7 @@ class Transaction extends Model
     public function getUserWithdrawnAmount()
     {
         $withdrawn = DB::table('transactions')
-                        ->where('transaction_type', $this::TYPE_WITHDRAW)
+                        ->where('transaction_type', self::TYPE_WITHDRAW)
                         ->where('user_id', Auth::user()->id)
                         ->sum('amount');
         $withdrawn_amount = $withdrawn ?? 0;
@@ -107,8 +107,8 @@ class Transaction extends Model
     public function getWithdrawRequests()
     {
         $withdraw_request = DB::table('transactions')
-                        ->where('transaction_type', $this::TYPE_WITHDRAW)
-                        ->where('status', $this::WITHDRAW_PENDING)
+                        ->where('transaction_type', self::TYPE_WITHDRAW)
+                        ->where('status', self::WITHDRAW_PENDING)
                         ->get();
         $numRequest = count($withdraw_request) ?? 0;
         return $numRequest;

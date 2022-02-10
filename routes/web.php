@@ -20,13 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/payment', [App\Http\Controllers\HomeController::class, 'showPaymentInformationPage'])->name('payment');
+Route::get('/payments', [App\Http\Controllers\HomeController::class, 'showPaymentInformationPage'])->name('payment');
 
 Route::middleware(['auth','active.user'])->group(function ()
 {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::group(['prefix' => 'referral'], function(){
+    Route::group(['prefix' => 'referrals'], function(){
         Route::get('/', [App\Http\Controllers\ReferralController::class, 'index'])->name('referral');
     });
 
@@ -36,17 +36,19 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/level_three', [App\Http\Controllers\TeamController::class, 'showLevelThree'])->name('team.level3');
     });
 
-    Route::group(['prefix' => 'transaction'], function(){
+    Route::group(['prefix' => 'transactions'], function(){
         Route::get('/', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
         Route::post('/', [App\Http\Controllers\TransactionController::class, 'getPaid'])->name('payment');
         Route::get('/me', [App\Http\Controllers\TransactionController::class, 'userTransactions'])->name('history');
         Route::get('/withdraw', [App\Http\Controllers\TransactionController::class, 'show'])->name('withdraw');
+        Route::post('/withdraw/accept', [App\Http\Controllers\TransactionController::class, 'acceptWithdraw'])->name('withdraw.accept')->middleware('user.type');
+        Route::post('/withdraw/decline', [App\Http\Controllers\TransactionController::class, 'declineWithdraw'])->name('withdraw.decline')->middleware('user.type');
         Route::get('/pay_for_client', [App\Http\Controllers\TransactionController::class, 'showInactiveClients'])->name('pay_for_client');
         Route::get('/settings', [App\Http\Controllers\TransactionController::class, 'settings'])->name('setting')->middleware('user.type');
         Route::post('/settings', [App\Http\Controllers\TransactionController::class, 'saveSettings'])->name('setting.save')->middleware('user.type');
     });
     
-    Route::group(['prefix' => 'video'], function(){
+    Route::group(['prefix' => 'videos'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
     });
 
@@ -59,7 +61,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/participants', [App\Http\Controllers\QuestionController::class, 'getParticipants'])->name('question.participants')->middleware('user.type');
     });
 
-    Route::group(['middleware' => 'user.type', 'prefix' => 'user'], function(){
+    Route::group(['middleware' => 'user.type', 'prefix' => 'users'], function(){
         Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('users');
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
         Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');

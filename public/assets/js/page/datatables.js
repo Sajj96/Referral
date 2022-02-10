@@ -57,3 +57,34 @@ $('#tableExport1').DataTable({
     'copy', 'csv', 'excel', 'pdf', 'print'
   ]
 });
+
+$("#decline").click(function () {
+  var id = $(this).data("id");
+  swal({
+    title: 'Are you sure?',
+    text: 'Once declined, you will not be able to recover this withdraw request!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: "transactions/withdraw/decline",
+          method: "POST",
+          data: { 
+            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            id : id 
+          },
+          success: function(response) {
+            swal('Poof! Withdraw request has been declined!', {
+              icon: 'success',
+            });
+            location.reload();
+          }
+        });
+      } else {
+        swal('Your imaginary file is safe!');
+      }
+    });
+});

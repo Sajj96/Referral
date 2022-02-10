@@ -78,7 +78,7 @@ class User extends Authenticatable
      */
     public function referrer()
     {
-        return $this->belongsTo(User::class, 'referrer_id', 'id');
+        return $this->belongsTo(self::class, 'referrer_id', 'id');
     }
 
     /**
@@ -88,7 +88,7 @@ class User extends Authenticatable
      */
     public function referrals()
     {
-        return $this->hasMany(User::class, 'referrer_id', 'id');
+        return $this->hasMany(self::class, 'referrer_id', 'id');
     }
 
     /**
@@ -98,21 +98,21 @@ class User extends Authenticatable
      */
     public function activeReferrals()
     {
-        return User::where('referrer_id', Auth::user()->id)
-                    ->where('active', User::USER_STATUS_ACTIVE)
+        return self::where('referrer_id', Auth::user()->id)
+                    ->where('active', self::USER_STATUS_ACTIVE)
                     ->get();
     }
 
     public function getAllUsers()
     {
-        $user = User::all();
+        $user = self::all();
         $users_number = count($user) ?? 0;
         return $users_number;
     }
 
     public function getAllActiveUsers()
     {
-        $user = User::where('active',1)->get();
+        $user = self::where('active',1)->get();
         $users_number = count($user) ?? 0;
         return $users_number;
     }

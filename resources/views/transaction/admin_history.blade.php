@@ -16,7 +16,30 @@
                         <div class="card-header">
                             <h4>{{ __('Transaction History')}}</h4>
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
+                        @if(count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    @foreach ($errors->all() as $error)
+                                    {{ $error }}
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+                            @if(\Session::has('message'))
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    {{ \Session::get('message')}}
+                                </div>
+                            </div>
+                            @endif
                             <ul class="nav nav-pills" id="myTab3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab3" data-toggle="tab" href="#home3" role="tab" aria-controls="home" aria-selected="true">All Transactions</a>
@@ -85,7 +108,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($transactions as $key=>$rows)
+                                                @foreach($withdraw_requests as $key=>$rows)
                                                 <tr>
                                                     <td>{{ $serial_2++ }}</td>
                                                     <td>{{ ($rows->created_at)->format('M d Y') }}</td>
@@ -106,8 +129,12 @@
                                                     </td>
                                                     @endif
                                                     <td>
-                                                        <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept"><i class="fas fa-check"></i></a>
-                                                        <a class="btn btn-danger btn-action" id="swal-6" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
+                                                        <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept" id="accept" onclick="event.preventDefault(); document.getElementById('accept-form').submit();"><i class="fas fa-check"></i></a>
+                                                        <a class="btn btn-danger btn-action" id="decline" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
+                                                        <form id="accept-form" action="{{ route('withdraw.accept') }}" method="POST" class="d-none">
+                                                            @csrf
+                                                            <input type="hidden" name="withdraw_id" value="{{ $rows->id }}">
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -137,6 +164,5 @@
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
-<script src="{{ asset('assets/js/page/sweetalert.js')}}"></script>
 @endsection
 @endsection

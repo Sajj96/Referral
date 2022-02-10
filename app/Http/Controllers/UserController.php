@@ -76,7 +76,7 @@ class UserController extends Controller
             if($user->save()) {
                 return redirect()->route('user.details', $id)->with('success','User activated successfully!');
             }
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return redirect()->route('user.details', $id)->with('error','User was not activated');
         }
     }
@@ -89,7 +89,7 @@ class UserController extends Controller
             if($user->save()) {
                 return redirect()->route('user.details', $id)->with('success','User deactivated successfully!');
             }
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return redirect()->route('user.details', $id)->with('error','User was not deactivated');
         }
     }
