@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
+
+    const PUBLISH_STATUS = 1;
+    const PENDING_STATUS = 2;
 }

@@ -76,6 +76,7 @@ class QuestionController extends Controller
             $question->question = strip_tags($request->question);
             $question->answer = $request->answer;
             $question->options = $request->options;
+            $question->status = $request->status;
             if($question->save()) {
                 return redirect()->route('question.show')->with('success','Question created successfully');
             }
