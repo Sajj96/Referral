@@ -64,11 +64,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Status')}}</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control selectric" name="status">
-                                            <option value="1" selected="@if($question->status == 1) selected @endif">Publish</option>
-                                            <option value="2" selected="@if($question->status == 0) selected @endif">Pending</option>
+                                            <option {{ ($question->status) == 1 ? 'selected' : '' }} value="1">Publish</option>
+                                            <option {{ ($question->status) == 2 ? 'selected' : '' }} value="2">Pending</option>
                                         </select>
                                     </div>
                                 </div>
