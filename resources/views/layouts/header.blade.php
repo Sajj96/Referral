@@ -120,6 +120,14 @@
                     </ul>
                 </li>
                 <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="message-circle"></i><span>{{ __('WhatsApp Status')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('question.list')}}">{{ __('Questions')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('question.participants')}}">{{ __('Participants')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('question.show')}}">{{ __('Create Question')}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="video"></i><span>{{ __('Video')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('history')}}">{{ __('Play list')}}</a></li>
