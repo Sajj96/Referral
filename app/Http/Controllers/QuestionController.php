@@ -18,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::where('status', Question::PUBLISH_STATUS);
         $questionsList = array();
 
         foreach($questions as $key=>$rows){
@@ -42,6 +42,17 @@ class QuestionController extends Controller
         $questions = Question::all();
         $serial = 1;
         return view('question.questions_list', compact('questions', 'serial'));
+    }
+
+    /**
+     * Show the questions edit page.
+     *
+     *
+     */
+    public function edit($id)
+    {
+        $question = Question::find($id);
+        return view('question.edit', compact('question','id'));
     }
 
     /**
@@ -82,6 +93,37 @@ class QuestionController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('question.show')->with('error','Something went wrong while creating a question!');
+        }
+    }
+
+    /**
+     * Create question.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'question' => 'required|string',
+            'answer'   => 'required',
+            'options'  => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->route('question.edit', $request->id)->with('error','Only valid details are required!');
+        }
+
+        try {
+            $question = Question::where('id', $request->id)->first();
+            $question->question = strip_tags($request->question);
+            $question->answer = $request->answer;
+            $question->options = $request->options;
+            $question->status = $request->status;
+            if($question->save()) {
+                return redirect()->route('question.edit', $request->id)->with('success','Question updated successfully');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('question.edit', $request->id)->with('error','Something went wrong while updating a question!');
         }
     }
 

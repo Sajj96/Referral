@@ -27,7 +27,7 @@ class Transaction extends Model
      */
     public function getUserTotalEarnings()
     {
-        $referral_amount = DB::table('setting')->first()->referral_amount;
+        $referral_amount = DB::table('setting')->first()->referral_amount ?? 0;
         $activeUsers = User::where('referrer_id', Auth::user()->id)
                             ->where('active', User::USER_STATUS_ACTIVE)
                             ->get();

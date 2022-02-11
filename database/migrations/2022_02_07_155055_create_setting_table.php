@@ -15,10 +15,10 @@ class CreateSettingTable extends Migration
     {
         Schema::create('setting', function (Blueprint $table) {
             $table->id();
-            $table->double('referral_amount')->default(0);
-            $table->double('minimum')->default(0);
-            $table->double('maximum')->default(0);
-            $table->double('deducted')->default(0);
+            $table->double('referral_amount')->default('0.00');
+            $table->double('minimum')->default('0.00');
+            $table->double('maximum')->default('0.00');
+            $table->double('deducted')->default('0.00');
             $table->timestamps();
         });
     }

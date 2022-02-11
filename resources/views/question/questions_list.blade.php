@@ -41,13 +41,13 @@
                                             <td>{{ $rows->answer }}</td>
                                             <td>{{ $rows->options }}</td>
                                             @if($rows->status == 1)
-                                            <td class="badge badge-primary">{{ __('Published')}}</td>
+                                            <td><div class="badge badge-primary">{{ __('Published')}}</div></td>
                                             @else
-                                            <td class="badge badge-primary">{{ __('Pending')}}</td>
+                                            <td><div class="badge badge-warning">{{ __('Pending')}}</div></td>
                                             @endif
                                             <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
+                                                <a href="{{ route('question.edit', $rows->id) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
