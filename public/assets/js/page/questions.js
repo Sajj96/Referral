@@ -147,17 +147,38 @@ async function showResult(){
             'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
         body: JSON.stringify(dataBody)
-    }).then(data)
+    }).then()
     .catch(error => {
         console.log("There was", error);
-    })
+    });
+
+    let secondScore = questions.length - 1;
     
-    if (userScore > 3){ // if user scored more than 3
+    if (userScore == questions.length){
+        let revenueBody = {
+            "user_id": parseInt(user),
+            "type": "questions",
+            "amount": userScore * 100
+        }
+        const res = await fetch(url1, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(revenueBody)
+        }).then(r => {
+            console.log(r);
+        })
+        .catch(error => {
+            console.log("There was", error);
+        });
         //creating a new span tag and passing the user score number and total question number
         let scoreTag = '<span>Congrats! 🎉, You got  <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
     }
-    else if(userScore > 1){ // if user scored more than 1
+    else if(userScore == secondScore){ // if user scored more than 1
         let scoreTag = '<span>Nice 😎, You got <strong>'+ userScore +'</strong> out of  <strong>'+ questions.length +'</strong></span>';
         scoreText.innerHTML = scoreTag;
     }

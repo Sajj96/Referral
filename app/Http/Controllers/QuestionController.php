@@ -18,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::where('status', Question::PUBLISH_STATUS);
+        $questions = Question::where('status', Question::PUBLISH_STATUS)->get();
         $questionsList = array();
 
         foreach($questions as $key=>$rows){

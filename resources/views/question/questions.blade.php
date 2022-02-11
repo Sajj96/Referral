@@ -21,7 +21,7 @@
                             </ol>
                         </div>
                         <div class="card-footer text-right">
-                            @if(count($questionsList) != 0)
+                            @if(count($questionsList) > 0)
                             <button class="btn btn-primary start">{{ __('Start quiz')}}</button>
                             @else
                             {{ __('There is no Quiz currenctly')}}
@@ -87,6 +87,7 @@
 <script type="text/javascript">
     var questionsList = <?php echo json_encode($questionsList) ?>;
     var url = "{{ route('question.score')}}";
+    var url1 = "{{ route('revenue.create')}}";
 </script>
 <script src="{{ asset('assets/js/page/questions.js')}}"></script>
 @endsection
