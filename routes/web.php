@@ -73,8 +73,8 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
 
-    Route::group(['middleware' => 'user.type','prefix' => 'revenues'], function(){
-        Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue');
+    Route::group(['prefix' => 'revenues'], function(){
+        Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\RevenueController::class, 'create'])->name('revenue.create');
     });
 });
