@@ -59,6 +59,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/list', [App\Http\Controllers\QuestionController::class, 'getList'])->name('question.list')->middleware('user.type');
         Route::get('/edit/{id}', [App\Http\Controllers\QuestionController::class, 'edit'])->name('question.edit')->middleware('user.type');
         Route::put('/edit', [App\Http\Controllers\QuestionController::class, 'update'])->name('question.update')->middleware('user.type');
+        Route::delete('/delete', [App\Http\Controllers\QuestionController::class, 'delete'])->name('question.delete')->middleware('user.type');
         Route::post('/score', [App\Http\Controllers\QuestionController::class, 'addScore'])->name('question.score');
         Route::get('/participants', [App\Http\Controllers\QuestionController::class, 'getParticipants'])->name('question.participants')->middleware('user.type');
     });

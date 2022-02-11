@@ -58,7 +58,7 @@ $('#tableExport1').DataTable({
   ]
 });
 
-$("#decline").click(function () {
+$(".decline").click(function () {
   var id = $(this).data("id");
   swal({
     title: 'Are you sure?',
@@ -70,7 +70,7 @@ $("#decline").click(function () {
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          url: "transactions/withdraw/decline",
+          url: "/transactions/withdraw/decline",
           method: "POST",
           data: { 
             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -80,11 +80,46 @@ $("#decline").click(function () {
             swal('Poof! Withdraw request has been declined!', {
               icon: 'success',
             });
-            location.reload();
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
           }
         });
       } else {
-        swal('Your imaginary file is safe!');
+        swal('The withdraw request is still pending!');
+      }
+    });
+});
+
+$(".delete").click(function () {
+  var id = $(this).data("id");
+  swal({
+    title: 'Are you sure?',
+    text: 'Once deleted, you will not be able to recover this question!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: "/questions/delete",
+          method: "DELETE",
+          data: { 
+            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            id : id 
+          },
+          success: function(response) {
+            swal('Poof! Question is deleted successfully', {
+              icon: 'success',
+            });
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          }
+        });
+      } else {
+        swal('The question is safe!');
       }
     });
 });

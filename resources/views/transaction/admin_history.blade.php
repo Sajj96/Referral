@@ -130,7 +130,7 @@
                                                     @endif
                                                     <td>
                                                         <a class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept" id="accept" onclick="event.preventDefault(); document.getElementById('accept-form').submit();"><i class="fas fa-check"></i></a>
-                                                        <a class="btn btn-danger btn-action" id="decline" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
+                                                        <a class="btn btn-danger btn-action decline" id="decline" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Decline"><i class="fas fa-times"></i></a>
                                                         <form id="accept-form" action="{{ route('withdraw.accept') }}" method="POST" class="d-none">
                                                             @csrf
                                                             <input type="hidden" name="withdraw_id" value="{{ $rows->id }}">

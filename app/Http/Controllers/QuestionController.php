@@ -128,6 +128,23 @@ class QuestionController extends Controller
     }
 
     /**
+     * Create question.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        try {
+            $delete = Question::find($request->id);
+            if($delete->delete()){
+                return true;
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('question.show')->with('error','Something went wrong while deleting a question!');
+        }
+    }
+
+    /**
      * Add questions score.
      *
      * @return \Illuminate\Http\Response
