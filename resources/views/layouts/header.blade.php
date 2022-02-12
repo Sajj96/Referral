@@ -122,9 +122,9 @@
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="message-circle"></i><span>{{ __('WhatsApp Status')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('question.list')}}">{{ __('Questions')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('question.participants')}}">{{ __('Participants')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('question.show')}}">{{ __('Create Question')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('View Status')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('Screenshots')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('whatsapp.show')}}">{{ __('Add Status')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -155,6 +155,13 @@
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('questions')}}" class="nav-link"><i data-feather="help-circle"></i><span>{{ __('Trivia Questions')}}</span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="message-circle"></i><span>{{ __('WhatsApp Status')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('View Status')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('Upload Screenshot')}}</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="{{ route('video')}}" class="nav-link"><i data-feather="video"></i><span>{{ __('Video')}}</span></a>

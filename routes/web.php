@@ -77,4 +77,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\RevenueController::class, 'create'])->name('revenue.create');
     });
+
+    Route::group(['prefix' => 'whatsapp_status'], function(){
+        Route::get('/', [App\Http\Controllers\WhatsAppStatusController::class, 'index'])->name('whatsapp');
+        Route::get('/add_status', [App\Http\Controllers\WhatsAppStatusController::class, 'show'])->name('whatsapp.show')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\WhatsAppStatusController::class, 'create'])->name('whatsapp.create')->middleware('user.type');
+    });
 });
