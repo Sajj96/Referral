@@ -62,7 +62,7 @@ class WhatsAppStatusController extends Controller
 
             $whatsapp_status = new WhatsAppStatus;
             $whatsapp_status->media = $fileName;
-            $whatsapp_status->description = $request->title;
+            $whatsapp_status->description = strip_tags($request->title);
             $whatsapp_status->status = $request->status;
             if($whatsapp_status->save()){
                 return redirect()->route('whatsapp.show')->with('success','WhatsApp Status added successfully!');
