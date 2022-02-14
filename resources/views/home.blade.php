@@ -8,6 +8,7 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
+    <h4 class="section-title mb-3">Welcome {{Auth::user()->name}}.</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -143,29 +144,7 @@
     @else
     <section class="section">
         <div class="row ">
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="card">
-                    <div class="card-statistic-4">
-                        <div class="align-items-center justify-content-between">
-                            <div class="row ">
-                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
-                                    <div class="card-content">
-                                        <h5 class="font-15">Capital</h5>
-                                        <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format(0,2) }}</h2>
-                                        <p class="mb-0"><span class="col-orange"></span></p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0">
-                                    <div class="banner-img">
-                                        <img src="assets/img/banner/1.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="card-statistic-4">
                         <div class="align-items-center justify-content-between">
@@ -173,7 +152,7 @@
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                     <div class="card-content">
                                         <h5 class="font-15"> {{ __('Expenses')}}</h5>
-                                        <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($expenses,2) }}</h2>
+                                        <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format(13000,2) }}</h2>
                                         <p class="mb-0"><span class="col-orange"></span></p>
                                     </div>
                                 </div>
@@ -187,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="card-statistic-4">
                         <div class="align-items-center justify-content-between">
@@ -210,7 +189,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-statistic-4">
                         <div class="align-items-center justify-content-between">

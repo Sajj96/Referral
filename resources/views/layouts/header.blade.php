@@ -123,7 +123,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="message-circle"></i><span>{{ __('WhatsApp Status')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('View Status')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('Screenshots')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('whatsapp.list')}}">{{ __('Status List')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('screenshot.list')}}">{{ __('Screenshots')}}</a></li>
                         <li><a class="nav-link" href="{{ route('whatsapp.show')}}">{{ __('Add Status')}}</a></li>
                     </ul>
                 </li>
@@ -160,7 +161,8 @@
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="message-circle"></i><span>{{ __('WhatsApp Status')}}</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('View Status')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('Upload Screenshot')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('screenshot.list')}}">{{ __('Screenshots')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('screenshot.upload')}}">{{ __('Upload Screenshot')}}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

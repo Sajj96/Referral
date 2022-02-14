@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WhatsAppStatus extends Model
+class Screenshot extends Model
 {
     use HasFactory;
 
-    const STATUS_PUBLISHED = 1;
-    const STATUS_PENDING = 0;
+    const SCREENSHOT_PAID = 1;
+    const SCREENSHOT_PENDING = 0;
 }

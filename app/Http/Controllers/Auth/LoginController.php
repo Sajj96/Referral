@@ -92,10 +92,15 @@ class LoginController extends Controller
             return redirect()->intended($this->redirectPath());
         }
 
+        $user = User::where('username',$request->input('login'))->first();
+        if($user->active == 0) {
+            return view('payment');
+        }
+
         return redirect()->back()
             ->withInput()
             ->withErrors([
-                'login' => 'Incorrect Username, Password or Inactive User',
+                'login' => 'Incorrect Username or Password',
                 'password' => 'Incorrect Password'
             ]);
 

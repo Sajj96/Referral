@@ -12,4 +12,6 @@ class Revenue extends Model
     const TYPE_TRIVIA_QUESTION = "question";
     const TYPE_WHATSAPP = "whatsapp";
     const TYPE_VIDEO = "video";
+    const STATUS_PAID = 1;
+    const STATUS_PENDING = 0;
 }

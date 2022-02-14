@@ -20,7 +20,7 @@ class CheckUserType
         $user = Auth::user();
 
         if($user->user_type != 1) {
-            return redirect()->route('/');
+            return redirect()->route('home');
         }
 
         return $next($request);

@@ -69,9 +69,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
         Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');
         Route::post('/deactivate/{id}', [App\Http\Controllers\UserController::class, 'deactivateUser'])->name('user.deactivate');
-        Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
         Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
+
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
 
     Route::group(['prefix' => 'revenues'], function(){
         Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');
@@ -82,5 +83,16 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/', [App\Http\Controllers\WhatsAppStatusController::class, 'index'])->name('whatsapp');
         Route::get('/add_status', [App\Http\Controllers\WhatsAppStatusController::class, 'show'])->name('whatsapp.show')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\WhatsAppStatusController::class, 'create'])->name('whatsapp.create')->middleware('user.type');
+        Route::get('/list', [App\Http\Controllers\WhatsAppStatusController::class, 'getList'])->name('whatsapp.list')->middleware('user.type');
+        Route::get('/{id}', [App\Http\Controllers\WhatsAppStatusController::class, 'edit'])->name('whatsapp.edit')->middleware('user.type');
+        Route::put('/', [App\Http\Controllers\WhatsAppStatusController::class, 'update'])->name('whatsapp.update')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\WhatsAppStatusController::class, 'delete'])->name('whatsapp.delete')->middleware('user.type');
+    });
+
+    Route::group(['prefix' => 'screenshots'], function(){
+        Route::get('/', [App\Http\Controllers\ScreenshotController::class, 'index'])->name('screenshot');
+        Route::post('/', [App\Http\Controllers\ScreenshotController::class, 'upload'])->name('screenshot.upload');
+        Route::get('/list', [App\Http\Controllers\ScreenshotController::class, 'getScreenshots'])->name('screenshot.list');
+        Route::get('/{id}', [App\Http\Controllers\ScreenshotController::class, 'getDetails'])->name('screenshot.details')->middleware('user.type');
     });
 });

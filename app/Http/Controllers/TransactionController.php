@@ -127,7 +127,9 @@ class TransactionController extends Controller
                 return redirect()->route('setting')->with('error','Minimum withdraw must be less than Maximum withdraw');
             }
 
-            $setting = DB::table('setting')->insert([
+            $setting = DB::table('setting')->updateOrInsert(
+                ['id' => 1],
+                [
                 'referral_amount' => $request->referral_amount,
                 'minimum' => $request->minimum,
                 'maximum'   => $request->maximum,
