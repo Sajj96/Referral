@@ -20,7 +20,6 @@ class HomeController extends Controller
         $transactions = new Transaction();
         $profit = $transactions->getUserTotalEarnings();
         $balance = $transactions->getUserBalance();
-        $expenses = $transactions->getUserExpenses();
         $withdrawn = $transactions->getUserWithdrawnAmount();
 
         $user = new User();
@@ -30,7 +29,7 @@ class HomeController extends Controller
         $system_earnings = $transactions->getSystemEarnings();
 
         if(Auth::user()->user_type != 1) {
-            return view('home', compact('profit','balance','expenses','withdrawn'));
+            return view('home', compact('profit','balance','withdrawn'));
         }
 
         return view('home', compact('all_users','active_users','withdraw_requests','system_earnings'));
