@@ -27,12 +27,45 @@ class Transaction extends Model
      */
     public function getUserTotalEarnings()
     {
-        $referral_amount = DB::table('setting')->first()->referral_amount ?? 0;
-        $activeUsers = User::where('referrer_id', Auth::user()->id)
-                            ->where('active', User::USER_STATUS_ACTIVE)
-                            ->get();
-        $countActiveUser = count($activeUsers) ?? 0;
-        $totalEarnings = $countActiveUser * $referral_amount;
+        $referral_amount_level_1 = 6000;
+        $referral_amount_level_2 = 3000;
+        $referral_amount_level_3 = 1000;
+        $user = Auth::user();
+
+        $level_1 = DB::table('users','t1')
+                    ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->get();
+
+        $level_2 = DB::table('users','t1')
+                    ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                    ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
+                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->get();
+
+        $level_3 = DB::table('users','t1')
+                    ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                    ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
+                    ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
+                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->where(DB::raw('t4.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                    ->get();
+
+        $count_level_1 = count($level_1) ?? 0;
+        $count_level_2 = count($level_2) ?? 0;
+        $count_level_3 = count($level_3) ?? 0;
+        $total_level_1 = $count_level_1 * $referral_amount_level_1;
+        $total_level_2 = $count_level_2 * $referral_amount_level_2;
+        $total_level_3 = $count_level_3 * $referral_amount_level_3;
+        $totalEarnings = $total_level_1 + $total_level_2 + $total_level_3;
         return $totalEarnings;
     }
 
@@ -44,31 +77,12 @@ class Transaction extends Model
     public function getUserBalance()
     {
         $totalEarnings = $this->getUserTotalEarnings();
-        $expenses = DB::table('transactions')
-                        ->where('transaction_type', self::TYPE_EXPENSES)
-                        ->where('user_id', Auth::user()->id)
-                        ->max('amount');
+
         $withdrawn = $this->getUserWithdrawnAmount();
 
-        $expenses_amount = $expenses ?? 0;
         $withdrawn_amount = $withdrawn ?? 0;
-        $balance = $totalEarnings - ($withdrawn_amount - $expenses_amount);
+        $balance = $totalEarnings - $withdrawn_amount;
         return $balance;
-    }
-
-    /**
-     * Get user expenses.
-     *
-     * @return float
-     */
-    public function getUserExpenses()
-    {
-        $expenses = DB::table('transactions')
-                        ->where('transaction_type', self::TYPE_EXPENSES)
-                        ->where('user_id', Auth::user()->id)
-                        ->sum('amount');
-        $expenses_amount = $expenses ?? 0;
-        return $expenses_amount;
     }
 
     /**

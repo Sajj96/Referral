@@ -17,8 +17,14 @@ class TeamController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userModel  = new User();
-        $activeReferrals = $userModel->activeReferrals();
+        $active_referrals = DB::table('users','t1')
+                                ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                                ->where(DB::raw('t1.id'), DB::raw($user->id))
+                                ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                                ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                                ->get();
+
+        $active_referrals = count($active_referrals) ?? 0;
 
         $downlines = DB::table('users','t1')
                         ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
@@ -26,7 +32,7 @@ class TeamController extends Controller
                         ->where(DB::raw('t1.id'), DB::raw($user->id))
                         ->get();
         $serial = 1;
-        return view('team.level_one', compact('downlines', 'serial', 'activeReferrals'));
+        return view('team.level_one', compact('downlines', 'serial', 'active_referrals'));
     }
 
     /**
@@ -37,9 +43,17 @@ class TeamController extends Controller
     public function showLevelTwo()
     {
         $user = Auth::user();
-        $userModel  = new User();
-        $activeReferrals = $userModel->activeReferrals();
+        $active_referrals = DB::table('users','t1')
+                                ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                                ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
+                                ->where(DB::raw('t1.id'), DB::raw($user->id))
+                                ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                                ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                                ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                                ->get();
 
+        $active_referrals = count($active_referrals) ?? 0;
+        
         $downlines = DB::table('users','t1')
                         ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
                         ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
@@ -47,7 +61,7 @@ class TeamController extends Controller
                         ->where(DB::raw('t1.id'), DB::raw($user->id))
                         ->get();
         $serial = 1;
-        return view('team.level_two', compact('downlines', 'serial', 'activeReferrals'));
+        return view('team.level_two', compact('downlines', 'serial', 'active_referrals'));
     }
 
     /**
@@ -58,8 +72,18 @@ class TeamController extends Controller
     public function showLevelThree()
     {
         $user = Auth::user();
-        $userModel  = new User();
-        $activeReferrals = $userModel->activeReferrals();
+        $active_referrals = DB::table('users','t1')
+                            ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
+                            ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
+                            ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
+                            ->where(DB::raw('t1.id'), DB::raw($user->id))
+                            ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                            ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                            ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                            ->where(DB::raw('t4.active'), DB::raw(User::USER_STATUS_ACTIVE))
+                            ->get();
+
+        $active_referrals = count($active_referrals) ?? 0;
 
         $downlines = DB::table('users','t1')
                         ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
@@ -69,6 +93,6 @@ class TeamController extends Controller
                         ->where(DB::raw('t1.id'), DB::raw($user->id))
                         ->get();
         $serial = 1;
-        return view('team.level_three', compact('downlines', 'serial','activeReferrals'));
+        return view('team.level_three', compact('downlines', 'serial','active_referrals'));
     }
 }
