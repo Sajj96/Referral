@@ -20,11 +20,47 @@ $(function () {
             }
         }
     });
-    
-    $('#amount').on('blur', () => {
-        var amount = $('#amount').val();
+
+    $('#amount').on('blur keyup', () => {
+        var amount = $('#amount').val(),
+            deposit = 0,
+            fee = 0;
         amount = parseFloat(amount.replace(/,/g, ''));
-        var deposit = amount - deducted;
-        $('#deposit').val(deposit);
+
+        if (amount >= 15000 && amount <= 50000) {
+            fee = 1000;
+            deposit = amount - fee;
+            $('#deposit').val(deposit);
+            $('#fee').val(fee);
+            $('#fee_info').text("Fee: TZS " + fee);
+        } else if (amount >= 51000 && amount <= 100000) {
+            fee = 2000;
+            deposit = amount - fee;
+            $('#deposit').val(deposit);
+            $('#fee').val(fee);
+            $('#fee_info').text("Fee: TZS " + fee);
+        } else if (amount >= 101000 && amount <= 500000) {
+            fee = 5000;
+            deposit = amount - fee;
+            $('#deposit').val(deposit);
+            $('#fee').val(fee);
+            $('#fee_info').text("Fee: TZS " + fee);
+        } else if (amount >= 501000 && amount <= 1000000) {
+            fee = 10000;
+            deposit = amount - fee;
+            $('#deposit').val(deposit);
+            $('#fee').val(fee);
+            $('#fee_info').text("Fee: TZS " + fee);
+        } else if(amount >= 1010000){
+            fee = 15000;
+            deposit = amount - fee;
+            $('#deposit').val(deposit);
+            $('#fee').val(fee);
+            $('#fee_info').text("Fee: TZS " + fee);
+        } else {
+            $('#deposit').val("");
+            $('#fee').val("");
+            $('#fee_info').text("");
+        }
     });
 });

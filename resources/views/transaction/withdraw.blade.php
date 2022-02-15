@@ -58,9 +58,9 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input min="{{ $setting->minimum }}" max="{{ $setting->maximum }}" type="number" name="amount" id="amount" class="form-control" required>
+                                            <input min="15000" type="number" name="amount" id="amount" class="form-control" required>
                                         </div>
-                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS')}} {{ $setting->minimum }} {{ __('and not more than TZS')}} {{ $setting->maximum }} {{ __('per day.')}}</div>
+                                        <div class="help-info">{{ __('You can withdraw an amount not less than TZS 15000')}}</div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Amount to deposit')}}</label>
@@ -70,9 +70,10 @@
                                                     {{ __('TZS')}}
                                                 </div>
                                             </div>
-                                            <input type="number" max="{{ $setting->maximum }}" name="deposit" id="deposit" class="form-control" required readonly>
+                                            <input type="number" name="deposit" id="deposit" class="form-control" required readonly>
+                                            <input type="hidden" name="fee" id="fee" class="form-control" required readonly>
                                         </div>
-                                        <div class="help-info"><strong>{{ __('Fee: TZS ')}}{{ number_format($setting->deducted,2)}}</strong></div>
+                                        <div class="help-info"><strong><span id="fee_info"></span></strong></div>
                                     </div>
                                 </fieldset>
                                 <div class="card-footer text-right">
@@ -91,9 +92,6 @@
 <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
-<script type="text/javascript">
-    var deducted = <?php echo $setting->deducted; ?>
-</script>
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection
 @endsection

@@ -199,7 +199,7 @@
                                     <div class="card-content">
                                         <h5 class="font-15">{{ __('Total Balance')}}</h5>
                                         <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($balance,2) }}</h2>
-                                        <p class="mb-0"><span class="col-green"></span>Referral Earnings</p>
+                                        <p class="mb-0"><span class="col-green"></span>Active Referral Earnings</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0">

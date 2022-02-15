@@ -85,14 +85,11 @@ class TransactionController extends Controller
 
         try {
 
-            $setting = DB::table('setting')->first();
             $transactions = new Transaction();
             $balance = $transactions->getUserBalance();
 
-            $fee_amount = $setting->deducted != null ? $setting->deducted : 0;
-
             if($request->amount > $balance) {
-                return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw.');
+                return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw '. $request->amount);
             }
 
             $withdraw = new Transaction;
@@ -101,7 +98,7 @@ class TransactionController extends Controller
             $withdraw->phone = $request->phone;
             $withdraw->amount = $request->amount;
             $withdraw->amount_deposit = $request->deposit;
-            $withdraw->fee = $fee_amount;
+            $withdraw->fee = $request->fee;
             $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
             $withdraw->status = Transaction::WITHDRAW_PENDING;
 
