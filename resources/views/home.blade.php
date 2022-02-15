@@ -153,7 +153,7 @@
                                     <div class="card-content">
                                         <h5 class="font-15"> {{ __('Expenses')}}</h5>
                                         <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format(13000,2) }}</h2>
-                                        <p class="mb-0"><span class="col-orange"></span></p>
+                                        <p class="mb-0"><span class="col-orange"></span>Registration Fee</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0">
@@ -176,6 +176,7 @@
                                         <h5 class="font-15">{{ __('Profit')}}</h5>
                                         <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($profit,2) }}</h2>
                                         <p class="mb-0"><span class="col-green"></span>
+                                        Referral + Other Earnings
                                         </p>
                                     </div>
                                 </div>
@@ -198,7 +199,7 @@
                                     <div class="card-content">
                                         <h5 class="font-15">{{ __('Total Balance')}}</h5>
                                         <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($balance,2) }}</h2>
-                                        <p class="mb-0"><span class="col-green"></span></p>
+                                        <p class="mb-0"><span class="col-green"></span>Referral Earnings</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0">
@@ -236,7 +237,7 @@
                         <div class="card-icon card-icon-large"><i class="far fa-question-circle"></i></div>
                         <div class="card-content">
                             <h4 class="card-title">{{ __('Trivia Questions')}}</h4>
-                            <span class="font-20">TZS 1,258</span>
+                            <span class="font-20">{{ __('TZS')}} {{ number_format($question,2) }}</span>
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -253,7 +254,7 @@
                         <div class="card-icon card-icon-large"><i class="fas fa-play-circle"></i></div>
                         <div class="card-content">
                             <h4 class="card-title">{{ __('Video')}}</h4>
-                            <span class="font-20">TZS 2,658</span>
+                            <span class="font-20">{{ __('TZS')}} {{ number_format($video,2) }}</span>
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
@@ -270,7 +271,7 @@
                         <div class="card-icon card-icon-large"><i class="fab fa-whatsapp"></i></div>
                         <div class="card-content">
                             <h4 class="card-title">{{ __('WhatsApp Status')}}</h4>
-                            <span class="font-20">{{ __('TZS')}} {{ number_format(0,2) }}</span>
+                            <span class="font-20">{{ __('TZS')}} {{ number_format($whatsapp,2) }}</span>
                             <div class="progress mt-1 mb-1" data-height="8">
                                 <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>

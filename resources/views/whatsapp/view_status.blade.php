@@ -17,31 +17,17 @@
                         </div>
                         <div class="card-body">
                             <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="{{ asset('assets/img/image-gallery/thumb/thumb-1.png')}}" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="{{ asset('assets/img/image-gallery/thumb/thumb-1.png')}}" alt="">
+                                @if(count($whatsapp_status) > 0)
+                                @foreach($whatsapp_status as $key=>$rows)
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <a href="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" data-sub-html="Demo Description">
+                                        <img class="img-responsive thumbnail" src="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" alt="">
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-2.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-2.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-3.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-3.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-4.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-4.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-5.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-5.png" alt="">
-                                    </a>
-                                </div>
+                                @endforeach
+                                @else
+                                <h4>There is no status currently.</h4>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -18,9 +18,12 @@ class HomeController extends Controller
     public function index()
     {
         $transactions = new Transaction();
-        $profit = $transactions->getUserTotalEarnings();
+        $profit = $transactions->getProfit();
         $balance = $transactions->getUserBalance();
         $withdrawn = $transactions->getUserWithdrawnAmount();
+        $whatsapp = $transactions->getWhatsAppEarnings();
+        $question = $transactions->getQuestionsEarnings();
+        $video = $transactions->getVideoEarnings();
 
         $user = new User();
         $all_users = $user->getAllUsers();
@@ -29,7 +32,7 @@ class HomeController extends Controller
         $system_earnings = $transactions->getSystemEarnings();
 
         if(Auth::user()->user_type != 1) {
-            return view('home', compact('profit','balance','withdrawn'));
+            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video'));
         }
 
         return view('home', compact('all_users','active_users','withdraw_requests','system_earnings'));

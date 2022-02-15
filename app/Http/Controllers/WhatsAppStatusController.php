@@ -11,7 +11,8 @@ class WhatsAppStatusController extends Controller
 {
     public function index()
     {
-        return view('whatsapp.view_status');
+        $whatsapp_status = WhatsAppStatus::where('status', WhatsAppStatus::STATUS_PUBLISHED)->get();
+        return view('whatsapp.view_status', compact('whatsapp_status'));
     }
 
     /**

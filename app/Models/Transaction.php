@@ -127,4 +127,62 @@ class Transaction extends Model
         $numRequest = count($withdraw_request) ?? 0;
         return $numRequest;
     }
+
+    /**
+     * Get whatsapp earnings.
+     *
+     * @return float
+     */
+    public function getWhatsAppEarnings()
+    {
+        $earning = DB::table('revenues')
+                        ->where('type', Revenue::TYPE_WHATSAPP)
+                        ->sum('amount');
+        $earning_amount = $earning ?? 0;
+        return $earning_amount;
+    }
+
+    /**
+     * Get trivia question earnings.
+     *
+     * @return float
+     */
+    public function getQuestionsEarnings()
+    {
+        $earning = DB::table('revenues')
+                        ->where('type', Revenue::TYPE_TRIVIA_QUESTION)
+                        ->sum('amount');
+        $earning_amount = $earning ?? 0;
+        return $earning_amount;
+    }
+
+    /**
+     * Get video earnings.
+     *
+     * @return float
+     */
+    public function getVideoEarnings()
+    {
+        $earning = DB::table('revenues')
+                        ->where('type', Revenue::TYPE_VIDEO)
+                        ->sum('amount');
+        $earning_amount = $earning ?? 0;
+        return $earning_amount;
+    }
+
+    /**
+     * Get video earnings.
+     *
+     * @return float
+     */
+    public function getProfit()
+    {
+        $totalBalance = $this->getUserTotalEarnings();
+        $whatsAppEarnings = $this->getWhatsAppEarnings();
+        $questionsEarning = $this->getQuestionsEarnings();
+        $videoEarnings = $this->getVideoEarnings();
+
+        $profit_amount = $totalBalance + $whatsAppEarnings + $questionsEarning + $videoEarnings;
+        return $profit_amount;
+    }
 }
