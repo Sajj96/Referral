@@ -20,7 +20,7 @@ $(function () {
     
                     // The prop data-whatsapp-title is converted to whatsappTitle and added to the gallery item
                     const title = galleryItem.whatsappTitle;
-                    const whatsappShareLink = `//web.whatsapp.com/send?text=${title}|${url}`;
+                    const whatsappShareLink = `//api.whatsapp.com/send?text=${title}%20${url}`;
                     return whatsappShareLink;
                 },
             },
