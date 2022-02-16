@@ -20,7 +20,10 @@
                                 @if(count($whatsapp_status) > 0)
                                 @foreach($whatsapp_status as $key=>$rows)
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" data-sub-html="Demo Description">
+                                    <a href="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" 
+                                        data-sub-html="{{ $rows->description }}"
+                                        data-whatsapp-title="Delaska Agency - Earn with us"
+                                    >
                                         <img class="img-responsive thumbnail" src="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" alt="">
                                     </a>
                                 </div>
