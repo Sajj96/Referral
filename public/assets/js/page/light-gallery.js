@@ -1,10 +1,12 @@
 'use strict';
 $(function () {
+    
     $('#aniimated-thumbnials').lightGallery({
         autoplay: true,
         thumbnail: true,
         selector: 'a',
         pinterest: false,
+        speed: 500,
         extraProps: ['whatsappTitle'],
         additionalShareOptions: [
             {

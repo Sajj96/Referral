@@ -2,6 +2,7 @@
 
 @section('general-css')
 <link href="{{ asset('assets/bundles/lightgallery/dist/css/lightgallery.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.4.0/css/lg-share.min.css" integrity="sha512-dOqsuo1HGMv5ohBl/0OIUVzkwFLF8ZmjhpZp2VT2mpH5UuOJXwtBhxxtbrrEIpvTDWm7mESg0JsEl4zkUGv/gw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('content')
@@ -21,7 +22,9 @@
                                 @foreach($whatsapp_status as $key=>$rows)
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <a href="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" 
-                                        data-sub-html="{{ $rows->description }}"
+                                        data-sub-html='<h3>{{ $rows->description }}</h3><a href="https://api.whatsapp.com/send?text={{ $rows->media }}" data-action="share/whatsapp/share" class="btn btn-md btn-success col-grren" target="_blank">
+                                        <img src="{{ asset("assets/img/whatsappicon.png")}}"/>
+                                        <span class="lg-dropdown-text">Share to WhatsApp</span>'
                                         data-whatsapp-title="Delaska Agency - Earn with us"
                                     >
                                         <img class="img-responsive thumbnail" src="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" alt="">
@@ -44,6 +47,6 @@
 <script src="{{ asset('assets/bundles/lightgallery/dist/js/lightgallery-all.js')}}"></script>
 @endsection
 @section('page-specific-js')
-<script src="{{{ asset('assets/js/page/light-gallery.js')}}}"></script>
+<script src="{{ asset('assets/js/page/light-gallery.js')}}"></script>
 @endsection
 @endsection
