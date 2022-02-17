@@ -189,7 +189,7 @@ class TransactionController extends Controller
                 return redirect()->route('pay_for_downline')->with('error','You don\'t have enough balance to make payment');
             }
 
-            if (Auth::attempt(['email' => $request->input('username'), 'password' => $request->input('password')])) {
+            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
                 $user = User::where('id',$request->id)->first();
                 $user->active = User::USER_STATUS_ACTIVE;
                 if($user->save()) {
@@ -203,7 +203,7 @@ class TransactionController extends Controller
                     $payment->transaction_type = Transaction::TYPE_PAY_FOR_DOWNLINE;
                     $payment->status = 1;
                     if($payment->save()) {
-                        return redirect()->route('pay_for_downline')->with('success','Payment was successfully!');
+                        return redirect()->route('pay_for_downline')->with('success','You successfully paid for your downline!');
                     }
                 }
             } 

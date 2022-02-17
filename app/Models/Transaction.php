@@ -87,7 +87,7 @@ class Transaction extends Model
         $withdrawn_amount = $withdrawn ?? 0;
         $payment_amount = $payment_for_downline ?? 0;
 
-        $balance = $totalEarnings - ($withdrawn_amount - $payment_amount);
+        $balance = $totalEarnings - $withdrawn_amount - $payment_amount;
         return $balance;
     }
 
@@ -159,6 +159,7 @@ class Transaction extends Model
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_WHATSAPP)
+                        ->where('user_id', Auth::user()->id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
