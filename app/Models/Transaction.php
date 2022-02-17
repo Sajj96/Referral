@@ -20,7 +20,7 @@ class Transaction extends Model
 
     const TYPE_WITHDRAW = "Withdraw";
     const TYPE_DEPOSIT = "Deposited";
-    const TYPE_PAY_FOR_DOWNLINE = "pay_for_downline";
+    const TYPE_PAY_FOR_DOWNLINE = "Paid for Downline";
 
     /**
      * Get user total earning.
@@ -87,7 +87,7 @@ class Transaction extends Model
         $withdrawn_amount = $withdrawn ?? 0;
         $payment_amount = $payment_for_downline ?? 0;
 
-        $balance = $totalEarnings - $withdrawn_amount - $payment_amount;
+        $balance = ($totalEarnings - $withdrawn_amount) - $payment_amount;
         return $balance;
     }
 
