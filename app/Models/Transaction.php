@@ -16,9 +16,11 @@ class Transaction extends Model
     const WITHDRAW_SUCCESS = 1;
     const WITHDRAW_CANCELLED = 2;
 
+    const REGISTRATION_FEE = 13000;
+
     const TYPE_WITHDRAW = "Withdraw";
     const TYPE_DEPOSIT = "Deposited";
-    const TYPE_EXPENSES = "Expenses";
+    const TYPE_PAY_FOR_DOWNLINE = "pay_for_downline";
 
     /**
      * Get user total earning.
@@ -80,8 +82,12 @@ class Transaction extends Model
 
         $withdrawn = $this->getUserWithdrawnAmount();
 
+        $payment_for_downline = $this->getUserPaymentForDownline();
+
         $withdrawn_amount = $withdrawn ?? 0;
-        $balance = $totalEarnings - $withdrawn_amount;
+        $payment_amount = $payment_for_downline ?? 0;
+
+        $balance = $totalEarnings - ($withdrawn_amount - $payment_amount);
         return $balance;
     }
 
@@ -98,6 +104,22 @@ class Transaction extends Model
                         ->sum('amount');
         $withdrawn_amount = $withdrawn ?? 0;
         return $withdrawn_amount;
+    }
+
+
+    /**
+     * Get user payment for downline amount.
+     *
+     * @return float
+     */
+    public function getUserPaymentForDownline()
+    {
+        $payment = DB::table('transactions')
+                        ->where('transaction_type', self::TYPE_PAY_FOR_DOWNLINE)
+                        ->where('user_id', Auth::user()->id)
+                        ->sum('amount');
+        $payment_amount = $payment ?? 0;
+        return $payment_amount;
     }
 
     /**

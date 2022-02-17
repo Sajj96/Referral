@@ -145,7 +145,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="{{ route('pay_for_client')}}" class="nav-link"><i data-feather="check-square"></i><span>{{ __('Pay For Client')}}</span></a>
+                    <a href="{{ route('pay_for_downline')}}" class="nav-link"><i data-feather="check-square"></i><span>{{ __('Pay For Client')}}</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="credit-card"></i><span>{{ __('Withdrawal')}}</span></a>

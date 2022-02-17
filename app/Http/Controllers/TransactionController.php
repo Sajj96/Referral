@@ -59,7 +59,7 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showInactiveClients()
+    public function showInactiveDownlines()
     {
         $downlines = User::where('referrer_id', Auth::user()->id)->where('active', 0)->get();
         $serial = 1;
@@ -166,6 +166,51 @@ class TransactionController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('transaction')->with('error','Something went wrong while cancelling withdraw request!');
+        }
+    }
+
+    public function payForDownline(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->route('pay_for_downline')->with('error','Only valid details are required!');
+        }
+
+        try {
+
+            $transactions = new Transaction();
+            $balance = $transactions->getUserBalance();
+
+            if(Transaction::REGISTRATION_FEE > $balance) {
+                return redirect()->route('pay_for_downline')->with('error','You don\'t have enough balance to make payment');
+            }
+
+            if (Auth::attempt(['email' => $request->input('username'), 'password' => $request->input('password')])) {
+                $user = User::where('id',$request->id)->first();
+                $user->active = User::USER_STATUS_ACTIVE;
+                if($user->save()) {
+                    $payment = new Transaction;
+                    $payment->balance = "main";
+                    $payment->user_id = Auth::user()->id;
+                    $payment->phone = Auth::user()->phone;
+                    $payment->amount = Transaction::REGISTRATION_FEE;
+                    $payment->amount_deposit = 0;
+                    $payment->fee = 0;
+                    $payment->transaction_type = Transaction::TYPE_PAY_FOR_DOWNLINE;
+                    $payment->status = 1;
+                    if($payment->save()) {
+                        return redirect()->route('pay_for_downline')->with('success','Payment was successfully!');
+                    }
+                }
+            } 
+
+            return redirect()->route('pay_for_downline')->with('error','Incorrect password!');
+        } catch (\Exception $e) {
+            return redirect()->route('pay_for_downline')->with('error','Payment was not successfully!');
         }
     }
 }

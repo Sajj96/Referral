@@ -43,7 +43,8 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/withdraw', [App\Http\Controllers\TransactionController::class, 'show'])->name('withdraw');
         Route::post('/withdraw/accept', [App\Http\Controllers\TransactionController::class, 'acceptWithdraw'])->name('withdraw.accept')->middleware('user.type');
         Route::post('/withdraw/decline', [App\Http\Controllers\TransactionController::class, 'declineWithdraw'])->name('withdraw.decline')->middleware('user.type');
-        Route::get('/pay_for_client', [App\Http\Controllers\TransactionController::class, 'showInactiveClients'])->name('pay_for_client');
+        Route::get('/pay_for_downline', [App\Http\Controllers\TransactionController::class, 'showInactiveDownlines'])->name('pay_for_downline');
+        Route::post('/pay_for_downline', [App\Http\Controllers\TransactionController::class, 'payForDownline'])->name('downline.pay');
         Route::get('/settings', [App\Http\Controllers\TransactionController::class, 'settings'])->name('setting')->middleware('user.type');
         Route::post('/settings', [App\Http\Controllers\TransactionController::class, 'saveSettings'])->name('setting.save')->middleware('user.type');
     });
