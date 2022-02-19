@@ -75,7 +75,7 @@ class ScreenshotController extends Controller
             } else if($extension == "jpeg") {
                 $fileName = $generated_name.".jpeg";
             } else {
-                request()->session()->put('danger', "Invalid file type only png, jpeg and jpg files are allowed.");
+                return redirect()->route('screenshot')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
             }
             $filePath = $request->file('image')->storeAs('screenshots', $fileName,'public');
             $type = pathinfo($filePath, PATHINFO_EXTENSION);

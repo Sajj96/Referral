@@ -78,7 +78,7 @@ class WhatsAppStatusController extends Controller
             } else if($extension == "jpeg") {
                 $fileName = $generated_name.".jpeg";
             } else {
-                request()->session()->put('danger', "Invalid file type only png, jpeg and jpg files are allowed.");
+                return redirect()->route('whatsapp.show')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
             }
             $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName,'public');
             $type = pathinfo($filePath, PATHINFO_EXTENSION);
@@ -128,7 +128,7 @@ class WhatsAppStatusController extends Controller
             } else if($extension == "jpeg") {
                 $fileName = $generated_name.".jpeg";
             } else {
-                request()->session()->put('danger', "Invalid file type only png, jpeg and jpg files are allowed.");
+                return redirect()->route('whatsapp.edit', $request->id)->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
             }
             $filePath = $request->file('image')->storeAs('whatsapp_statuses', $fileName,'public');
             $type = pathinfo($filePath, PATHINFO_EXTENSION);
