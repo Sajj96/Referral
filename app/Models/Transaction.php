@@ -20,7 +20,7 @@ class Transaction extends Model
 
     const TYPE_WITHDRAW = "Withdraw";
     const TYPE_DEPOSIT = "Deposited";
-    const TYPE_PAY_FOR_DOWNLINE = "Paid for Downline";
+    const TYPE_PAY_FOR_DOWNLINE = "pay_for_downline";
 
     /**
      * Get user total earning.

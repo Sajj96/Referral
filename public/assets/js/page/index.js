@@ -42,6 +42,84 @@ $(function () {
 
 
 function chart1() {
+    let curr = new Date;
+    let week = [];
+    let withdraw = [0,0,0,0,0,0,0];
+    let earning = [0,0,0,0,0,0,0];
+    let monWithdraw = 0, monEarnings = 0;
+    let tueWithdraw = 0, tueEarnings = 0;
+    let wedWithdraw = 0, wedEarnings = 0;
+    let thurWithdraw = 0, thurEarnings = 0;
+    let friWithdraw = 0, friEarnings = 0;
+    let satWithdraw = 0, satEarnings = 0;
+    let sunWithdraw = 0, sunEarnings = 0;
+    let sumEarning = 0;
+    let sumWithdraw = 0;
+
+    for(let i = 1; i <= 7; i++) {
+      let first = curr.getDate() - curr.getDay() + i;
+      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+      week.push(day);
+    }
+
+    transactions.forEach(x => {
+      const date  = new Date(x.created_at);
+      const currentDayOfMonth = ('0' + date.getUTCDate()).slice(-2);
+      const currentMonth = ('0' + (date.getUTCMonth()+1)).slice(-2); 
+      const currentYear = date.getUTCFullYear();
+
+      const dateString = currentYear + "-" + (currentMonth) + "-" + currentDayOfMonth;
+      
+      if(dateString === week[0]) {
+          monWithdraw = monWithdraw + x.amount;
+          withdraw[0] = monWithdraw;
+          monEarnings =monEarnings + x.fee;
+          earning[0] = monEarnings;
+      }
+
+      if(dateString === week[1]) {
+          tueWithdraw = tueWithdraw + x.amount;
+          withdraw[1] = tueWithdraw;
+          tueEarnings =tueEarnings + x.fee;
+          earning[1] = tueEarnings;
+      }
+
+      if(dateString === week[2]) {
+          wedWithdraw = wedWithdraw + x.amount;
+          withdraw[2] = wedWithdraw;
+          wedEarnings =wedEarnings + x.fee;
+          earning[2] = wedEarnings;
+      }
+
+      if(dateString === week[3]) {
+          thurWithdraw = thurWithdraw + x.amount;
+          withdraw[3] = thurWithdraw;
+          thurEarnings =thurEarnings + x.fee;
+          earning[3] = thurEarnings;
+      }
+
+      if(dateString === week[4]) {
+          friWithdraw = friWithdraw + x.amount;
+          withdraw[4] = friWithdraw;
+          friEarnings =friEarnings + x.fee;
+          earning[4] = friEarnings;
+      }
+
+      if(dateString === week[5]) {
+          satWithdraw = satWithdraw + x.amount;
+          withdraw[5] = satWithdraw;
+          satEarnings =satEarnings + x.fee;
+          earning[5] = satEarnings;
+      }
+
+      if(dateString === week[6]) {
+          sunWithdraw = sunWithdraw + x.amount;
+          withdraw[6] = sunWithdraw;
+          sunEarnings =sunEarnings + x.fee;
+          earning[6] = sunEarnings;
+      }
+    });
+
     var options = {
         chart: {
             height: 230,
@@ -58,7 +136,7 @@ function chart1() {
                 show: false
             }
         },
-        colors: ["#786BED", "#999b9c"],
+        colors: ["#3dc7be", "#ffa117"],
         dataLabels: {
             enabled: true
         },
@@ -66,12 +144,12 @@ function chart1() {
             curve: "smooth"
         },
         series: [{
-            name: "High - 2019",
-            data: [5, 15, 14, 36, 32, 32]
+            name: "Earning",
+            data: earning
         },
         {
-            name: "Low - 2019",
-            data: [7, 11, 30, 18, 25, 13]
+            name: "Withdraw",
+            data: withdraw
         }
         ],
         grid: {
@@ -85,7 +163,7 @@ function chart1() {
             size: 6
         },
         xaxis: {
-            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            categories: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
 
             labels: {
                 style: {
@@ -102,8 +180,8 @@ function chart1() {
                     color: "#9aa0ac"
                 }
             },
-            min: 5,
-            max: 40
+            min: 0,
+            max: 100000
         },
         legend: {
             position: "top",
@@ -114,6 +192,16 @@ function chart1() {
         }
     };
 
+    for(let e = 0; e < earning.length; e++) {
+        sumEarning += earning[e];
+    }
+
+    for(let w = 0; w < withdraw.length; w++) {
+        sumWithdraw += withdraw[w];
+    }
+
+    document.getElementById("earning").innerText = new Intl.NumberFormat().format(sumEarning);
+    document.getElementById("withdraw").innerText = new Intl.NumberFormat().format(sumWithdraw);
     var chart = new ApexCharts(document.querySelector("#chart1"), options);
 
     chart.render();

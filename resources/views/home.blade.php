@@ -60,7 +60,7 @@
                         <div class="p-t-20 d-flex justify-content-between">
                             <div class="col">
                                 <h6 class="mb-0">{{ __('Total Earnings')}}</h6>
-                                <span class="font-weight-bold mb-0 font-20">TZS {{ $system_earnings }}</span>
+                                <span class="font-weight-bold mb-0 font-20">TZS {{ number_format($system_earnings,2) }}</span>
                             </div>
                             <i class="fas fa-hand-holding-usd card-icon col-green font-30 p-r-30"></i>
                         </div>
@@ -80,27 +80,19 @@
                             <div class="col-lg-9">
                                 <div id="chart1"></div>
                                 <div class="row mb-0">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="list-inline text-center">
-                                            <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
-                                                <h5 class="m-b-0">$675</h5>
+                                            <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-cyan"></i>
+                                                <h5 class="m-b-0">TZS <span id="earning"></span></h5>
                                                 <p class="text-muted font-14 m-b-0">Weekly Earnings</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                         <div class="list-inline text-center">
                                             <div class="list-inline-item p-r-30"><i data-feather="arrow-down-circle" class="col-orange"></i>
-                                                <h5 class="m-b-0">$1,587</h5>
-                                                <p class="text-muted font-14 m-b-0">Monthly Earnings</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                        <div class="list-inline text-center">
-                                            <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle" class="col-green"></i>
-                                                <h5 class="mb-0 m-b-0">$45,965</h5>
-                                                <p class="text-muted font-14 m-b-0">Yearly Earnings</p>
+                                                <h5 class="m-b-0">TZS <span id="withdraw"></span></h5>
+                                                <p class="text-muted font-14 m-b-0">Weekly Withdraws</p>
                                             </div>
                                         </div>
                                     </div>
@@ -108,30 +100,24 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="row mt-5">
-                                    <div class="col-7 col-xl-7 mb-3">Total customers</div>
+                                    <div class="col-7 col-xl-7 mb-3">Today's New Users</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">8,257</span>
-                                        <sup class="col-green">+09%</sup>
+                                        <span class="text-big">{{ count($newUsers) }}</span>
+                                        <sup class="col-green">0</sup>
                                     </div>
-                                    <div class="col-7 col-xl-7 mb-3">Total Income</div>
+                                    <div class="col-7 col-xl-7 mb-3">Today's Withdraws</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">$9,857</span>
-                                        <sup class="text-danger">-18%</sup>
+                                        <span class="text-big">TZS {{ number_format($todayWithdraw) }}</span>
+                                        <sup class="text-danger">00</sup>
                                     </div>
-                                    <div class="col-7 col-xl-7 mb-3">Project completed</div>
+                                    <div class="col-7 col-xl-7 mb-3">Today's Earnings</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">28</span>
-                                        <sup class="col-green">+16%</sup>
+                                        <span class="text-big">TZS {{ number_format($todayEarning) }}</span>
+                                        <sup class="col-green">00</sup>
                                     </div>
-                                    <div class="col-7 col-xl-7 mb-3">Total expense</div>
+                                    <div class="col-7 col-xl-7 mb-3">Inactive Users</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">$6,287</span>
-                                        <sup class="col-green">+09%</sup>
-                                    </div>
-                                    <div class="col-7 col-xl-7 mb-3">New Customers</div>
-                                    <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">684</span>
-                                        <sup class="col-green">+22%</sup>
+                                        <span class="text-big">{{ count($inactiveUsers) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +162,7 @@
                                         <h5 class="font-15">{{ __('Profit')}}</h5>
                                         <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($profit,2) }}</h2>
                                         <p class="mb-0"><span class="col-green"></span>
-                                        Referral + Other Earnings
+                                            Referral + Other Earnings
                                         </p>
                                     </div>
                                 </div>
@@ -296,6 +282,7 @@
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/widget-chart.js')}}"></script>
+<script type="text/javascript">var transactions = <?php echo json_encode($transactionData); ?>; </script>
 <script src="{{ asset('assets/js/page/index.js')}}"></script>
 @endsection
 @endif
