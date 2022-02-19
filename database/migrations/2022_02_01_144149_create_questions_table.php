@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->text('answer');
             $table->text('options');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }

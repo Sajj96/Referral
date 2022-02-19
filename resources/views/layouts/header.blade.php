@@ -131,8 +131,8 @@
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="video"></i><span>{{ __('Video')}}</span></a>
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="{{ route('history')}}">{{ __('Play list')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('withdraw')}}">{{ __('Upload Video')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('video')}}">{{ __('Play list')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('video.show')}}">{{ __('Upload Video')}}</a></li>
                     </ul>
                 </li>
                 @else

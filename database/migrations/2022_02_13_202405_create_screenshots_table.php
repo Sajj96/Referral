@@ -17,7 +17,7 @@ class CreateScreenshotsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->string('screenshot');
-            $table->string('status');
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
         Schema::table('screenshots', function($table)

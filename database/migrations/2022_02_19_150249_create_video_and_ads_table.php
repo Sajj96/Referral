@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWhatsAppStatusesTable extends Migration
+class CreateVideoAndAdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateWhatsAppStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('whats_app_statuses', function (Blueprint $table) {
+        Schema::create('video_and_ads', function (Blueprint $table) {
             $table->id();
-            $table->text('media');
-            $table->string('description');
+            $table->string('video');
+            $table->string('poster')->nullable();
+            $table->string('title');
+            $table->string('watched_by')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateWhatsAppStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('whats_app_statuses');
+        Schema::dropIfExists('video_and_ads');
     }
 }
