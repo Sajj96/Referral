@@ -33,28 +33,23 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Ads Gallery</h4>
+                            <h4>Video</h4>
                         </div>
                         <div class="card-body">
-                            <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                            <div id="aniimated-videos" class="list-unstyled row clearfix">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-2.png" data-sub-html="Demo Description">
+                                    <a data-src='{"source": [{"src": "{{ asset("assets/videos/sintel-short.mp4")}}", "type": "video/mp4"}], "attributes": {"preload": false, "controls": true}}' data-poster="assets/img/image-gallery/thumb/thumb-2.png" data-sub-html="Demo Description" class="lg-html5">
                                         <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-2.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-3.png" data-sub-html="Demo Description">
+                                    <a data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide  4" data-src='{"source": [{"src":"assets/videos/sintel-short.mp4", "type":"video/mp4"}], "tracks": [{"src": "https://www.lightgalleryjs.com/videos/title.txt", "kind":"captions", "srclang": "en", "label": "English", "default": "true"}], "attributes": {"preload": false, "controls": true}}' data-poster="assets/img/image-gallery/thumb/thumb-4.png" data-sub-html="<h4>'Peck Pocketed' by Kevin Herron | Disney Favorite</h4>">
+                                        <img class="img-responsive" src="assets/img/image-gallery/thumb/thumb-4.png" />
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                    <a href="assets/img/image-gallery/thumb/thumb-2.png" data-sub-html="Demo Description">
                                         <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-3.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-4.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-4.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <a href="assets/img/image-gallery/thumb/thumb-5.png" data-sub-html="Demo Description">
-                                        <img class="img-responsive thumbnail" src="assets/img/image-gallery/thumb/thumb-5.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -71,7 +66,6 @@
 <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 @endsection
 @section('page-specific-js')
-<script src="{{ asset('assets/js/page/light-gallery.js')}}"></script>
 <script src="{{ asset('assets/js/page/video-audio.js')}}"></script>
 @endsection
 @endsection

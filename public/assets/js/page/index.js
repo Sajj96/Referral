@@ -57,8 +57,8 @@ function chart1() {
     let sumWithdraw = 0;
 
     for(let i = 1; i <= 7; i++) {
-      let first = curr.getDate() - curr.getDay() + i;
-      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+      let first = curr.getUTCDate() - curr.getUTCDay() + i;
+      let day = new Date(curr.setUTCDate(first)).toISOString().slice(0, 10);
       week.push(day);
     }
 
@@ -69,6 +69,8 @@ function chart1() {
       const currentYear = date.getUTCFullYear();
 
       const dateString = currentYear + "-" + (currentMonth) + "-" + currentDayOfMonth;
+
+      console.log(week);
       
       if(dateString === week[0]) {
           monWithdraw = monWithdraw + x.amount;
