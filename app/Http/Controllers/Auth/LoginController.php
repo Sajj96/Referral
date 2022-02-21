@@ -92,7 +92,8 @@ class LoginController extends Controller
             return redirect()->intended($this->redirectPath());
         }
 
-        $user = User::where('username',$request->input('login'))->first();
+        $user = User::where($login_type,$request->input('login'))->first();
+        
         if($user->active == 0) {
             return view('payment');
         }

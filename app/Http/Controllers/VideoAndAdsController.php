@@ -18,7 +18,8 @@ class VideoAndAdsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('video.videos', compact('user'));
+        $videos = VideoAndAds::where('status', VideoAndAds::VIDEO_PUBLISHED)->get();
+        return view('video.videos', compact('user','videos'));
     }
 
     /**
