@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VideoAndAds;
+use App\Models\VideoUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,8 @@ class VideoAndAdsController extends Controller
     {
         $user = Auth::user();
         $videos = VideoAndAds::where('status', VideoAndAds::VIDEO_PUBLISHED)->get();
-        return view('video.videos', compact('user','videos'));
+        $video_users = VideoUsers::all();
+        return view('video.videos', compact('user','videos','video_users'));
     }
 
     /**
@@ -41,7 +43,7 @@ class VideoAndAdsController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'video' => 'required|file'
+            'video' => 'required|file|max:10240'
         ]);
 
         if($validator->fails()) {

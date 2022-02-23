@@ -267,6 +267,7 @@
 
 #sync1 .item, #sync1 .item-video{
     height:400px;
+    width: 1200px;
     margin: 1px;
     color: #FFF;
     -webkit-border-radius: 3px;
@@ -292,6 +293,43 @@
   background: #16234D;
 }
 
+.vjs-poster {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    cursor: pointer;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+  }
+  .vjs-poster img {
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .vjs-has-started .vjs-poster {
+      visibility: hidden;
+      opacity: 0;
+  }
+  
+  .vjs-audio.vjs-has-started .vjs-poster {
+      visibility: visible;
+  }
+  
+  .vjs-controls-disabled .vjs-poster {
+      visibility: hidden;
+      display: none;
+  }
+  
+  .vjs-using-native-controls .vjs-poster {
+      visibility: hidden;
+      display: none;
+  }
 
 /*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
 

@@ -55,6 +55,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::post('/', [App\Http\Controllers\VideoAndAdsController::class, 'create'])->name('video.create');
     });
 
+    Route::group(['prefix' => 'video-users'], function(){
+        Route::post('/', [App\Http\Controllers\VideoUsersController::class, 'create'])->name('video.users.create');
+    });
+
     Route::group(['prefix' => 'questions'], function(){
         Route::get('/', [App\Http\Controllers\QuestionController::class, 'index'])->name('questions');
         Route::get('/create', [App\Http\Controllers\QuestionController::class, 'show'])->name('question.show')->middleware('user.type');
