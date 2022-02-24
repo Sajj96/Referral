@@ -267,7 +267,7 @@
 
 #sync1 .item, #sync1 .item-video{
     height:400px;
-    width: 1200px;
+    width: auto;
     margin: 1px;
     color: #FFF;
     -webkit-border-radius: 3px;

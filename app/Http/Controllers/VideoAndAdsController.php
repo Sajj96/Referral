@@ -6,6 +6,7 @@ use App\Models\VideoAndAds;
 use App\Models\VideoUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 
@@ -20,8 +21,16 @@ class VideoAndAdsController extends Controller
     {
         $user = Auth::user();
         $videos = VideoAndAds::where('status', VideoAndAds::VIDEO_PUBLISHED)->get();
-        $video_users = VideoUsers::all();
-        return view('video.videos', compact('user','videos','video_users'));
+        $video_ids = array();
+        $video_users = DB::table('video_users')
+                            ->select('video_id')
+                            ->where('user_id', $user->id)
+                            ->get();
+        
+        foreach($video_users as $key=>$rows) {
+            array_push($video_ids,$rows->video_id);
+        }
+        return view('video.videos', compact('user','videos','video_ids'));
     }
 
     /**

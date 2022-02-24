@@ -63,7 +63,7 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Video')}}</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="custom-file">
-                                            <input type="file" name="video" class="custom-file-input" id="customFile" required>
+                                            <input type="file" name="video" class="custom-file-input" id="customFile" aria-describedby="inputGroupFileAddon01" required>
                                             <label class="custom-file-label" for="customFile">Choose video file</label>
                                         </div>
                                     </div>

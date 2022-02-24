@@ -174,6 +174,7 @@ class Transaction extends Model
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_TRIVIA_QUESTION)
+                        ->where('user_id', Auth::user()->id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
@@ -188,6 +189,7 @@ class Transaction extends Model
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_VIDEO)
+                        ->where('user_id', Auth::user()->id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;

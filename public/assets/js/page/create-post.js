@@ -11,3 +11,10 @@ $.uploadPreview({
   success_callback: null          // Default: null
 });
 $(".inputtags").tagsinput('items');
+
+$('#customFile').on('change',function(){
+  //get the file name
+  var fileName = $(this).val();
+  //replace the "Choose a file" label
+  $(this).next('.custom-file-label').html(fileName);
+})
