@@ -14,13 +14,14 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('WhatsApp Status')}}</h4>
+                            <h4>{{ __('WhatsApp Status - Share with friends and Earn.')}}</h4>
                         </div>
                         <div class="card-body">
+                        <p>In order to earn, your status must reach atleat 30 viewers. Take screenshot of the status showing the number of viewers and upload it.</p>
                             <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
                                 @if(count($whatsapp_status) > 0)
                                 @foreach($whatsapp_status as $key=>$rows)
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a data-src="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" 
                                         data-sub-html='<h3>{{ $rows->description }}</h3><a href="https://api.whatsapp.com/send?text={{ asset("storage/whatsapp_statuses/".$rows->media)}}%20{{ asset("storage/whatsapp_statuses/".$rows->media)}}" data-action="share/whatsapp/share" class="btn btn-md btn-success col-grren" target="_blank">
                                         <img src="{{ asset("assets/img/whatsappicon.png")}}"/>
