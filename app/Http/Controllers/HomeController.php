@@ -53,7 +53,7 @@ class HomeController extends Controller
             }
         }
 
-        $users = User::all();
+        $users = User::where('active', 1)->get();
 
         $inactiveUsers = User::where('active', 0)->get();
 

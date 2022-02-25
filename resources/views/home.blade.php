@@ -100,7 +100,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="row mt-5">
-                                    <div class="col-7 col-xl-7 mb-3">Today's New Users</div>
+                                    <div class="col-7 col-xl-7 mb-3">Today's New Active Users</div>
                                     <div class="col-5 col-xl-5 mb-3">
                                         <span class="text-big">{{ count($newUsers) }}</span>
                                         <sup class="col-green">0</sup>
@@ -129,12 +129,15 @@
     </section>
     @else
     @foreach($notification as $key=>$rows)
+    <?php $end_date = date('Y-m-d', strtotime($rows->created_at . " + 2 days")); ?>
+    @if(date('Y-m-d') < $end_date)
     <div class="alert alert-{{ $rows->type }} alert-has-icon">
         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
         <div class="alert-body">
             {{ $rows->message }}
         </div>
     </div>
+    @endif
     @endforeach
     <section class="section">
         <div class="row ">

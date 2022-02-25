@@ -51,8 +51,8 @@ Route::middleware(['auth','active.user'])->group(function ()
     
     Route::group(['prefix' => 'videos'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
-        Route::get('/upload', [App\Http\Controllers\VideoAndAdsController::class, 'show'])->name('video.show');
-        Route::post('/', [App\Http\Controllers\VideoAndAdsController::class, 'create'])->name('video.create');
+        Route::get('/upload', [App\Http\Controllers\VideoAndAdsController::class, 'show'])->name('video.show')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\VideoAndAdsController::class, 'create'])->name('video.create')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'video-users'], function(){

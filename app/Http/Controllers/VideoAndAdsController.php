@@ -51,17 +51,16 @@ class VideoAndAdsController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string',
-            'video' => 'required|file|max:10240'
+            'title' => 'required|string'
         ]);
 
         if($validator->fails()) {
-            return redirect()->route('video.show')->with('error','Only valid details are required!');
+            return redirect()->route('video.show')->with('error',$validator->messages());
         }
 
         try {
 
-            $videoFile = $request->video->getClientOriginalName();
+            $videoFile = $request->file('video')->getClientOriginalName();
             $extension = $request->file('video')->extension();
             $generated_name = uniqid()."_".time().date("Ymd")."_VIDEO";
             if($extension == "mp4") {
