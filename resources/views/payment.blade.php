@@ -12,7 +12,7 @@
           <div class="card-body">
             <ul class="list-unstyled">
               <li class="media row">
-                <img class="mr-1 img-fluid col-lg-3 col-md-12 col-sm-8 col-12" src="{{ asset('assets/img/Tanzania-Mpesa-logo.jpeg')}}" alt="Generic placeholder image">
+                <img class="mr-1 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/Tanzania-Mpesa-logo.jpeg')}}" alt="Generic placeholder image">
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(VODACOM)</h5>
                   <ol>
@@ -32,7 +32,7 @@
                 </div>
               </li>
               <li class="media row my-4">
-                <img class="mr-3 img-fluid col-lg-3 col-md-12 col-sm-12 col-12" src="{{ asset('assets/img/airtel-money.png')}}" alt="Generic placeholder image">
+                <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/airtel-money.png')}}" alt="Generic placeholder image">
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(AIRTEL MONEY TANZANIA)</h5>
                   <ol>
@@ -51,7 +51,7 @@
                 </div>
               </li>
               <li class="media row">
-                <img class="mr-3 img-fluid col-lg-3 col-md-12 col-sm-12 col-12" src="{{ asset('assets/img/tigo-pesa.png')}}" alt="Generic placeholder image">
+                <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/tigo-pesa.png')}}" alt="Generic placeholder image">
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(TIGO)</h5>
                   <ol>
