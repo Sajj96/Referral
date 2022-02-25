@@ -102,4 +102,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/list', [App\Http\Controllers\ScreenshotController::class, 'getScreenshots'])->name('screenshot.list');
         Route::get('/{id}', [App\Http\Controllers\ScreenshotController::class, 'getDetails'])->name('screenshot.details')->middleware('user.type');
     });
+
+    Route::group(['prefix' => 'notifications'], function(){
+        Route::get('/', [App\Http\Controllers\NotificationController::class, 'index'])->name('notify');
+        Route::get('/send', [App\Http\Controllers\NotificationController::class, 'show'])->name('notify.show')->middleware('user.type');
+        Route::post('/', [App\Http\Controllers\NotificationController::class, 'create'])->name('notify.create')->middleware('user.type');
+    });
 });

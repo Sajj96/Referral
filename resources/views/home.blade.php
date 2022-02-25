@@ -128,6 +128,14 @@
         </div>
     </section>
     @else
+    @foreach($notification as $key=>$rows)
+    <div class="alert alert-{{ $rows->type }} alert-has-icon">
+        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        <div class="alert-body">
+            {{ $rows->message }}
+        </div>
+    </div>
+    @endforeach
     <section class="section">
         <div class="row ">
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">

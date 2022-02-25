@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -39,6 +40,10 @@ class HomeController extends Controller
         $todayEarning = 0;
         $todayWithdraw = 0;
         $today = date('Y-m-d');
+        $notification = DB::table('notifications')
+                            ->orderByDesc('id')
+                            ->limit(1)
+                            ->get();
 
         foreach($transactionData as $key => $rows) {
             $created_at = date('Y-m-d',strtotime($rows->created_at));
@@ -62,7 +67,7 @@ class HomeController extends Controller
         }
 
         if(Auth::user()->user_type != 1) {
-            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video'));
+            return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification'));
         }
 
         return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','todayWithdraw','newUsers','inactiveUsers'));

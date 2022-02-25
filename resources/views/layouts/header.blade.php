@@ -135,6 +135,13 @@
                         <li><a class="nav-link" href="{{ route('video.show')}}">{{ __('Upload Video')}}</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="bell"></i><span>{{ __('Notification')}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{ route('notify')}}">{{ __('Notifications List')}}</a></li>
+                        <li><a class="nav-link" href="{{ route('notify.show')}}">{{ __('Send Notification')}}</a></li>
+                    </ul>
+                </li>
                 @else
                 <li class="dropdown">
                     <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="users"></i><span>{{ __('My Team')}}</span></a>
