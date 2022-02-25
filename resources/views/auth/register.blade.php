@@ -26,7 +26,7 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="name">Name</label>
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full name">
                                     @error('name')
@@ -35,7 +35,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="username">{{ __('Username') }}</label>
                                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
                                     <small class="form-text text-muted">
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="email">{{ __('Email') }}</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address">
                                     @error('email')
@@ -59,7 +59,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="phone">{{ __('Phone number') }}</label>
                                     <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" required autocomplete="phone" style="padding: 10px 80px 10px 90px">
                                     @error('phone')
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="password" class="d-block">{{ __('Password') }}</label>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror pwstrength" data-indicator="pwindicator" name="password" required autocomplete="new-password" placeholder="*********">
                                     <div id="pwindicator" class="pwindicator">
@@ -85,17 +85,17 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="password2" class="d-block">{{ __('Confirm Password') }}</label>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="*********">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="package">{{ __('Package') }}</label>
                                     <input id="package" type="text" class="form-control @error('package') is-invalid @enderror" name="package" value="Premium Package" readonly autocomplete="package">
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="country">{{ __('Country') }}</label>
                                     <select name="country" id="address-country" class="form-control @error('country') is-invalid @enderror custom-select">
                                     </select>

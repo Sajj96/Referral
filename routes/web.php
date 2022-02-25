@@ -76,10 +76,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
         Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');
         Route::post('/deactivate/{id}', [App\Http\Controllers\UserController::class, 'deactivateUser'])->name('user.deactivate');
-        Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
 
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
+    Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
 
     Route::group(['prefix' => 'revenues'], function(){
         Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');

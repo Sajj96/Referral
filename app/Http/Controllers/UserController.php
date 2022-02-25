@@ -42,7 +42,11 @@ class UserController extends Controller
      */
     public function getProfile()
     {
-        return view('profile');
+        $transactions = new Transaction();
+        $profit = $transactions->getProfit();
+        $balance = $transactions->getUserBalance();
+
+        return view('profile', compact('profit','balance'));
     }
 
     /**
