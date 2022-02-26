@@ -59,6 +59,8 @@
                                                     </th>
                                                     <th>{{ __('Date')}}</th>
                                                     <th>{{ __('Amount')}}</th>
+                                                    <th>{{ __('Debit')}}</th>
+                                                    <th>{{ __('Fee')}}</th>
                                                     <th>{{ __('Phone')}}</th>
                                                     <th>{{ __('Type')}}</th>
                                                     <th>{{ __('Status')}}</th>
@@ -70,6 +72,8 @@
                                                     <td>{{ $serial_1++ }}</td>
                                                     <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
+                                                    <td>{{ number_format($rows->amount_deposit,2) }}</td>
+                                                    <td>{{ number_format($rows->fee,2) }}</td>
                                                     <td>{{ $rows->phone }}</td>
                                                     <td>{{ $rows->transaction_type }}</td>
                                                     @if($rows->status == 0)
@@ -101,6 +105,8 @@
                                                     </th>
                                                     <th>{{ __('Date')}}</th>
                                                     <th>{{ __('Amount')}}</th>
+                                                    <th>{{ __('Debit')}}</th>
+                                                    <th>{{ __('Fee')}}</th>
                                                     <th>{{ __('Phone')}}</th>
                                                     <th>{{ __('Type')}}</th>
                                                     <th>{{ __('Status')}}</th>
@@ -113,6 +119,8 @@
                                                     <td>{{ $serial_2++ }}</td>
                                                     <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
+                                                    <td>{{ number_format($rows->amount_deposit,2) }}</td>
+                                                    <td>{{ number_format($rows->fee,2) }}</td>
                                                     <td>{{ $rows->phone }}</td>
                                                     <td>{{ $rows->transaction_type }}</td>
                                                     @if($rows->status == 0)

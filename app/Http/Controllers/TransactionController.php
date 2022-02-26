@@ -48,8 +48,9 @@ class TransactionController extends Controller
     public function show()
     {
         $setting = DB::table('setting')->first();
+        $id = Auth::user()->id;
         $transactions = new Transaction();
-        $balance = $transactions->getUserBalance();
+        $balance = $transactions->getUserBalance($id);
 
         return view('transaction.withdraw', compact('setting','balance'));
     }
@@ -86,7 +87,8 @@ class TransactionController extends Controller
         try {
 
             $transactions = new Transaction();
-            $balance = $transactions->getUserBalance();
+            $id = Auth::user()->id;
+            $balance = $transactions->getUserBalance($id);
 
             if($request->amount > $balance) {
                 return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw '. $request->amount);
@@ -183,7 +185,8 @@ class TransactionController extends Controller
         try {
 
             $transactions = new Transaction();
-            $balance = $transactions->getUserBalance();
+            $id = Auth::user()->id;
+            $balance = $transactions->getUserBalance($id);
 
             if(Transaction::REGISTRATION_FEE > $balance) {
                 return redirect()->route('pay_for_downline')->with('error','You don\'t have enough balance to make payment');

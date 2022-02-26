@@ -27,16 +27,15 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getUserTotalEarnings()
+    public function getUserTotalEarnings($id)
     {
         $referral_amount_level_1 = 6000;
         $referral_amount_level_2 = 3000;
         $referral_amount_level_3 = 1000;
-        $user = Auth::user();
 
         $level_1 = DB::table('users','t1')
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.id'), DB::raw($id))
                     ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->get();
@@ -44,7 +43,7 @@ class Transaction extends Model
         $level_2 = DB::table('users','t1')
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
                     ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
-                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.id'), DB::raw($id))
                     ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
@@ -54,7 +53,7 @@ class Transaction extends Model
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
                     ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
                     ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
-                    ->where(DB::raw('t1.id'), DB::raw($user->id))
+                    ->where(DB::raw('t1.id'), DB::raw($id))
                     ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
                     ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
@@ -76,13 +75,13 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getUserBalance()
+    public function getUserBalance($id)
     {
-        $totalEarnings = $this->getUserTotalEarnings();
+        $totalEarnings = $this->getUserTotalEarnings($id);
 
-        $withdrawn = $this->getUserWithdrawnAmount();
+        $withdrawn = $this->getUserWithdrawnAmount($id);
 
-        $payment_for_downline = $this->getUserPaymentForDownline();
+        $payment_for_downline = $this->getUserPaymentForDownline($id);
 
         $withdrawn_amount = $withdrawn ?? 0;
         $payment_amount = $payment_for_downline ?? 0;
@@ -96,11 +95,11 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getUserWithdrawnAmount()
+    public function getUserWithdrawnAmount($id)
     {
         $withdrawn = DB::table('transactions')
                         ->where('transaction_type', self::TYPE_WITHDRAW)
-                        ->where('user_id', Auth::user()->id)
+                        ->where('user_id', $id)
                         ->sum('amount');
         $withdrawn_amount = $withdrawn ?? 0;
         return $withdrawn_amount;
@@ -112,11 +111,11 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getUserPaymentForDownline()
+    public function getUserPaymentForDownline($id)
     {
         $payment = DB::table('transactions')
                         ->where('transaction_type', self::TYPE_PAY_FOR_DOWNLINE)
-                        ->where('user_id', Auth::user()->id)
+                        ->where('user_id', $id)
                         ->sum('amount');
         $payment_amount = $payment ?? 0;
         return $payment_amount;
@@ -155,11 +154,11 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getWhatsAppEarnings()
+    public function getWhatsAppEarnings($id)
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_WHATSAPP)
-                        ->where('user_id', Auth::user()->id)
+                        ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
@@ -170,11 +169,11 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getQuestionsEarnings()
+    public function getQuestionsEarnings($id)
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_TRIVIA_QUESTION)
-                        ->where('user_id', Auth::user()->id)
+                        ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
@@ -185,11 +184,11 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getVideoEarnings()
+    public function getVideoEarnings($id)
     {
         $earning = DB::table('revenues')
                         ->where('type', Revenue::TYPE_VIDEO)
-                        ->where('user_id', Auth::user()->id)
+                        ->where('user_id', $id)
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
@@ -200,12 +199,12 @@ class Transaction extends Model
      *
      * @return float
      */
-    public function getProfit()
+    public function getProfit($id)
     {
-        $totalBalance = $this->getUserTotalEarnings();
-        $whatsAppEarnings = $this->getWhatsAppEarnings();
-        $questionsEarning = $this->getQuestionsEarnings();
-        $videoEarnings = $this->getVideoEarnings();
+        $totalBalance = $this->getUserTotalEarnings($id);
+        $whatsAppEarnings = $this->getWhatsAppEarnings($id);
+        $questionsEarning = $this->getQuestionsEarnings($id);
+        $videoEarnings = $this->getVideoEarnings($id);
 
         $profit_amount = $totalBalance + $whatsAppEarnings + $questionsEarning + $videoEarnings;
         return $profit_amount;

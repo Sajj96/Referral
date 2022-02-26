@@ -18,13 +18,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $id = Auth::user()->id; 
+
         $transactions = new Transaction();
-        $profit = $transactions->getProfit();
-        $balance = $transactions->getUserBalance();
-        $withdrawn = $transactions->getUserWithdrawnAmount();
-        $whatsapp = $transactions->getWhatsAppEarnings();
-        $question = $transactions->getQuestionsEarnings();
-        $video = $transactions->getVideoEarnings();
+        $profit = $transactions->getProfit($id);
+        $balance = $transactions->getUserBalance($id);
+        $withdrawn = $transactions->getUserWithdrawnAmount($id);
+        $whatsapp = $transactions->getWhatsAppEarnings($id);
+        $question = $transactions->getQuestionsEarnings($id);
+        $video = $transactions->getVideoEarnings($id);
 
         $user = new User();
         $all_users = $user->getAllUsers();

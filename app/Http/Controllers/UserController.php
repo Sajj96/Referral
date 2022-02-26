@@ -30,9 +30,12 @@ class UserController extends Controller
     public function getUser(Request $request, $id)
     {
         $user = User::find($id);
+        $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();
+        $profit = $transaction->getProfit($user->id);
+        $balance = $transaction->getUserBalance($user->id);
         $serial = 1;
-        return view('user.user_details', compact('user', 'transactions', 'serial'));
+        return view('user.user_details', compact('user', 'transactions', 'serial','profit','balance'));
     }
 
     /**
@@ -42,9 +45,10 @@ class UserController extends Controller
      */
     public function getProfile()
     {
+        $id = Auth::user()->id;
         $transactions = new Transaction();
-        $profit = $transactions->getProfit();
-        $balance = $transactions->getUserBalance();
+        $profit = $transactions->getProfit($id);
+        $balance = $transactions->getUserBalance($id);
 
         return view('profile', compact('profit','balance'));
     }
