@@ -8,7 +8,7 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3">Welcome {{Auth::user()->name}}.</h4>
+    <h4 class="section-title mb-3">Hello, {{Auth::user()->name}}.</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
