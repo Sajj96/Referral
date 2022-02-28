@@ -23,7 +23,7 @@
                                 @foreach($whatsapp_status as $key=>$rows)
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <a data-src="{{ asset('storage/whatsapp_statuses/'.$rows->media)}}" 
-                                        data-sub-html='<h3>{{ $rows->description }}</h3><a href="https://api.whatsapp.com/send?text={{ asset("storage/whatsapp_statuses/".$rows->media)}}%20{{ asset("storage/whatsapp_statuses/".$rows->media)}}" data-action="share/whatsapp/share" class="btn btn-md btn-success col-grren" target="_blank">
+                                        data-sub-html='<h3>{{ $rows->description }}</h3><a href="https://api.whatsapp.com/send?text={{ asset("storage/whatsapp_statuses/".$rows->media)}}" data-action="share/whatsapp/share" class="btn btn-md btn-success col-grren" target="_blank">
                                         <img src="{{ asset("assets/img/whatsappicon.png")}}"/>
                                         <span class="lg-dropdown-text">Share on WhatsApp</span>'
                                         data-lg-size="1400-1400"
