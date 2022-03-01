@@ -269,10 +269,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @if($level_1_downlines[0]->username != null)
                                                     @foreach($level_1_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial++ }}
+                                                            {{ $serial_1++ }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
@@ -288,6 +289,7 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -312,14 +314,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @if($level_2_downlines[0]->username != null)
                                                     @foreach($level_2_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial++ }}
+                                                            {{ $serial_2++ }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
-                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
+                                                        <td>{{ $rows->active == 1 ? number_format(3000,2) : '0.00' }}</td>
                                                         @if($rows->active == 1)
                                                         <td>
                                                             <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
@@ -331,6 +334,7 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -355,14 +359,15 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @if($level_3_downlines[0]->username != null)
                                                     @foreach($level_3_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
-                                                            {{ $serial++ }}
+                                                            {{ $serial_3++ }}
                                                         </td>
                                                         <td>{{ $rows->username }}</td>
                                                         <td>{{ $rows->phone }}</td>
-                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
+                                                        <td>{{ $rows->active == 1 ? number_format(1000,2) : '0.00' }}</td>
                                                         @if($rows->active == 1)
                                                         <td>
                                                             <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
@@ -374,6 +379,7 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

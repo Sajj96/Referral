@@ -36,11 +36,14 @@ class UserController extends Controller
         $transactions = Transaction::where('user_id', $user->id)->get();
         $profit = $transaction->getProfit($user->id);
         $balance = $transaction->getUserBalance($user->id);
-        $level_1_downlines = $userObj->getLevelOneDownlines($id);
-        $level_2_downlines = $userObj->getLevelTwoDownlines($id);
-        $level_3_downlines = $userObj->getLevelThreeDownlines($id);
+        $level_1_downlines = $userObj->getLevelOneDownlines($user->id);
+        $level_2_downlines = $userObj->getLevelTwoDownlines($user->id);
+        $level_3_downlines = $userObj->getLevelThreeDownlines($user->id);
         $serial = 1;
-        return view('user.user_details', compact('user','users', 'transactions', 'serial','profit','balance','level_1_downlines','level_2_downlines','level_3_downlines'));
+        $serial_1 = 1;
+        $serial_2 = 1;
+        $serial_3 = 1;
+        return view('user.user_details', compact('user','users', 'transactions', 'serial','serial_1','serial_2','serial_3','profit','balance','level_1_downlines','level_2_downlines','level_3_downlines'));
     }
 
     /**
