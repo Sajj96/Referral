@@ -31,12 +31,16 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $users = User::all();
+        $userObj = new User;
         $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();
         $profit = $transaction->getProfit($user->id);
         $balance = $transaction->getUserBalance($user->id);
+        $level_1_downlines = $userObj->getLevelOneDownlines($id);
+        $level_2_downlines = $userObj->getLevelTwoDownlines($id);
+        $level_3_downlines = $userObj->getLevelThreeDownlines($id);
         $serial = 1;
-        return view('user.user_details', compact('user','users', 'transactions', 'serial','profit','balance'));
+        return view('user.user_details', compact('user','users', 'transactions', 'serial','profit','balance','level_1_downlines','level_2_downlines','level_3_downlines'));
     }
 
     /**

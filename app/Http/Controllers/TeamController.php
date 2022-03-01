@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
@@ -16,21 +15,13 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $active_referrals = DB::table('users','t1')
-                                ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                                ->where(DB::raw('t1.id'), DB::raw($user->id))
-                                ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                                ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                                ->get();
+        $id = Auth::user()->id;
+        $user = new User;
+        $active_referrals = $user->getLevelOneActiveReferrals($id);
 
         $active_referrals = count($active_referrals) ?? 0;
 
-        $downlines = DB::table('users','t1')
-                        ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                        ->select(DB::raw('t2.username as username'),DB::raw('t2.phone as phone'),DB::raw('t2.active as active'))
-                        ->where(DB::raw('t1.id'), DB::raw($user->id))
-                        ->get();
+        $downlines = $user->getLevelOneDownlines($id);
         $serial = 1;
         return view('team.level_one', compact('downlines', 'serial', 'active_referrals'));
     }
@@ -42,24 +33,13 @@ class TeamController extends Controller
      */
     public function showLevelTwo()
     {
-        $user = Auth::user();
-        $active_referrals = DB::table('users','t1')
-                                ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                                ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
-                                ->where(DB::raw('t1.id'), DB::raw($user->id))
-                                ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                                ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                                ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                                ->get();
+        $id = Auth::user()->id;
+        $user = new User;
+        $active_referrals = $user->getLevelTwoActiveReferrals($id);
 
         $active_referrals = count($active_referrals) ?? 0;
         
-        $downlines = DB::table('users','t1')
-                        ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                        ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
-                        ->select(DB::raw('t3.username as username'),DB::raw('t3.phone as phone'),DB::raw('t3.active as active'))
-                        ->where(DB::raw('t1.id'), DB::raw($user->id))
-                        ->get();
+        $downlines = $user->getLevelTwoDownlines($id);
         $serial = 1;
         return view('team.level_two', compact('downlines', 'serial', 'active_referrals'));
     }
@@ -71,27 +51,13 @@ class TeamController extends Controller
      */
     public function showLevelThree()
     {
-        $user = Auth::user();
-        $active_referrals = DB::table('users','t1')
-                            ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                            ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
-                            ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
-                            ->where(DB::raw('t1.id'), DB::raw($user->id))
-                            ->where(DB::raw('t1.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                            ->where(DB::raw('t2.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                            ->where(DB::raw('t3.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                            ->where(DB::raw('t4.active'), DB::raw(User::USER_STATUS_ACTIVE))
-                            ->get();
+        $id = Auth::user()->id;
+        $user = new User;
+        $active_referrals = $user->getLevelThreeActiveReferrals($id);
 
         $active_referrals = count($active_referrals) ?? 0;
 
-        $downlines = DB::table('users','t1')
-                        ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
-                        ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
-                        ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
-                        ->select(DB::raw('t4.username as username'),DB::raw('t4.phone as phone'),DB::raw('t4.active as active'))
-                        ->where(DB::raw('t1.id'), DB::raw($user->id))
-                        ->get();
+        $downlines = $user->getLevelThreeDownlines($id);
         $serial = 1;
         return view('team.level_three', compact('downlines', 'serial','active_referrals'));
     }

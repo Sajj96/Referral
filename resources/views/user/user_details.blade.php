@@ -87,6 +87,15 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#settings" role="tab" aria-selected="false">{{ __('Settings')}}</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab4" data-toggle="tab" href="#referrals1" role="tab" aria-selected="false">{{ __('Level 1 Referrals')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab5" data-toggle="tab" href="#referrals2" role="tab" aria-selected="false">{{ __('Level 2 Referrals')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab6" data-toggle="tab" href="#referrals3" role="tab" aria-selected="false">{{ __('Level 3 Referrals')}}</a>
+                                </li>
                             </ul>
                             <div class="tab-content tab-bordered" id="myTab3Content">
                                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
@@ -240,6 +249,135 @@
                                             <button class="btn btn-primary" type="submit">{{ __('Save Changes')}}</button>
                                         </div>
                                     </form>
+                                </div>
+                                <div class="tab-pane fade" id="referrals1" role="tabpanel" aria-labelledby="profile-tab4">
+                                    <div class="card-header">
+                                        <h4>{{ __('Referrals Level 1')}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="table-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                        <th>Username</th>
+                                                        <th>Phone</th>
+                                                        <th>Earned</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($level_1_downlines as $key=>$rows)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $serial++ }}
+                                                        </td>
+                                                        <td>{{ $rows->username }}</td>
+                                                        <td>{{ $rows->phone }}</td>
+                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
+                                                        @if($rows->active == 1)
+                                                        <td>
+                                                            <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                        </td>
+                                                        @endif
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="referrals2" role="tabpanel" aria-labelledby="profile-tab5">
+                                    <div class="card-header">
+                                        <h4>{{ __('Referrals Level 2')}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="table-4">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                        <th>Username</th>
+                                                        <th>Phone</th>
+                                                        <th>Earned</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($level_2_downlines as $key=>$rows)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $serial++ }}
+                                                        </td>
+                                                        <td>{{ $rows->username }}</td>
+                                                        <td>{{ $rows->phone }}</td>
+                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
+                                                        @if($rows->active == 1)
+                                                        <td>
+                                                            <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                        </td>
+                                                        @endif
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="referrals3" role="tabpanel" aria-labelledby="profile-tab6">
+                                    <div class="card-header">
+                                        <h4>{{ __('Referrals Level 3')}}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="table-5">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">
+                                                            #
+                                                        </th>
+                                                        <th>Username</th>
+                                                        <th>Phone</th>
+                                                        <th>Earned</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($level_3_downlines as $key=>$rows)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $serial++ }}
+                                                        </td>
+                                                        <td>{{ $rows->username }}</td>
+                                                        <td>{{ $rows->phone }}</td>
+                                                        <td>{{ $rows->active == 1 ? number_format(6000,2) : '0.00' }}</td>
+                                                        @if($rows->active == 1)
+                                                        <td>
+                                                            <div class="badge badge-success badge-shadow">{{ __('Active') }}</div>
+                                                        </td>
+                                                        @else
+                                                        <td>
+                                                            <div class="badge badge-light badge-shadow">{{ __('Inactive') }}</div>
+                                                        </td>
+                                                        @endif
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

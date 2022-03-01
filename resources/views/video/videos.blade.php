@@ -20,7 +20,7 @@
                             <h4>Watch Videos and Earn</h4>
                         </div>
                         <div class="card-body">
-                            @if(count($videos) > 0)
+                            @if(count($videos) != count($video_ids))
                             <div id="sync1" class="slider owl-carousel owl-theme">
                                 @foreach($videos as $key => $rows)
                                 @if(!in_array($rows->id, $video_ids))

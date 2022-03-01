@@ -36,6 +36,9 @@ $("#table-2").dataTable({
   order: [[1, "asc"]] //column indexes is zero based
 
 });
+$("#table-3").dataTable();
+$("#table-4").dataTable();
+$("#table-5").dataTable();
 $('#save-stage').DataTable({
   "scrollX": true,
   stateSave: true
