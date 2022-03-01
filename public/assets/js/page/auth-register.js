@@ -22,7 +22,7 @@ var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long
 var it = window.intlTelInput(telInput, {
 	initialCountry: 'tz',
 	autoPlaceholder: 'aggressive',
-	utilsScript: "../../assets/bundles/intl-tel-input/js/utils.js?1638200991544",
+	utilsScript: utilUrl,
 	geoIpLookup: function(callback) {
         $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
           var countryCode = (resp && resp.country) ? resp.country : "us";

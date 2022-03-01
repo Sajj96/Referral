@@ -29,6 +29,9 @@
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12 col-12">
                                     <label for="name">Name</label>
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full name">
+                                    <small class="form-text text-muted">
+                                        Write the full name used when registering your phone number. This detail will be used when making payments.
+                                    </small>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -122,6 +125,9 @@
 <script src="{{ asset('assets/bundles/intl-tel-input/js/intlTelInput.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var utilUrl = "{{ asset('assets/bundles/intl-tel-input/js/utils.js?1638200991544')}}"
+</script>
 <script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
 @endsection
 @endsection
