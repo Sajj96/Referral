@@ -7,28 +7,25 @@
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
         <div class="card card-success">
           <div class="card-header">
-            <h4>Make Payment</h4>
+            <h4>TANZANIA DELASKA AGENCY PAYMENT</h4>
           </div>
           <div class="card-body">
-            <ul class="list-unstyled">
+            <h5 class="font-15">KUJIUNGA KWA KUNUNUA BIDHAA ZETU ZA VIRUTUBISHO (SUPPLEMENTS) LIPA TZS 48000/=</h5>
+            <h5 class="font-15">KUJIUNGA BILA KUNUNUA BIDHAA LIPA TZS 13000/= </h5>
+            <ul class="list-unstyled mt-4">
               <li class="media row">
                 <img class="mr-1 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/Tanzania-Mpesa-logo.jpeg')}}" alt="Generic placeholder image">
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(VODACOM)</h5>
                   <ol>
-                    <li>Piga *150*00#</li>
-                    <li>Tuma Pesa</li>
-                    <li>Tuma Pesa Kimataifa</li>
-                    <li>Mpesa Kenya</li>
-                    <li>Tuma Pesa</li>
-                    <li>Weka Kiasi Cha 16450TZS</li>
-                    <li>Sababu Ya Kutuma Weka BUSINESS Kisha Namba Hii(254769252862 ZAINAB NYANCHONGI)Muhamala ukikataa kuenda kwa hiyo number ya kwanza tuma kwa hii number(254748973357 MOHAMED IBRAHIM)
-                      muhamala ukikataa tena kuenda unaeza tumia number (254792739593 Valentine mugunyi)</li>
-                    <li>Alafu Eka Number Ya Siri</li>
+                    <li>BONYEZA *150*00#</li>
+                    <li>LIPA KWA M-PESA</li>
+                    <li>LIPA KWA SIMU</li>
+                    <li>INGIZA LIPA NAMBA</li>
+                    <li>WEKA  LIPA NAMBA 5436869 JINA (DELASKA MANAGEMENT)</li>
+                    <li>WEKA KIASI</li>
+                    <li>WEKA NAMBA YA SIRI KUTHIBITISHA</li>
                   </ol>
-                  <p>Kisha Tuma Screenshot Ya Malipo,nambari umesajili smarthela,username na MAJINA YAKO KAMILI ULIVYOSAJILI LAINI
-                    Kwenye Hii Number Kutumia WhatsApp (+254746375622).</p>
-                  <p>Hakikisha umetuma majina yako yote ulivyosajili laini yako unapotuma screenshot ya malipo</p>
                 </div>
               </li>
               <li class="media row my-4">
@@ -36,18 +33,14 @@
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(AIRTEL MONEY TANZANIA)</h5>
                   <ol>
-                    <li>Piga *150*60#</li>
-                    <li>Tuma pesa</li>
-                    <li>Tuma pesa nje ya nchi</li>
-                    <li>Mpesa Kenya</li>
-                    <li>Ingiza namba ya mpokeaji(254769252862 ZAINAB NYANCHONGI)Muhamala ukikataa kuenda kwa hiyo number ya kwanza tuma kwa hii number(254748973357 MOHAMED IBRAHIM)muhamala ukikataa tena kuenda unaeza tumia number (254792739593 Valentine mugunyi)</li>
-                    <li>Weka Kiasi Cha 16450TZS</li>
-                    <li>Sababu ya Kutuma Weka BUSINESS</li>
-                    <li>Alafu weka number ya siri</li>
+                    <li>BONYEZA *150*60#</li>
+                    <li>LIPA BILL</li>
+                    <li>LIPA KWA SIMU (MITANDAO YOTE)</li>
+                    <li>LIPA KWA TIGOPESA</li>
+                    <li>INGIZA KIASI CHA PESA</li>
+                    <li>INGIZA NAMBA YA KUMBUKUMBU 5436869 JINA (DELASKA MANAGEMENT)</li>
+                    <li>INGIZA NAMBA YA SIRI KUTHIBITISHA</li>
                   </ol>
-                  <p>Kisha Tuma Screenshot Ya Malipo,nambari umesajili smarthela,username na MAJINA YAKO KAMILI ULIVYOSAJILI LAINI
-                    Kwenye Hii Number Kutumia WhatsApp (+254746375622).</p>
-                  <p>Hakikisha umetuma majina yako yote ulivyosajili laini yako unapotuma screenshot ya malipo.</p>
                 </div>
               </li>
               <li class="media row">
@@ -55,20 +48,38 @@
                 <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
                   <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(TIGO)</h5>
                   <ol>
-                    <li>Piga *150*01#</li>
-                    <li>Tuma pesa</li>
-                    <li>Tuma nje Pesa</li>
-                    <li>Kenya</li>
-                    <li>Safaricom</li>
-                    <li>Ingiza number ya safaricom kenya(254769252862 ZAINAB NYANCHONGI)Muhamala ukikataa kuenda kwa hiyo number ya kwanza tuma kwa hii number(254748973357 MOHAMED IBRAHIM) muhamala ukikataa tena kuenda unaeza tumia number (254792739593 Valentine mugunyi)</li>
-                    <li>Weka Kiasi Cha 16450TZS</li>
-                    <li>Alafu weka number ya siri</li>
+                    <li>BONYEZA *150*01#</li>
+                    <li>LIPA KWA SIMU</li>
+                    <li>KWENDA TIGOPESA</li>
+                    <li>INGIZA LIPA NAMBA</li>
+                    <li>WEKA 5436869 JINA (DELASKA MANAGEMENT)</li>
+                    <li>WEKA KIASI</li>
+                    <li>WEKA NAMBA YA SIRI KUTHIBITISHA</li>
                   </ol>
                   <p class="mb-0">KISHA TUMA SCREENSHOT YA MALIPO,NAMBARI UMESAJILI smarthela, USERNAME na MAJINA YAKO KAMILI ULIVYOSAJILI LAINI yako KWENYE HII NUMBER KUTUMIA WHATSAPP activation team(+254746375622).</p>
                   <p>Hakikisha umetuma majina yako yote ulivyosajili laini yako unapotuma screenshot ya malipo.</p>
                 </div>
               </li>
+              <li class="media row">
+                <img class="mr-3 img-fluid col-lg-3 col-md-9 col-sm-9 col-9" src="{{ asset('assets/img/halopesa.png')}}" alt="Generic placeholder image">
+                <div class="media-body col-lg-9 col-md-12 col-sm-12 col-12">
+                  <h5 class="mt-0 mb-1">Jinsi Ya Kulipia(Halotel)</h5>
+                  <ol>
+                    <li>BONYEZA *150*88#</li>
+                    <li>LIPIA BIDHAA</li>
+                    <li>TIGO PESA LIPA HAPA</li>
+                    <li>WEKA NAMBA 5436869 JINA (DELASKA MANAGEMENT)</li>
+                    <li>WEKA KIASI</li>
+                    <li>WEKA NAMBA YA SIRI KUTHIBITISHA</li>
+                  </ol>
+                </div>
+              </li>
             </ul>
+            <p class="mt-4 mb-0">KWA DHARURA FANYA MALIPO KWENDA NAMBA 0713814109 JINA ADELA RICHARD MUGUSSI.</p>
+            <p><strong>BAADA YA KUFANYA MALIPO TUMA TAARIFA ZAKO YAANI SCREENSHOT YA MUAMALA ULIOFANYA,USERNAME, NAMBA ULIYOJISAJILIA NA MAJINA KAMILI YA LAINI ULIYOFANYIA MALIPO KWENDA DELASKA MANAGEMENT.  
+              KISHA TUMA  TAARIFA HIZO KWA NAMBA YETU YA WHATSAPP HUDUMA KWA WATEJA KUFANYIWA ACTIVATION KWA ACCOUNT YAKO.
+              0752312850(WhatsApp).</strong></p>
+            <p>NA KWA MAWASILIANO ZAIDI  PIGA 0759514851 AU 0786390106.</p>
           </div>
         </div>
       </div>

@@ -19,7 +19,9 @@ class Transaction extends Model
     const REGISTRATION_FEE = 13000;
 
     const TYPE_WITHDRAW = "Withdraw";
-    const TYPE_DEPOSIT = "Deposited";
+    const TYPE_QUESTIONS = "Trivia";
+    const TYPE_WHATSAPP = "WhatsApp";
+    const TYPE_VIDEO = "Video";
     const TYPE_PAY_FOR_DOWNLINE = "pay_for_downline";
 
     /**
@@ -164,6 +166,16 @@ class Transaction extends Model
         return $earning_amount;
     }
 
+    public function getUserWhatsAppWithdrawnAmount($id)
+    {
+        $withdrawn = DB::table('transactions')
+                        ->where('transaction_type', self::TYPE_WHATSAPP)
+                        ->where('user_id', $id)
+                        ->sum('amount');
+        $withdrawn_amount = $withdrawn ?? 0;
+        return $withdrawn_amount;
+    }
+
     /**
      * Get trivia question earnings.
      *
@@ -179,6 +191,16 @@ class Transaction extends Model
         return $earning_amount;
     }
 
+    public function getUserQuestionsWithdrawnAmount($id)
+    {
+        $withdrawn = DB::table('transactions')
+                        ->where('transaction_type', self::TYPE_QUESTIONS)
+                        ->where('user_id', $id)
+                        ->sum('amount');
+        $withdrawn_amount = $withdrawn ?? 0;
+        return $withdrawn_amount;
+    }
+
     /**
      * Get video earnings.
      *
@@ -192,6 +214,16 @@ class Transaction extends Model
                         ->sum('amount');
         $earning_amount = $earning ?? 0;
         return $earning_amount;
+    }
+
+    public function getUserVideoWithdrawnAmount($id)
+    {
+        $withdrawn = DB::table('transactions')
+                        ->where('transaction_type', self::TYPE_VIDEO)
+                        ->where('user_id', $id)
+                        ->sum('amount');
+        $withdrawn_amount = $withdrawn ?? 0;
+        return $withdrawn_amount;
     }
 
     /**

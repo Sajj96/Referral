@@ -8,7 +8,7 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3">Hello, {{Auth::user()->name}}.</h4>
+    <h4 class="section-title mb-3">Hello, {{Auth::user()->username}}.</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -130,9 +130,12 @@
     @else
     @foreach($notification as $key=>$rows)
     <?php $end_date = date('Y-m-d', strtotime($rows->created_at . " + 2 days")); ?>
-    @if(date('Y-m-d') < $end_date) <div class="alert alert-{{ $rows->type }} alert-has-icon">
+    @if(date('Y-m-d') < $end_date) <div class="alert alert-{{ $rows->type }} alert-has-icon alert-dismissible show fade">
         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
         <div class="alert-body">
+            <button class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
             {{ $rows->message }}
         </div>
 </div>
@@ -317,7 +320,7 @@
                 $('#balance').removeClass('font-15');
                 $('#balance').addClass('card-title');
 
-                $('.info').each(function(){
+                $('.info').each(function() {
                     $(this).remove();
                 });
             }

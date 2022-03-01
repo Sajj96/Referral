@@ -30,12 +30,13 @@ class UserController extends Controller
     public function getUser(Request $request, $id)
     {
         $user = User::find($id);
+        $users = User::all();
         $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();
         $profit = $transaction->getProfit($user->id);
         $balance = $transaction->getUserBalance($user->id);
         $serial = 1;
-        return view('user.user_details', compact('user', 'transactions', 'serial','profit','balance'));
+        return view('user.user_details', compact('user','users', 'transactions', 'serial','profit','balance'));
     }
 
     /**
@@ -61,18 +62,19 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
         try {
-            $user = User::where('username', Auth::user()->username)->where('email', Auth::user()->email)->first();
+            $user = User::where('id', $request->user_id)->where('email', $request->email)->first();
             if($user) {
                 $user->name = $request->name;
                 $user->username = $request->username;
                 $user->phone = $request->phone;
                 $user->country = $request->country;
+                $user->referrer_id = $request->referrer;
                 if($user->save()) {
-                    return redirect()->route('profile')->with('success','Profile updated successfully!');
+                    return redirect()->route('user.details', $request->user_id)->with('success','User Profile updated successfully!');
                 }
             } 
         } catch (\Exception $e) {
-            return redirect()->route('profile')->with('error','Please provide unique details!');
+            return redirect()->route('user.details', $request->user_id)->with('error','Please provide unique details!');
         }
     }
 

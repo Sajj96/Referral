@@ -23,10 +23,12 @@ class HomeController extends Controller
         $transactions = new Transaction();
         $profit = $transactions->getProfit($id);
         $balance = $transactions->getUserBalance($id);
-        $withdrawn = $transactions->getUserWithdrawnAmount($id);
+        $mainWithdrawn = $transactions->getUserWithdrawnAmount($id);
         $whatsapp = $transactions->getWhatsAppEarnings($id);
         $question = $transactions->getQuestionsEarnings($id);
         $video = $transactions->getVideoEarnings($id);
+        $payment_for_downline = $transactions->getUserPaymentForDownline($id);
+        $withdrawn = $mainWithdrawn + $payment_for_downline;
 
         $user = new User();
         $all_users = $user->getAllUsers();

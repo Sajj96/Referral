@@ -194,6 +194,7 @@
                                                 <div class="form-group col-md-6 col-12">
                                                     <label>{{ __('Full Name')}}</label>
                                                     <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
+                                                    <input type="hidden" class="form-control" name="user_id" value="{{ $user->id }}" required>
                                                     <div class="invalid-feedback">
                                                         {{ __('Please fill in the name')}}
                                                     </div>
@@ -227,9 +228,10 @@
                                             <div class="row">
                                                 <div class="form-group col-12">
                                                     <label>{{ __('Referrer')}}</label>
-                                                    <select class="custom-select" name="balance" required>
-                                                        <option value="{{ $user->referrer->id }}" selected>{{ $user->referrer->name }}</option>
-                                                        <!-- <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video balance')}} </option> -->
+                                                    <select class="custom-select" name="referrer" required>
+                                                        @foreach($users as $key => $rows)
+                                                        <option {{ $user->referrer->id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -259,6 +261,9 @@
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
+<script type="text/javascript">
+    var utilUrl = "{{ asset('assets/bundles/intl-tel-input/js/utils.js?1638200991544')}}"
+</script>
 <script src="{{ asset('assets/js/page/auth-register.js')}}"></script>
 @endsection
 @endsection

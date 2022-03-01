@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -85,7 +86,7 @@ class RegisterController extends Controller
     {
         $referrer = User::whereUsername(session()->pull('referrer'))->first();
 
-        return User::create([
+        User::create([
             'name'        => $data['name'],
             'username'    => $data['username'],
             'email'       => $data['email'],
@@ -97,10 +98,13 @@ class RegisterController extends Controller
             'active'      => User::USER_STATUS_BLOCKED
         ]);
 
-        Auth::logout();
+    }
 
-        Session::invalidate();
-
-        Session::regenerateToken();
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        return $this->registered($request, $user)
+           ?: redirect($this->redirectPath());
     }
 }

@@ -20,11 +20,11 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = DB::table('transactions')
-                            ->join('users','transactions.user_id','users.id')
+                            ->join('users','transactions.user_id','=','users.id')
                             ->select('transactions.*','users.username','users.name')
                             ->get();
         $withdraw_requests = DB::table('transactions')
-                                    ->join('users','transactions.user_id','users.id')
+                                    ->join('users','transactions.user_id','=','users.id')
                                     ->select('transactions.*','users.username','users.name')
                                     ->where('transaction_type',Transaction::TYPE_WITHDRAW)
                                     ->where('status',Transaction::WITHDRAW_PENDING)
