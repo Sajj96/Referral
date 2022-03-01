@@ -40,7 +40,7 @@ class HomeController extends Controller
         $dayofweek = date('w', strtotime('2022-02-18'));
         $result = date('Y-m-d', strtotime((0 - $dayofweek).' day', strtotime('2022-02-18')));
         $todayEarning = 0;
-        $todayWithdraw = 0;
+        $totalWithdraw = 0;
         $today = date('Y-m-d');
         $notification = DB::table('notifications')
                             ->orderByDesc('id')
@@ -51,8 +51,8 @@ class HomeController extends Controller
             $created_at = date('Y-m-d',strtotime($rows->created_at));
             if($created_at == $today) {
                 $todayEarning += $rows->fee;
-                $todayWithdraw += $rows->amount;
             }
+            $totalWithdraw += $rows->amount;
         }
 
         $users = User::where('active', 1)->get();
@@ -72,7 +72,7 @@ class HomeController extends Controller
             return view('home', compact('profit','balance','withdrawn','whatsapp','question','video','notification'));
         }
 
-        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','todayWithdraw','newUsers','inactiveUsers'));
+        return view('home', compact('all_users','active_users','withdraw_requests','system_earnings','transactionData','todayEarning','totalWithdraw','newUsers','inactiveUsers'));
     }
 
     /**

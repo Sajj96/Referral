@@ -57,6 +57,7 @@
                                                     <th class="text-center">
                                                         #
                                                     </th>
+                                                    <th>{{ __('Name')}}</th>
                                                     <th>{{ __('Date')}}</th>
                                                     <th>{{ __('Amount')}}</th>
                                                     <th>{{ __('Debit')}}</th>
@@ -70,6 +71,7 @@
                                                 @foreach($transactions as $key=>$rows)
                                                 <tr>
                                                     <td>{{ $serial_1++ }}</td>
+                                                    <td>{{ $$rows->name }}</td>
                                                     <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
                                                     <td>{{ number_format($rows->amount_deposit,2) }}</td>
@@ -103,6 +105,7 @@
                                                     <th class="text-center">
                                                         #
                                                     </th>
+                                                    <th>{{ __('Name')}}</th>
                                                     <th>{{ __('Date')}}</th>
                                                     <th>{{ __('Amount')}}</th>
                                                     <th>{{ __('Debit')}}</th>
@@ -117,6 +120,7 @@
                                                 @foreach($withdraw_requests as $key=>$rows)
                                                 <tr>
                                                     <td>{{ $serial_2++ }}</td>
+                                                    <td>{{ $$rows->name }}</td>
                                                     <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
                                                     <td>{{ number_format($rows->amount_deposit,2) }}</td>

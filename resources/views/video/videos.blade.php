@@ -20,6 +20,7 @@
                             <h4>Watch Videos and Earn</h4>
                         </div>
                         <div class="card-body">
+                            @if(count($videos) > 0)
                             <div id="sync1" class="slider owl-carousel owl-theme">
                                 @foreach($videos as $key => $rows)
                                 @if(!in_array($rows->id, $video_ids))
@@ -39,6 +40,9 @@
                                 @endif
                                 @endforeach
                             </div>
+                            @else
+                                <h4>Sorry, No videos for you today. Please come back later.</h4>
+                            @endif
                         </div>
                     </div>
                 </div>

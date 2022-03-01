@@ -42,9 +42,11 @@
                                         <label>{{ __('Balance')}}</label>
                                         <select class="custom-select" name="balance" required>
                                             <option value="main" selected>{{ __('Main balance')}}</option>
-                                            <!-- <option value="trivia">{{ __('Trivia')}} &amp; {{ __('Video balance')}} </option> -->
+                                            <option value="trivia">{{ __('Trivia Questions balance')}}</option>
+                                            <option value="video">{{ __('Videos balance')}}</option>
+                                            <option value="whatsapp">{{ __('WhatsApp Status balance')}}</option>
                                         </select>
-                                        <div class="help-info">{{ __('Current balance: TZS')}} {{ number_format($balance,2) }}</div>
+                                        <div class="help-info">{{ __('Current balance: TZS')}} <span id="balance-amount">{{ number_format($balance,2) }}</span></div>
                                     </div>
                                     <div class="form-group">
                                         <label>{{ __('Phone Number')}}</label>

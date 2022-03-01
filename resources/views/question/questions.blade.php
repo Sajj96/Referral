@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary restart">{{ __('Restart')}}</button>
+                            <!-- <button class="btn btn-primary restart">{{ __('Restart')}}</button> -->
                         </div>
                     </div>
                 </div>

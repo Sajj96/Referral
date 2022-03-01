@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -94,5 +96,11 @@ class RegisterController extends Controller
             'package'     => $data['package'],
             'active'      => User::USER_STATUS_BLOCKED
         ]);
+
+        Auth::logout();
+
+        Session::invalidate();
+
+        Session::regenerateToken();
     }
 }

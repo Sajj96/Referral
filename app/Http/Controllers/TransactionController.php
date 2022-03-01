@@ -19,10 +19,16 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
-        $withdraw_requests = Transaction::where('transaction_type',Transaction::TYPE_WITHDRAW)
-                                         ->where('status',Transaction::WITHDRAW_PENDING)
-                                         ->get();
+        $transactions = DB::table('transactions')
+                            ->join('users','transactions.user_id','users.id')
+                            ->select('transactions.*','users.username','users.name')
+                            ->get();
+        $withdraw_requests = DB::table('transactions')
+                                    ->join('users','transactions.user_id','users.id')
+                                    ->select('transactions.*','users.username','users.name')
+                                    ->where('transaction_type',Transaction::TYPE_WITHDRAW)
+                                    ->where('status',Transaction::WITHDRAW_PENDING)
+                                    ->get();
         $serial_1 = 1;
         $serial_2 = 1;
         return view('transaction.admin_history', compact('transactions','withdraw_requests','serial_1','serial_2'));

@@ -8,7 +8,7 @@
 @include('layouts.header')
 <!-- Main Content -->
 <div class="main-content">
-    <h4 class="section-title mb-3">Welcome {{Auth::user()->name}}.</h4>
+    <h4 class="section-title mb-3">Welcome {{Auth::user()->username}}.</h4>
     @if(Auth::user()->user_type == 1)
     <section class="section">
         <div class="row">
@@ -105,9 +105,9 @@
                                         <span class="text-big">{{ count($newUsers) }}</span>
                                         <sup class="col-green">0</sup>
                                     </div>
-                                    <div class="col-7 col-xl-7 mb-3">Today's Withdraws</div>
+                                    <div class="col-7 col-xl-7 mb-3">Total Withdraws</div>
                                     <div class="col-5 col-xl-5 mb-3">
-                                        <span class="text-big">TZS {{ number_format($todayWithdraw) }}</span>
+                                        <span class="text-big">TZS {{ number_format($totalWithdraw) }}</span>
                                         <sup class="text-danger">00</sup>
                                     </div>
                                     <div class="col-7 col-xl-7 mb-3">Today's Earnings</div>
@@ -140,7 +140,7 @@
 @endforeach
 <section class="section">
     <div class="row ">
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="card-expenses" class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
@@ -149,7 +149,7 @@
                                 <div class="card-content">
                                     <h5 class="font-15"> {{ __('Expenses')}}</h5>
                                     <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format(13000,2) }}</h2>
-                                    <p class="mb-0"><span class="col-orange"></span>Registration Fee</p>
+                                    <p class="mb-0 info"><span class="col-orange"></span>Registration Fee</p>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0 d-none d-lg-block d-md-block">
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div id="card-profit" class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
@@ -171,7 +171,7 @@
                                 <div class="card-content">
                                     <h5 class="font-15">{{ __('Net Profit')}}</h5>
                                     <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($profit,2) }}</h2>
-                                    <p class="mb-0"><span class="col-green"></span>
+                                    <p class="mb-0 info"><span class="col-green"></span>
                                         Referral + Other Earnings
                                     </p>
                                 </div>
@@ -187,15 +187,15 @@
             </div>
         </div>
         <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card">
+            <div id="card-total" class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
                         <div class="row ">
                             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pr-0 pt-3">
                                 <div class="card-content">
-                                    <h5 class="font-15">{{ __('Total Balance')}}</h5>
+                                    <h4 id="balance" class="font-15">{{ __('Total Balance')}}</h4>
                                     <h2 class="mb-3 font-18">{{ __('TZS')}} {{ number_format($balance,2) }}</h2>
-                                    <p class="mb-0"><span class="col-green"></span>Active Referral Earnings</p>
+                                    <p class="mb-0 info"><span class="col-green"></span>Active Referral Earnings</p>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 pl-0 d-none d-lg-block d-md-block">
@@ -289,8 +289,6 @@
 <script src="{{ asset('assets/bundles/jquery.sparkline.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/jqvmap/dist/jquery.vmap.min.js')}}"></script>
-@endsection
-@section('page-specific-js')
 <script src="{{ asset('assets/js/page/widget-chart.js')}}"></script>
 <script type="text/javascript">
     var transactions = <?php echo json_encode($transactionData); ?>;
@@ -298,4 +296,33 @@
 <script src="{{ asset('assets/js/page/index.js')}}"></script>
 @endsection
 @endif
+@section('page-specific-js')
+<script>
+    $(document).ready(function() {
+        $(window).bind("resize", function() {
+            if ($(this).width() < 700) {
+                $('#card-expenses').removeClass('col-xs-12');
+                $('#card-expenses').addClass('col-xs-6');
+                $('#card-profit').removeClass('col-xs-12');
+                $('#card-profit').addClass('col-xs-6');
+
+                $('#card-expenses').children().addClass('card-info');
+                $('#card-expenses').children().removeClass('card');
+                $('#card-profit').children().addClass('card-info');
+                $('#card-profit').children().removeClass('card');
+
+                $('#card-total').addClass('l-bg-green');
+                $('#card-total').children().removeClass('card-statistic-4');
+                $('#card-total').children().addClass('card-statistic-3');
+                $('#balance').removeClass('font-15');
+                $('#balance').addClass('card-title');
+
+                $('.info').each(function(){
+                    $(this).remove();
+                });
+            }
+        }).trigger('resize');
+    });
+</script>
+@endsection
 @endsection
