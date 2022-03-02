@@ -71,8 +71,8 @@
                                                 @foreach($transactions as $key=>$rows)
                                                 <tr>
                                                     <td>{{ $serial_1++ }}</td>
-                                                    <td>{{ $$rows->name }}</td>
-                                                    <td>{{ ($rows->created_at)->format('M d Y') }}</td>
+                                                    <td>{{ $rows->name }}</td>
+                                                    <td>{{ date('M d Y', strtotime($rows->created_at)) }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
                                                     <td>{{ number_format($rows->amount_deposit,2) }}</td>
                                                     <td>{{ number_format($rows->fee,2) }}</td>
@@ -120,8 +120,8 @@
                                                 @foreach($withdraw_requests as $key=>$rows)
                                                 <tr>
                                                     <td>{{ $serial_2++ }}</td>
-                                                    <td>{{ $$rows->name }}</td>
-                                                    <td>{{ ($rows->created_at)->format('M d Y') }}</td>
+                                                    <td>{{ $rows->name }}</td>
+                                                    <td>{{ date('M d Y', strtotime($rows->created_at)) }}</td>
                                                     <td>{{ number_format($rows->amount,2) }}</td>
                                                     <td>{{ number_format($rows->amount_deposit,2) }}</td>
                                                     <td>{{ number_format($rows->fee,2) }}</td>

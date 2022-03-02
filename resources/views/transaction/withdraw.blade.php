@@ -40,7 +40,7 @@
                                 <fieldset>
                                     <div class="form-group">
                                         <label>{{ __('Balance')}}</label>
-                                        <select class="custom-select" name="balance" required>
+                                        <select class="custom-select" name="balance" id="balance" required>
                                             <option value="main" selected>{{ __('Main balance')}}</option>
                                             <option value="trivia">{{ __('Trivia Questions balance')}}</option>
                                             <option value="video">{{ __('Videos balance')}}</option>
@@ -94,6 +94,12 @@
 <script src="{{ asset('assets/bundles/jquery-validation/dist/jquery.validate.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var trivia = "{{ $trivia }}";
+    var video = "{{ $video }}";
+    var whatsapp = "{{ $whatsapp }}";
+    var balance = "{{ $balance }}";
+</script>
 <script src="{{ asset('assets/js/page/transaction.js')}}"></script>
 @endsection
 @endsection

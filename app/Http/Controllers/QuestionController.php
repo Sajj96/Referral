@@ -20,6 +20,7 @@ class QuestionController extends Controller
     {
         $questions = Question::where('status', Question::PUBLISH_STATUS)->get();
         $questionsList = array();
+        $user = Auth::user();
 
         foreach($questions as $key=>$rows){
             $questionsList[] = array(
@@ -29,7 +30,18 @@ class QuestionController extends Controller
                 "options" => explode(",", $rows->options)
             );
         }
-        return view('question.questions', compact('questionsList'));
+
+        $question_ids = array();
+        $question_users = DB::table('question_users')
+                            ->select('question_id')
+                            ->where('user_id', $user->id)
+                            ->get();
+        
+        foreach($question_users as $key=>$rows) {
+            array_push($question_ids,$rows->question_id);
+        }
+
+        return view('question.questions', compact('questionsList','question_ids'));
     }
 
     /**

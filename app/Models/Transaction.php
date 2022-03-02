@@ -12,9 +12,9 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    const WITHDRAW_PENDING = 0;
-    const WITHDRAW_SUCCESS = 1;
-    const WITHDRAW_CANCELLED = 2;
+    const TRANSACTION_PENDING = 0;
+    const TRANSACTION_SUCCESS = 1;
+    const TRANSACTION_CANCELLED = 2;
 
     const REGISTRATION_FEE = 13000;
 
@@ -145,7 +145,7 @@ class Transaction extends Model
     {
         $withdraw_request = DB::table('transactions')
                         ->where('transaction_type', self::TYPE_WITHDRAW)
-                        ->where('status', self::WITHDRAW_PENDING)
+                        ->where('status', self::TRANSACTION_PENDING)
                         ->get();
         $numRequest = count($withdraw_request) ?? 0;
         return $numRequest;

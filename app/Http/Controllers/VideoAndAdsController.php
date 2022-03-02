@@ -55,13 +55,13 @@ class VideoAndAdsController extends Controller
         ]);
 
         if($validator->fails()) {
-            return redirect()->route('video.show')->with('error',$validator->messages());
+            return redirect()->route('video.show')->with('error','Only valid details are required!');
         }
-
+        // dd($request->file('video')->getClientOriginalName());
         try {
 
             $videoFile = $request->file('video')->getClientOriginalName();
-            $extension = $request->file('video')->extension();
+            $extension = $request->file('video')->getClientOriginalExtension();
             $generated_name = uniqid()."_".time().date("Ymd")."_VIDEO";
             if($extension == "mp4") {
                 $videoFile = $generated_name.".mp4";
@@ -72,7 +72,7 @@ class VideoAndAdsController extends Controller
             $type_video = pathinfo($videoPath, PATHINFO_EXTENSION);
             $video_data = File::get(storage_path('/app/public/videos/'.$videoFile));
 
-            $fileName = $request->poster->getClientOriginalName();
+            $fileName = $request->file('poster')->getClientOriginalName() ?? "";
             $extension = $request->file('poster')->extension();
             $generated = uniqid()."_".time().date("Ymd")."_IMG";
             if($extension == "png") {

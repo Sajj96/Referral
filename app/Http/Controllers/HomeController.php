@@ -36,7 +36,7 @@ class HomeController extends Controller
         $withdraw_requests = $transactions->getWithdrawRequests();
         $system_earnings = $transactions->getSystemEarnings();
         $transactionData = Transaction::where('transaction_type',Transaction::TYPE_WITHDRAW)
-                                        ->where('status',Transaction::WITHDRAW_SUCCESS)
+                                        ->where('status',Transaction::TRANSACTION_SUCCESS)
                                         ->get();
 
         $dayofweek = date('w', strtotime('2022-02-18'));

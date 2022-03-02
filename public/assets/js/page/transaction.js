@@ -63,4 +63,18 @@ $(function () {
             $('#fee_info').text("");
         }
     });
+
+    $('#balance').on('change', function(){
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        if(valueSelected == "trivia") {
+            $('#balance-amount').text(trivia);
+        } else if(valueSelected == "video") {
+            $('#balance-amount').text(video);
+        } else if(valueSelected == "whatsapp"){
+            $('#balance-amount').text(whatsapp);
+        } else {
+            $('#balance-amount').text(balance);
+        }
+    });
 });

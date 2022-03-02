@@ -134,6 +134,7 @@ class User extends Authenticatable
                     ->leftJoin('users as t2', 't2.referrer_id','=','t1.id')
                     ->select(DB::raw('t2.username as username'),DB::raw('t2.phone as phone'),DB::raw('t2.active as active'))
                     ->where(DB::raw('t1.id'), DB::raw($id))
+                    ->where(DB::raw('t2.id'), "<>","")
                     ->get();
 
         return $downlines;
@@ -158,6 +159,7 @@ class User extends Authenticatable
                         ->leftJoin('users as t3', 't3.referrer_id','=','t2.id')
                         ->select(DB::raw('t3.username as username'),DB::raw('t3.phone as phone'),DB::raw('t3.active as active'))
                         ->where(DB::raw('t1.id'), DB::raw($id))
+                        ->where(DB::raw('t3.id'), "<>","")
                         ->get();
 
         return $downlines;
@@ -185,6 +187,7 @@ class User extends Authenticatable
                         ->leftJoin('users as t4', 't4.referrer_id','=','t3.id')
                         ->select(DB::raw('t4.username as username'),DB::raw('t4.phone as phone'),DB::raw('t4.active as active'))
                         ->where(DB::raw('t1.id'), DB::raw($id))
+                        ->where(DB::raw('t4.id'), "<>","")
                         ->get();
 
         return $downlines;

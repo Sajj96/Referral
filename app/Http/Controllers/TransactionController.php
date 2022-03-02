@@ -27,7 +27,7 @@ class TransactionController extends Controller
                                     ->join('users','transactions.user_id','=','users.id')
                                     ->select('transactions.*','users.username','users.name')
                                     ->where('transaction_type',Transaction::TYPE_WITHDRAW)
-                                    ->where('status',Transaction::WITHDRAW_PENDING)
+                                    ->where('status',Transaction::TRANSACTION_PENDING)
                                     ->get();
         $serial_1 = 1;
         $serial_2 = 1;
@@ -57,8 +57,11 @@ class TransactionController extends Controller
         $id = Auth::user()->id;
         $transactions = new Transaction();
         $balance = $transactions->getUserBalance($id);
+        $trivia = $transactions->getQuestionsEarnings($id);
+        $video = $transactions->getVideoEarnings($id);
+        $whatsapp = $transactions->getWhatsAppEarnings($id);
 
-        return view('transaction.withdraw', compact('setting','balance'));
+        return view('transaction.withdraw', compact('setting','balance','trivia','video','whatsapp'));
     }
 
     /**
@@ -94,23 +97,36 @@ class TransactionController extends Controller
 
             $transactions = new Transaction();
             $id = Auth::user()->id;
-            $balance = $transactions->getUserBalance($id);
+
+            if($request->balance == "main") {
+                $balance = $transactions->getUserBalance($id);
+                $type = Transaction::TYPE_WITHDRAW;
+            } else if($request->balance == "trivia") {
+                $balance = $transactions->getQuestionsEarnings($id);
+                $type = Transaction::TYPE_QUESTIONS;
+            } else if($request->balance == "video") {
+                $balance = $transactions->getVideoEarnings($id);
+                $type = Transaction::TYPE_VIDEO;
+            } else {
+                $balance = $transactions->getWhatsAppEarnings($id);
+                $type = Transaction::TYPE_WHATSAPP;
+            }
 
             if($request->amount > $balance) {
                 return redirect()->route('withdraw')->with('error','You don\'t have enough balance to withdraw '. $request->amount);
             }
 
-            $withdraw = new Transaction;
-            $withdraw->balance = $request->balance;
-            $withdraw->user_id = Auth::user()->id;
-            $withdraw->phone = $request->phone;
-            $withdraw->amount = $request->amount;
-            $withdraw->amount_deposit = $request->deposit;
-            $withdraw->fee = $request->fee;
-            $withdraw->transaction_type = Transaction::TYPE_WITHDRAW;
-            $withdraw->status = Transaction::WITHDRAW_PENDING;
+            $transaction = new Transaction;
+            $transaction->balance = $request->balance;
+            $transaction->user_id = Auth::user()->id;
+            $transaction->phone = $request->phone;
+            $transaction->amount = $request->amount;
+            $transaction->amount_deposit = $request->deposit;
+            $transaction->fee = $request->fee;
+            $transaction->transaction_type = $type;
+            $transaction->status = Transaction::TRANSACTION_PENDING;
 
-            if($withdraw->save()) {
+            if($transaction->save()) {
                 return redirect()->route('withdraw')->with('success','You have successfully withdrawn TZS '.$request->amount.'. Please wait for confirmation!.');
             }
         } catch (\Exception $e) {
@@ -154,7 +170,7 @@ class TransactionController extends Controller
     {
         try {
             $withdraw = Transaction::find($request->withdraw_id);
-            $withdraw->status = Transaction::WITHDRAW_SUCCESS;
+            $withdraw->status = Transaction::TRANSACTION_SUCCESS;
             if($withdraw->save()){
                 return redirect()->route('transaction')->with('success','Withdraw request accepted!');
             }
@@ -168,7 +184,7 @@ class TransactionController extends Controller
     {
         try {
             $withdraw = Transaction::find($request->id);
-            $withdraw->status = Transaction::WITHDRAW_CANCELLED;
+            $withdraw->status = Transaction::TRANSACTION_CANCELLED;
             if($withdraw->save()){
                 return redirect()->route('transaction')->with('success','Withdraw request declined!');
             }
