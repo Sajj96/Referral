@@ -11,4 +11,5 @@ class Screenshot extends Model
 
     const SCREENSHOT_PAID = 1;
     const SCREENSHOT_PENDING = 0;
+    const SCREENSHOT_REJECTED = 2;
 }

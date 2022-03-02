@@ -32,6 +32,7 @@ class ScreenshotController extends Controller
         $screenshots = DB::table('screenshots')
                             ->join('users','screenshots.user_id','users.id')
                             ->select('screenshots.*','users.username','users.name')
+                            ->where('screenshots.status',Screenshot::SCREENSHOT_PENDING)
                             ->get();
         $serial = 1;
         return view('whatsapp.screenshots', compact('screenshots', 'serial'));
@@ -92,6 +93,25 @@ class ScreenshotController extends Controller
             }
         } catch (\Exception $e) {
             return redirect()->route('screenshot')->with('error','Something went wrong while uploading screenshot!');
+        }
+    }
+
+    /**
+     * Reject screenshot.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function decline(Request $request)
+    {
+        try {
+            $screenshot = Screenshot::find($request->id);
+            $screenshot->status = Screenshot::SCREENSHOT_REJECTED;
+            if($screenshot->save()){
+                return redirect()->route('screenshot.details',$request->id)->with('success','Screenshot declined!');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('screenshot.details',$request->id)->with('error','Something went wrong while rejecting screenshot!');
         }
     }
 }

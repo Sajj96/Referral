@@ -36,7 +36,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if($downlines[0]->username != null)
                                         @foreach($downlines as $key=>$rows)
                                         <tr>
                                             <td>
@@ -56,7 +55,6 @@
                                             @endif
                                         </tr>
                                         @endforeach
-                                        @endif
                                     </tbody>
                                 </table>
                             </div>

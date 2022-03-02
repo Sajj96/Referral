@@ -73,7 +73,11 @@
                                 <div class="col-sm-12 col-md-7">
                                     <div class="buttons">
                                         <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">{{ __('Approve')}}</button>
-                                        <button class="btn btn-danger">{{ __('Reject')}}</button>
+                                        <button class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('decline-form{{ $screenshot->id }}').submit();">{{ __('Reject')}}</button>
+                                        <form id="decline-form{{ $screenshot->id }}" action="{{ route('screenshot.decline') }}" method="POST" class="d-none">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $screenshot->id }}">
+                                        </form>
                                     </div>
                                 </div>
                             </div>

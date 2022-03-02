@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class VideoAndAdsController extends Controller
 {
@@ -30,6 +31,7 @@ class VideoAndAdsController extends Controller
         foreach($video_users as $key=>$rows) {
             array_push($video_ids,$rows->video_id);
         }
+
         return view('video.videos', compact('user','videos','video_ids'));
     }
 
@@ -72,23 +74,27 @@ class VideoAndAdsController extends Controller
             $type_video = pathinfo($videoPath, PATHINFO_EXTENSION);
             $video_data = File::get(storage_path('/app/public/videos/'.$videoFile));
 
-            $fileName = $request->file('poster')->getClientOriginalName() ?? "";
-            $extension = $request->file('poster')->extension();
-            $generated = uniqid()."_".time().date("Ymd")."_IMG";
-            if($extension == "png") {
-                $fileName = $generated.".png";
-            } else if($extension == "jpg") {
-                $fileName = $generated.".jpg";
-            } else if($extension == "jpeg") {
-                $fileName = $generated.".jpeg";
+            if($request->file('poster') != "") {
+                $fileName = $request->file('poster')->getClientOriginalName();
+                $extension = $request->file('poster')->extension();
+                $generated = uniqid()."_".time().date("Ymd")."_IMG";
+                if($extension == "png") {
+                    $fileName = $generated.".png";
+                } else if($extension == "jpg") {
+                    $fileName = $generated.".jpg";
+                } else if($extension == "jpeg") {
+                    $fileName = $generated.".jpeg";
+                } else {
+                    return redirect()->route('video.show')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
+                }
+                $filePath = $request->file('poster')->storeAs('video_posters', $fileName,'public');
+                $type = pathinfo($filePath, PATHINFO_EXTENSION);
+                $image_data = File::get(storage_path('/app/public/video_posters/'.$fileName));
+                $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
+                $fileBin = file_get_contents($base64encodedString);
             } else {
-                return redirect()->route('video.show')->with('error', "Invalid file type only png, jpeg and jpg files are allowed.");
+                $fileName = "";
             }
-            $filePath = $request->file('poster')->storeAs('video_posters', $fileName,'public');
-            $type = pathinfo($filePath, PATHINFO_EXTENSION);
-            $image_data = File::get(storage_path('/app/public/video_posters/'.$fileName));
-            $base64encodedString = 'data:image/' . $type . ';base64,' . base64_encode($image_data);
-            $fileBin = file_get_contents($base64encodedString);
 
             $video = new VideoAndAds;
             $video->video = $videoFile;
@@ -101,7 +107,7 @@ class VideoAndAdsController extends Controller
             file_put_contents("/app/public/video_posters/".$fileName, $fileBin);
 
         } catch (\Exception $e) {
-            return redirect()->route('video.show')->with('error','Something went wrong while uploading a video!');
+            return redirect()->route('video.show')->with('error',$e->getMessage());
         }
     }
 }

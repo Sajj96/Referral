@@ -21,10 +21,10 @@
                             </ol>
                         </div>
                         <div class="card-footer text-right">
-                            @if(count($questionsList) != count($question_ids))
+                            @if(count($questions) != count($question_ids))
                             <button class="btn btn-primary start">{{ __('Start quiz')}}</button>
                             @else
-                            {{ __('There is no Quiz currenctly')}}
+                            {{ __('There is no Quiz for you currently')}}
                             @endif
                         </div>
                     </div>
@@ -89,6 +89,7 @@
     var question_ids = <?php echo json_encode($question_ids) ?>;
     var url = "{{ route('question.score')}}";
     var url1 = "{{ route('revenue.create')}}";
+    var url2 = "{{ route('question.user.create')}}";
 </script>
 <script src="{{ asset('assets/js/page/questions.js')}}"></script>
 @endsection

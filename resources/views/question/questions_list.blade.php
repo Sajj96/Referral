@@ -47,7 +47,7 @@
                                             @endif
                                             <td>
                                                 <a href="{{ route('question.edit', $rows->id) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action delete" id="delete" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
+                                                <!-- <a class="btn btn-danger btn-action delete" id="delete" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a> -->
                                             </td>
                                         </tr>
                                         @endforeach

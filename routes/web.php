@@ -105,6 +105,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::post('/', [App\Http\Controllers\ScreenshotController::class, 'upload'])->name('screenshot.upload');
         Route::get('/list', [App\Http\Controllers\ScreenshotController::class, 'getScreenshots'])->name('screenshot.list');
         Route::get('/{id}', [App\Http\Controllers\ScreenshotController::class, 'getDetails'])->name('screenshot.details')->middleware('user.type');
+        Route::post('/decline', [App\Http\Controllers\ScreenshotController::class, 'decline'])->name('screenshot.decline')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'notifications'], function(){

@@ -314,7 +314,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if($level_2_downlines[0]->username != null)
                                                     @foreach($level_2_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
@@ -334,7 +333,6 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -359,7 +357,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if($level_3_downlines[0]->username != null)
                                                     @foreach($level_3_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
@@ -379,7 +376,6 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>

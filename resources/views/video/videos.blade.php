@@ -35,7 +35,11 @@
                                 @foreach($videos as $key => $rows)
                                 @if(!in_array($rows->id, $video_ids))
                                 <div class="item">
+                                    @if($rows->poster != "")
                                     <img src="{{ asset('storage/video_posters/'.$rows->poster)}}" class="img-responsive thumbnail" width="80" height="100" alt="">
+                                    @else
+                                    <img src="{{ asset('storage/video_posters/20220203_162602.jpg')}}" class="img-responsive thumbnail" width="80" height="100" alt="">
+                                    @endif
                                 </div>
                                 @endif
                                 @endforeach
@@ -71,6 +75,10 @@
 <script src="{{ asset('assets/bundles/owlcarousel2/dist/owl.carousel.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var url1 = "{{ route('revenue.create')}}";
+    var url2 = "{{ route('video.users.create')}}";
+</script>
 <script src="{{ asset('assets/js/page/video-audio.js')}}"></script>
 @endsection
 @endsection

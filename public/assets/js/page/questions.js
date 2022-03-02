@@ -80,23 +80,21 @@ next_btn.onclick = ()=>{
 function showQuetions(index){
     const que_text = document.querySelector(".que_text");
 
-    if(jQuery.inArray(parseInt(questions[index].numb),question_ids) === -1){
-        //creating a new span and div tag for question and option and passing the value using array index
-        let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-        let option_tag = '';
-        for(var i = 0;i < questions[index].options.length;i++){
-            option_tag += '<div class="option"><span>'+ questions[index].options[i] +'</span></div>';
-        }
+    //creating a new span and div tag for question and option and passing the value using array index
+    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
+    let option_tag = '';
+    for(var i = 0;i < questions[index].options.length;i++){
+        option_tag += '<div class="option"><span>'+ questions[index].options[i] +'</span></div>';
+    }
 
-        que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-        option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-        
-        const option = option_list.querySelectorAll(".option");
+    que_text.innerHTML = que_tag; //adding new span tag inside que_tag
+    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+    
+    const option = option_list.querySelectorAll(".option");
 
-        // set onclick attribute to all available options
-        for(i=0; i < option.length; i++){
-            option[i].setAttribute("onclick", "optionSelected(this)");
-        }
+    // set onclick attribute to all available options
+    for(i=0; i < option.length; i++){
+        option[i].setAttribute("onclick", "optionSelected(this)");
     }
 }
 // creating the new div tags which for icons
@@ -113,7 +111,7 @@ function optionSelected(answer){
     const allOptions = option_list.children.length; //getting all option items
 
     $.ajax({
-        url: "/question-users",
+        url: url2,
         method: "POST",
         data: {
             _token: document
@@ -177,7 +175,7 @@ async function showResult(){
         let revenueBody = {
             "user_id": parseInt(user),
             "type": "questions",
-            "amount": userScore * 100
+            "amount": userScore * 200
         }
         const res = await fetch(url1, {
             method: 'POST',

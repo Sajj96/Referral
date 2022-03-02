@@ -66,9 +66,13 @@
                                             <td>
                                                 <div class="badge badge-light badge-shadow">{{ __('Pending')}}</div>
                                             </td>
-                                            @else
+                                            @elseif($rows->status == 1)
                                             <td>
                                                 <div class="badge badge-success badge-shadow">{{ __('Paid')}}</div>
+                                            </td>
+                                            @else
+                                            <td>
+                                                <div class="badge badge-danger badge-shadow">{{ __('Rejected')}}</div>
                                             </td>
                                             @endif
                                             @if(Auth::user()->user_type == 1)

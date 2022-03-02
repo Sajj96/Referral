@@ -1,14 +1,6 @@
 "use strict";
 
 $(function () {
-    $("#aniimated-videos").lightGallery({
-        // plugins: [lgVideo],
-        videojs: true,
-        selector: "a",
-        videojsOptions: {
-            muted: true,
-        },
-    });
 
     var sync1 = $(".slider");
     var sync2 = $(".navigation-thumbs");
@@ -111,7 +103,7 @@ $(function () {
 
             if (currentTime >= halfDuration) {
               $.ajax({
-                url: "/revenues",
+                url: url1,
                 method: "POST",
                 data: {
                     _token: document
@@ -123,7 +115,7 @@ $(function () {
                 },
                 success: function (response) {
                   $.ajax({
-                    url: "/video-users",
+                    url: url2,
                     method: "POST",
                     data: {
                         _token: document

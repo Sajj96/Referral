@@ -17,7 +17,7 @@
                             <h4>{{ __('Downlines')}}</h4>
                             <div class="card-header-action">
                                 <a href="#" class="btn btn-info">{{ __('Level 3')}}</a>
-                                <a href="#" class="btn btn-primary">{{ $downlines[0]->username != null ? count($downlines) : '0' }} {{ __('Referral')}}</a>
+                                <a href="#" class="btn btn-primary">{{ count($downlines) ?? '0' }} {{ __('Referral')}}</a>
                                 <a href="#" class="btn btn-success">{{ __('Total Earned TZS ')}} {{ number_format($active_referrals * 1000)  ?? '0.00' }} </a>
                             </div>
                         </div>
@@ -36,7 +36,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if($downlines[0]->username != null)
                                         @foreach($downlines as $key=>$rows)
                                         <tr>
                                             <td>
@@ -56,7 +55,6 @@
                                             @endif
                                         </tr>
                                         @endforeach
-                                        @endif
                                     </tbody>
                                 </table>
                             </div>
