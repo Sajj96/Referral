@@ -320,6 +320,8 @@
                 $('#card-expenses').children().removeClass('card');
                 $('#card-profit').children().addClass('card-info');
                 $('#card-profit').children().removeClass('card');
+                $('#card-expenses').children().children().children().children().children().addClass('pl-5 pb-4');
+                $('#card-profit').children().children().children().children().children().addClass('pl-5 pb-4');
 
                 $('#card-total').addClass('l-bg-green');
                 $('#card-total').children().removeClass('card-statistic-4');
@@ -339,6 +341,10 @@
                 $('.info').each(function() {
                     $(this).css('display','none');
                 });
+
+                $('.progress').each(function() {
+                    $(this).addClass('progress-xs');
+                });
             } else {
                 $('#card-expenses').addClass('col-xs-12');
                 $('#card-expenses').removeClass('col-xs-6');
@@ -349,6 +355,8 @@
                 $('#card-expenses').children().addClass('card');
                 $('#card-profit').children().removeClass('card-info');
                 $('#card-profit').children().addClass('card');
+                $('#card-expenses').children().children().children().children().children().removeClass('pl-5 pb-4');
+                $('#card-profit').children().children().children().children().children().removeClass('pl-5 pb-4');
 
                 $('#card-total').removeClass('l-bg-green');
                 $('#card-total').children().addClass('card-statistic-4');
@@ -367,6 +375,10 @@
 
                 $('.info').each(function() {
                     $(this).css('display','block');
+                });
+
+                $('.progress').each(function() {
+                    $(this).removeClass('progress-xs');
                 });
             }
         }).trigger('resize');
