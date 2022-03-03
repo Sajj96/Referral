@@ -227,7 +227,7 @@
                     <div class="card-content">
                         <h4 class="card-title">{{ __('Withdrawn')}}</h4>
                         <span class="font-20">{{ __('TZS')}} {{ number_format($withdrawn) }}</span>
-                        <div class="progress mt-1 mb-1" data-height="8">
+                        <div class="progress mt-1 mb-1" data-height="1">
                             <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <p class="mb-0 text-sm">
@@ -343,7 +343,11 @@
                 });
 
                 $('.progress').each(function() {
-                    $(this).addClass('progress-xs');
+                    $(this).removeAttr('data-height');
+                });
+
+                $('.progress').each(function() {
+                    $(this).css({height: 1});
                 });
             } else {
                 $('#card-expenses').addClass('col-xs-12');
@@ -378,7 +382,7 @@
                 });
 
                 $('.progress').each(function() {
-                    $(this).removeClass('progress-xs');
+                    $(this).attr('data-height',8);
                 });
             }
         }).trigger('resize');
