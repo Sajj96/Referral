@@ -1,4 +1,5 @@
 let questions = questionsList;
+let allQuestions = questions_all;
 
 //selecting all required elements
 const info_box = document.querySelector(".info_box");
@@ -171,7 +172,7 @@ async function showResult(){
 
     let secondScore = questions.length - 1;
     
-    if (userScore == questions.length){
+    if (userScore == allQuestions.length){
         let revenueBody = {
             "user_id": parseInt(user),
             "type": "questions",

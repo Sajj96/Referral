@@ -37,7 +37,7 @@
                                             </td>
                                             <td>{{ $rows->username }}</td>
                                             <td>{{ $rows->score }}</td>
-                                            <td>{{ $rows->score * 900 }}</td>
+                                            <td>{{ ($rows->score == count($questions_all)) ? $rows->score * 200 : number_format(0,2) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -18,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::where('status', Question::PUBLISH_STATUS)->get();
+        $questions_all = Question::where('status', Question::PUBLISH_STATUS)->get();
         $questionsList = array();
         $user = Auth::user();
         $question_ids = array();
@@ -31,7 +31,7 @@ class QuestionController extends Controller
             array_push($question_ids,$rows->question_id);
         }
 
-        foreach($questions as $key=>$rows){
+        foreach($questions_all as $key=>$rows){
             if(!in_array($rows->id, $question_ids)) {
                 $questionsList[] = array(
                     "numb" => $question_numb++,
@@ -42,7 +42,7 @@ class QuestionController extends Controller
             }
         }
 
-        return view('question.questions', compact('questions','questionsList','question_ids'));
+        return view('question.questions', compact('questions_all','questionsList','question_ids'));
     }
 
     /**
@@ -184,13 +184,15 @@ class QuestionController extends Controller
      */
     public function getParticipants(Request $request)
     {
+        $questions_all = Question::where('status', Question::PUBLISH_STATUS)->get(); 
+
         $participants = DB::table('question_scores')
                         ->join('users', 'question_scores.user_id', '=','users.id')
                         ->select(DB::raw('SUM(score) as score'),DB::raw('users.username'))
                         ->groupBy(DB::raw('users.id'))
                         ->get();
         $serial = 1;
-        return view('question.participants', compact('participants','serial'));
+        return view('question.participants', compact('participants','serial','questions_all'));
     }
 
 }
