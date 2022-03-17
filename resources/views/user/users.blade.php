@@ -16,7 +16,30 @@
                         <div class="card-header">
                             <h4>{{ __('Users')}}</h4>
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
+                            @if(count($errors) > 0)
+                            <div class="alert alert-danger alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    @foreach ($errors->all() as $error)
+                                    {{ $error }}
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
+                            @if(\Session::has('message'))
+                            <div class="alert alert-success alert-dismissible show fade">
+                                <div class="alert-body">
+                                    <button class="close" data-dismiss="alert">
+                                        <span>&times;</span>
+                                    </button>
+                                    {{ \Session::get('message')}}
+                                </div>
+                            </div>
+                            @endif
                             <div class="table-responsive">
                                 <table class="table table-striped" id="tableExport">
                                     <thead>
@@ -28,6 +51,7 @@
                                             <th>{{ __('Username')}}</th>
                                             <th>{{ __('Phone')}}</th>
                                             <th>{{ __('Email')}}</th>
+                                            <th>{{ __('Referrer')}}</th>
                                             <th>{{ __('Referrals')}}</th>
                                             <th>{{ __('Joined On')}}</th>
                                             <th>{{ __('Status')}}</th>
@@ -42,6 +66,7 @@
                                             <td>{{ $rows->username }}</td>
                                             <td>{{ $rows->phone }}</td>
                                             <td>{{ $rows->email }}</td>
+                                            <td>{{ $rows->referrer->username ?? 'Not Specified' }}</td>
                                             <td>{{ count($rows->referrals)  ?? '0' }}</td>
                                             <td>{{ ($rows->created_at)->format('M d Y') }}</td>
                                             @if($rows->active == 1)
@@ -49,7 +74,17 @@
                                             @else
                                             <td><div class="badge badge-light badge-shadow">Inactive</div></td>
                                             @endif
-                                            <td><a href="{{ route('user.details', $rows->id)}}" class="btn btn-outline-primary">Detail</a></td>
+                                            <td>
+                                                @if($rows->active == 0)
+                                                <a href="{{ route('user.activate', $rows->id)}}" onclick="event.preventDefault(); document.getElementById('activate-form').submit();" class="btn btn-success btn-action mr-1">
+                                                {{ __('Activate') }}
+                                                </a>
+                                                <form id="activate-form" action="{{ route('user.activate', $rows->id)}}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                                @endif
+                                                <a href="{{ route('user.details', $rows->id)}}" class="btn btn-outline-primary">Detail</a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

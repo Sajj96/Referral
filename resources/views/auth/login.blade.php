@@ -2,6 +2,21 @@
 
 @section('content')
 <section class="section">
+    @php $date = date('Y-m-d');
+    $launch_date = date('Y-m-d', strtotime($date. ' + 14 days'));
+    $start = strtotime($date);
+    $end = strtotime('2022-03-20');
+
+    $days_between = ceil(abs($end - $start) / 86400);
+    @endphp
+    @if($date != $launch_date)
+    <div class="alert alert-info alert-has-icon show fade">
+        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        <div class="alert-body">
+            <h4>We are launching the system soon. {{ $days_between }} day(s) remaining.</h4>
+        </div>
+    </div>
+    @endif
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
@@ -13,9 +28,9 @@
                         <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
                             @csrf
                             @error('login')
-                                <span class="invalid" role="alert">
-                                    <strong style="color:red;">{{ $message }}</strong>
-                                </span>
+                            <span class="invalid" role="alert">
+                                <strong style="color:red;">{{ $message }}</strong>
+                            </span>
                             @enderror
                             <div class="form-group">
                                 <label for="email">{{ __('Username or Email') }}</label>
@@ -42,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    {{ __('Login') }}   
+                                    {{ __('Login') }}
                                 </button>
                             </div>
                         </form>

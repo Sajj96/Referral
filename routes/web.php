@@ -80,6 +80,7 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::get('/{id}', [App\Http\Controllers\UserController::class, 'getUser'])->name('user.details');
         Route::post('/activate/{id}', [App\Http\Controllers\UserController::class, 'activateUser'])->name('user.activate');
         Route::post('/deactivate/{id}', [App\Http\Controllers\UserController::class, 'deactivateUser'])->name('user.deactivate');
+        Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'deleteUser'])->name('user.delete');
         Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
 

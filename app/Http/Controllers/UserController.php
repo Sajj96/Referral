@@ -30,7 +30,7 @@ class UserController extends Controller
     public function getUser(Request $request, $id)
     {
         $user = User::find($id);
-        $users = User::all();
+        $users = User::select("*")->orderBy("username")->get();
         $userObj = new User;
         $transaction = new Transaction();
         $transactions = Transaction::where('user_id', $user->id)->get();
@@ -91,10 +91,10 @@ class UserController extends Controller
             $user = User::where('id',$id)->first();
             $user->active = User::USER_STATUS_ACTIVE;
             if($user->save()) {
-                return redirect()->route('user.details', $id)->with('success','User activated successfully!');
+                return redirect()->route('users')->with('success','User activated successfully!');
             }
         } catch (\Exception $th) {
-            return redirect()->route('user.details', $id)->with('error','User was not activated');
+            return redirect()->route('users')->with('error','User was not activated');
         }
     }
 
@@ -108,6 +108,18 @@ class UserController extends Controller
             }
         } catch (\Exception $th) {
             return redirect()->route('user.details', $id)->with('error','User was not deactivated');
+        }
+    }
+
+    public function deleteUser(Request $request, $id)
+    {
+        try {
+            $user = User::where('id',$id)->first();
+            if($user->delete()) {
+                return redirect()->route('users')->with('success','User deleted successfully!');
+            }
+        } catch (\Exception $th) {
+            return redirect()->route('users')->with('error','User was not deleted');
         }
     }
 }

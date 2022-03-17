@@ -129,18 +129,18 @@
                                     </ul>
                                     <div class="card-footer text-right">
                                         @if($user->active == 1)
-                                        <a href="{{ route('user.deactivate', $user->id)}}" onclick="event.preventDefault(); document.getElementById('deactivate-form').submit();" class="btn btn-danger mr-1">
+                                        <a href="{{ route('user.deactivate', $user->id)}}" onclick="event.preventDefault(); document.getElementById('deactivate-form').submit();" class="btn btn-primary mr-1">
                                             {{ __('Deactivate') }}
                                         </a>
                                         <form id="deactivate-form" action="{{ route('user.deactivate', $user->id)}}" method="POST" class="d-none">
                                             @csrf
                                         </form>
-                                        @else
-                                        <a href="{{ route('user.activate', $user->id)}}" onclick="event.preventDefault(); document.getElementById('activate-form').submit();" class="btn btn-success mr-1">
-                                            {{ __('Activate') }}
+                                        <a href="{{ route('user.delete', $user->id)}}" onclick="event.preventDefault(); document.getElementById('activate-form').submit();" class="btn btn-danger mr-1">
+                                            {{ __('Delete') }}
                                         </a>
-                                        <form id="activate-form" action="{{ route('user.activate', $user->id)}}" method="POST" class="d-none">
+                                        <form id="activate-form" action="{{ route('user.delete', $user->id)}}" method="POST" class="d-none">
                                             @csrf
+                                            @method('DELETE')
                                         </form>
                                         @endif
                                     </div>
@@ -269,7 +269,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if($level_1_downlines[0]->username != null)
                                                     @foreach($level_1_downlines as $key=>$rows)
                                                     <tr>
                                                         <td>
@@ -289,7 +288,6 @@
                                                         @endif
                                                     </tr>
                                                     @endforeach
-                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
