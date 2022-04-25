@@ -102,7 +102,7 @@ $(".delete").click(function () {
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          url: "/questions/delete",
+          url: delete_url,
           method: "DELETE",
           data: { 
             _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -114,7 +114,7 @@ $(".delete").click(function () {
             });
             setTimeout(() => {
               location.reload();
-            }, 1000);
+            }, 1500);
           }
         });
       } else {

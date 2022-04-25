@@ -47,7 +47,7 @@
                                             @endif
                                             <td>
                                                 <a href="{{ route('question.edit', $rows->id) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <!-- <a class="btn btn-danger btn-action delete" id="delete" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a> -->
+                                                <a class="btn btn-danger btn-action delete" id="delete" data-id="{{ $rows->id }}" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -69,6 +69,9 @@
 <script src="{{ asset('assets/bundles/sweetalert/sweetalert.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
+<script type="text/javascript">
+    var delete_url = "{{ route('question.delete')}}";
+</script>
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>
 @endsection
 @endsection

@@ -14,9 +14,10 @@ class CreateVideoUsersTable extends Migration
     public function up()
     {
         Schema::create('video_users', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('video_id', false, true);
-            $table->bigInteger('user_id', false, true);
+            // $table->id();
+            $table->bigInteger('video_id');
+            $table->bigInteger('user_id');
+            $table->primary(['video_id', 'user_id'],  'primaryKeyName');
             $table->timestamps();
         });
     }

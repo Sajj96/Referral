@@ -102,34 +102,48 @@ $(function () {
             var currentTime = myPlayer.currentTime();
 
             if (currentTime >= halfDuration) {
-              $.ajax({
-                url: url1,
-                method: "POST",
-                data: {
-                    _token: document
-                        .querySelector('meta[name="csrf-token"]')
-                        .getAttribute("content"),
-                    user_id: user_id,
-                    type: "video",
-                    amount: 250
-                },
-                success: function (response) {
-                  $.ajax({
-                    url: url2,
-                    method: "POST",
+                $.ajax({
+                    url: url3,
+                    method: "GET",
                     data: {
-                        _token: document
-                            .querySelector('meta[name="csrf-token"]')
-                            .getAttribute("content"),
                         video_id: video_id,
                         user_id: user_id
                     },
-                    success: function (response) {
-                      $("#exampleModal").modal("show");
+                    success: function (count) {
+                      if(count > 0) {
+                        $("#exampleModal2").modal("show");
+                      } else {
+                        $.ajax({
+                            url: url1,
+                            method: "POST",
+                            data: {
+                                _token: document
+                                    .querySelector('meta[name="csrf-token"]')
+                                    .getAttribute("content"),
+                                user_id: user_id,
+                                type: "video",
+                                amount: 250
+                            },
+                            success: function (response) {
+                              $.ajax({
+                                url: url2,
+                                method: "POST",
+                                data: {
+                                    _token: document
+                                        .querySelector('meta[name="csrf-token"]')
+                                        .getAttribute("content"),
+                                    video_id: video_id,
+                                    user_id: user_id
+                                },
+                                success: function (response) {
+                                  $("#exampleModal").modal("show");
+                                },
+                            });
+                            },
+                        });
+                      }
                     },
                 });
-                },
-            });
             }
         });
 

@@ -56,10 +56,12 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'video-users'], function(){
+        Route::get('/', [App\Http\Controllers\VideoUsersController::class, 'checkUser'])->name('video.users.check');
         Route::post('/', [App\Http\Controllers\VideoUsersController::class, 'create'])->name('video.users.create');
     });
 
     Route::group(['prefix' => 'question-users'], function(){
+        Route::get('/', [App\Http\Controllers\QuestionUserController::class, 'checkUser'])->name('question.user.check');
         Route::post('/', [App\Http\Controllers\QuestionUserController::class, 'create'])->name('question.user.create');
     });
 

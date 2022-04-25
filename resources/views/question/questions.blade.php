@@ -21,7 +21,7 @@
                             </ol>
                         </div>
                         <div class="card-footer text-right">
-                            @if(count($questions_all) != count($question_ids))
+                            @if(count($check_attempted) > 0)
                             <button class="btn btn-primary start">{{ __('Start quiz')}}</button>
                             @else
                             {{ __('There is no Quiz for you currently')}}
@@ -91,6 +91,8 @@
     var url = "{{ route('question.score')}}";
     var url1 = "{{ route('revenue.create')}}";
     var url2 = "{{ route('question.user.create')}}";
+    var url3 = "{{ route('question.user.check')}}";
+    var url4 = "{{ route('questions')}}";
 </script>
 <script src="{{ asset('assets/js/page/questions.js')}}"></script>
 @endsection

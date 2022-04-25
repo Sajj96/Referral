@@ -88,6 +88,8 @@ function showQuetions(index){
         option_tag += '<div class="option"><span>'+ questions[index].options[i] +'</span></div>';
     }
 
+    let que_id = questions[index].id;
+
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
     
@@ -95,7 +97,7 @@ function showQuetions(index){
 
     // set onclick attribute to all available options
     for(i=0; i < option.length; i++){
-        option[i].setAttribute("onclick", "optionSelected(this)");
+        option[i].setAttribute("onclick", `optionSelected(this, ${que_id})`);
     }
 }
 // creating the new div tags which for icons
@@ -103,26 +105,40 @@ let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 //if user clicked on option
-function optionSelected(answer){
+function optionSelected(answer, que_id){
     clearInterval(counter); //clear counter
     clearInterval(counterLine); //clear counterLine
     let userAns = answer.textContent; //getting user selected option
     let correcAns = questions[que_count].answer; //getting correct answer from array
-    let questionNumber = questions[que_count].numb;
+    let questionNumber = que_id;
     const allOptions = option_list.children.length; //getting all option items
 
     $.ajax({
-        url: url2,
-        method: "POST",
+        url: url3,
+        method: "GET",
         data: {
-            _token: document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content"),
             question_id: questionNumber,
             user_id: parseInt(user)
         },
-        success: function (response) {
-          console.log("Question attempted");
+        success: function (count) {
+          if(count > 0) {
+              window.location.href = url4;
+          } else {
+            $.ajax({
+                url: url2,
+                method: "POST",
+                data: {
+                    _token: document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                    question_id: questionNumber,
+                    user_id: parseInt(user)
+                },
+                success: function (response) {
+                  console.log("Question attempted");
+                },
+            });
+          }
         },
     });
     
@@ -154,7 +170,7 @@ async function showResult(){
     result_box.classList.add("activeResult"); //show result box
     const scoreText = result_box.querySelector(".score_text");
     let dataBody = {
-        "user_id": user,
+        "user_id": parseInt(user),
         "score": userScore
     }
     const response = await fetch(url, {

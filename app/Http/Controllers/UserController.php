@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -15,11 +16,46 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        $serial = 1;
-        return view('user.users', compact('users','serial'));
+        if ($request->ajax()) {
+            $users = User::query();
+            return Datatables::of($users)
+                    ->addIndexColumn()
+                    ->addColumn('referrer', function ($row) {
+                        return $row->referrer->username ?? 'Not Specified';
+                    })
+                    ->addColumn('referrals', function ($row) {
+                        return count($row->referrals)  ?? '0';
+                    })
+                    ->addColumn('joined', function ($row) {
+                        return ($row->created_at)->format('M d Y');
+                    })
+                    ->addColumn('status', function ($row) {
+                        if($row->active == 1){
+                            return '<div class="badge badge-success badge-shadow">Active</div>';
+                        } else {
+                            return '<div class="badge badge-light badge-shadow">Inactive</div>';
+                        }
+                    })
+                    ->addColumn('action', function($row){
+                            $form_id = "activate-form$row->id";
+                            return ($row->active == 0) ? '<button class="btn btn-success btn-action mr-1" data-class="'.$row->id.'">
+                                    Activate
+                                    </button>
+                                    <form class="activate-form" data-id="'.$row->id.'" action="'.route("user.activate",$row->id).'" method="POST" class="d-none">
+                                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                                    </form>
+                                    <a href="'.route("user.details",$row->id).'" class="btn btn-outline-primary">Detail</a>' 
+                                    : '<a href="'.route("user.details",$row->id).'" class="btn btn-outline-primary">Detail</a>';
+                    })
+                    ->rawColumns(['action','status'])
+                    ->make(true);
+        }
+
+        // $users = User::all();
+        // $serial = 1;
+        return view('user.users');
     }
 
     /**

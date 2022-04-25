@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ asset('assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/bundles/summernote/summernote-bs4.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/bundles/intl-tel-input/css/intlTelInput.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/bundles/select2/dist/css/select2.min.css')}}">
 @endsection
 
 @section('content')
@@ -237,7 +238,7 @@
                                             <div class="row">
                                                 <div class="form-group col-12">
                                                     <label>{{ __('Referrer')}}</label>
-                                                    <select class="custom-select" name="referrer" required>
+                                                    <select class="form-control select2" name="referrer" required>
                                                         @foreach($users as $key => $rows)
                                                         <option {{ $user->referrer->id == $rows->id ? 'selected' : '' }} value="{{ $rows->id }}">{{ $rows->name }}</option>
                                                         @endforeach
@@ -396,6 +397,7 @@
 <script src="{{ asset('assets/bundles/jquery-selectric/jquery.selectric.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/summernote/summernote-bs4.js')}}"></script>
 <script src="{{ asset('assets/bundles/intl-tel-input/js/intlTelInput.min.js')}}"></script>
+<script src="{{ asset('assets/bundles/select2/dist/js/select2.full.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
 <script src="{{ asset('assets/js/page/datatables.js')}}"></script>

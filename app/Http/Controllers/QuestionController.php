@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Question;
+use App\Models\QuestionUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Artisan;
 
 class QuestionController extends Controller
 {
@@ -20,6 +22,7 @@ class QuestionController extends Controller
     {
         $questions_all = Question::where('status', Question::PUBLISH_STATUS)->get();
         $questionsList = array();
+        $trivia_questions = array();
         $user = Auth::user();
         $question_ids = array();
         $question_users = DB::table('question_users')
@@ -34,15 +37,19 @@ class QuestionController extends Controller
         foreach($questions_all as $key=>$rows){
             if(!in_array($rows->id, $question_ids)) {
                 $questionsList[] = array(
+                    "id"  => $rows->id,
                     "numb" => $question_numb++,
                     "question" => $rows->question,
                     "answer" => $rows->answer,
                     "options" => explode(",", $rows->options)
                 );
             }
+            array_push($trivia_questions,$rows->id);
         }
+         
+        $check_attempted = array_diff($trivia_questions, $question_ids);
 
-        return view('question.questions', compact('questions_all','questionsList','question_ids'));
+        return view('question.questions', compact('questions_all','questionsList','question_ids','check_attempted'));
     }
 
     /**
@@ -148,8 +155,9 @@ class QuestionController extends Controller
     public function delete(Request $request)
     {
         try {
-            $delete = Question::find($request->id);
-            if($delete->delete()){
+            $question = Question::find($request->id);
+            if($question->delete()){
+                DB::table('question_users')->where('question_id','=',$request->id)->delete();
                 return true;
             }
         } catch (\Exception $e) {

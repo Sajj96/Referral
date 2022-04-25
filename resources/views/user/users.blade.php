@@ -59,34 +59,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($users as $key=>$rows)
-                                        <tr>
-                                            <td>{{ $serial++ }}</td>
-                                            <td>{{ $rows->name }}</td>
-                                            <td>{{ $rows->username }}</td>
-                                            <td>{{ $rows->phone }}</td>
-                                            <td>{{ $rows->email }}</td>
-                                            <td>{{ $rows->referrer->username ?? 'Not Specified' }}</td>
-                                            <td>{{ count($rows->referrals)  ?? '0' }}</td>
-                                            <td>{{ ($rows->created_at)->format('M d Y') }}</td>
-                                            @if($rows->active == 1)
-                                            <td><div class="badge badge-success badge-shadow">Active</div></td>
-                                            @else
-                                            <td><div class="badge badge-light badge-shadow">Inactive</div></td>
-                                            @endif
-                                            <td>
-                                                @if($rows->active == 0)
-                                                <a href="{{ route('user.activate', $rows->id)}}" onclick="event.preventDefault(); document.getElementById('activate-form').submit();" class="btn btn-success btn-action mr-1">
-                                                {{ __('Activate') }}
-                                                </a>
-                                                <form id="activate-form" action="{{ route('user.activate', $rows->id)}}" method="POST" class="d-none">
-                                                    @csrf
-                                                </form>
-                                                @endif
-                                                <a href="{{ route('user.details', $rows->id)}}" class="btn btn-outline-primary">Detail</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -101,14 +74,40 @@
 @section('js-libraries')
 <script src="{{ asset('assets/bundles/datatables/datatables.min.js')}}"></script>
 <script src="{{ asset('assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/dataTables.buttons.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.flash.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/jszip.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/pdfmake.min.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/vfs_fonts.js')}}"></script>
-<script src="{{ asset('assets/bundles/datatables/export-tables/buttons.print.min.js')}}"></script>
 @endsection
 @section('page-specific-js')
-<script src="{{ asset('assets/js/page/datatables.js')}}"></script>
+<script type="text/javascript">
+  $(function () {
+    
+    var table = $('#tableExport').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('users') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'username', name: 'username'},
+            {data: 'phone', name: 'phone'},
+            {data: 'email', name: 'email'},
+            {data: 'referrer', name: 'referrer'},
+            {data: 'referrals', name: 'referrals'},
+            {data: 'joined', name: 'joined'},
+            {data: 'status', name: 'status',orderable: false, searchable: false},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ],
+        order: [[1, 'asc']]
+    });
+    
+    $(document).on('click','.btn-action', function(){
+        var id = $(this).data('class');
+        $('.activate-form').each(function(){
+            var form_id = $(this).data('id');
+            if(form_id === id) {
+                $(this).submit();
+            }
+        })
+    });
+  });
+</script>
 @endsection
 @endsection

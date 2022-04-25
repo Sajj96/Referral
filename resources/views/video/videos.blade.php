@@ -67,6 +67,22 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h2>Sorry 😐!</h2>
+                    <h4>You have already watched this video.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @include('layouts.footer')
 @section('js-libraries')
@@ -78,6 +94,8 @@
 <script type="text/javascript">
     var url1 = "{{ route('revenue.create')}}";
     var url2 = "{{ route('video.users.create')}}";
+    var url3 = "{{ route('video.users.check')}}";
+    var url4 = "{{ route('video')}}";
 </script>
 <script src="{{ asset('assets/js/page/video-audio.js')}}"></script>
 @endsection

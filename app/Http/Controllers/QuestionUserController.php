@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class QuestionUserController extends Controller
 {
+    public function checkUser(Request $request)
+    {
+        $question_user = QuestionUser::where('question_id', $request->question_id)->where('user_id', $request->user_id)->count();
+        return $question_user;
+    }
+
     public function create(Request $request)
     {
 
