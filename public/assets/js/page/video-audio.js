@@ -92,16 +92,22 @@ $(function () {
         });
 
         myPlayer.on("play", () => {
-            myPlayer.play();
-        });
+           myPlayer.play();
+       });
+        
+       myPlayer.on("pause", () => {
+           myPlayer.pause();
+       });
 
-        myPlayer.on("pause", () => {
-            myPlayer.paused();
+       
+        myPlayer.on("timeupdate", () => {
+        
             var remainingTime = myPlayer.remainingTime();
             var halfDuration = myPlayer.duration() / 2;
             var currentTime = myPlayer.currentTime();
 
-            if (currentTime >= halfDuration) {
+                if (currentTime >= halfDuration) {
+                myPlayer.pause();
                 $.ajax({
                     url: url3,
                     method: "GET",
@@ -110,22 +116,11 @@ $(function () {
                         user_id: user_id
                     },
                     success: function (count) {
-                      if(count > 0) {
+                      var rows = count;
+                      if(rows > 0) {
                         $("#exampleModal2").modal("show");
                       } else {
-                        $.ajax({
-                            url: url1,
-                            method: "POST",
-                            data: {
-                                _token: document
-                                    .querySelector('meta[name="csrf-token"]')
-                                    .getAttribute("content"),
-                                user_id: user_id,
-                                type: "video",
-                                amount: 250
-                            },
-                            success: function (response) {
-                              $.ajax({
+                          $.ajax({
                                 url: url2,
                                 method: "POST",
                                 data: {
@@ -135,12 +130,27 @@ $(function () {
                                     video_id: video_id,
                                     user_id: user_id
                                 },
-                                success: function (response) {
-                                  $("#exampleModal").modal("show");
+                                success: function (resp) {
+                                    if(rows == 0) {
+                                          $.ajax({
+                                            url: url1,
+                                            method: "POST",
+                                            data: {
+                                                _token: document
+                                                    .querySelector('meta[name="csrf-token"]')
+                                                    .getAttribute("content"),
+                                                user_id: user_id,
+                                                video_id:video_id,
+                                                type: "video",
+                                                amount: 250
+                                            },
+                                            success: function (response) {
+                                              $("#exampleModal").modal("show");
+                                            },
+                                        });
+                                    }
                                 },
                             });
-                            },
-                        });
                       }
                     },
                 });
@@ -151,8 +161,18 @@ $(function () {
             console.log(myPlayer.currentTime());
         });
     });
+});
 
+jQuery(function($) {
     $("#exampleModal").on("hidden.bs.modal", function (e) {
-        location.reload();
+         e.preventDefault();
+        window.location.href = url4;
+        // location.reload();
+    });
+    
+    $("#exampleModal2").on("hidden.bs.modal", function (e) {
+         e.preventDefault();
+        window.location.href = url4;
+        // location.reload();
     });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Revenue;
+use App\Models\VideoUsers;
 use App\Models\Screenshot;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,18 @@ class RevenueController extends Controller
     public function create(Request $request)
     {
         try {
+            
+             if($request->type == Revenue::TYPE_VIDEO){
+                 $video_users = Revenue::where('video_id',$request->video_id)->where('user_id',$request->user_id)
+                                        ->get();
+                 
+                if(count($video_users) > 0) {
+                     return false;
+                }                   
+             }
             $revenue = new Revenue;
             $revenue->user_id = $request->user_id;
+            $revenue->video_id = $request->video_id ?? "";
             $revenue->type = $request->type;
             $revenue->amount = $request->amount;
             $revenue->status = Revenue::STATUS_PAID;
