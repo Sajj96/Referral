@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Screenshot;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,9 @@ class ScreenshotController extends Controller
 
         try {
 
+            $user = Auth::user();
+            $check_screenshot = Screenshot::where('user_id', $user->id);
+
             $fileName = $request->image->getClientOriginalName();
             $extension = $request->file('image')->extension();
             $generated_name = uniqid()."_".time().date("Ymd")."_SCREENSHOT";
@@ -85,7 +89,7 @@ class ScreenshotController extends Controller
             $fileBin = file_get_contents($base64encodedString);
 
             $screenshot = new Screenshot;
-            $screenshot->user_id = Auth::user()->id;
+            $screenshot->user_id = $user->id;
             $screenshot->screenshot = $fileName;
             $screenshot->status = Screenshot::SCREENSHOT_PENDING;
             if($screenshot->save()) {

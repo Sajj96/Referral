@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'active.user' => \App\Http\Middleware\CheckUserStatus::class,
         'user.type' => \App\Http\Middleware\CheckUserType::class,
+        'upload.day' => \App\Http\Middleware\CheckUploadDay::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

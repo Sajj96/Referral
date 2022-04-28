@@ -104,8 +104,8 @@ Route::middleware(['auth','active.user'])->group(function ()
     });
 
     Route::group(['prefix' => 'screenshots'], function(){
-        Route::get('/', [App\Http\Controllers\ScreenshotController::class, 'index'])->name('screenshot');
-        Route::post('/', [App\Http\Controllers\ScreenshotController::class, 'upload'])->name('screenshot.upload');
+        Route::get('/', [App\Http\Controllers\ScreenshotController::class, 'index'])->name('screenshot')->middleware('upload.day');
+        Route::post('/', [App\Http\Controllers\ScreenshotController::class, 'upload'])->name('screenshot.upload')->middleware('upload.day');
         Route::get('/list', [App\Http\Controllers\ScreenshotController::class, 'getScreenshots'])->name('screenshot.list');
         Route::get('/{id}', [App\Http\Controllers\ScreenshotController::class, 'getDetails'])->name('screenshot.details')->middleware('user.type');
         Route::post('/decline', [App\Http\Controllers\ScreenshotController::class, 'decline'])->name('screenshot.decline')->middleware('user.type');

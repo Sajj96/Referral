@@ -1,3 +1,7 @@
+@php use Carbon\Carbon; 
+$date = date('d/m/Y');
+$day = Carbon::createFromFormat('d/m/Y', $date)->format('l');
+@endphp
 <div class="main-wrapper main-wrapper-1">
     <div class="navbar-bg"></div>
     <nav class="navbar navbar-expand-lg main-navbar sticky">
@@ -118,7 +122,9 @@
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{ route('whatsapp')}}">{{ __('View Status')}}</a></li>
                         <li><a class="nav-link" href="{{ route('screenshot.list')}}">{{ __('Screenshots')}}</a></li>
-                        <li><a class="nav-link" href="{{ route('screenshot.upload')}}">{{ __('Upload Screenshot')}}</a></li>
+                        @if($day == "Friday")
+                        <li><a class="nav-link" href="{{ route('screenshot')}}">{{ __('Upload Screenshot')}}</a></li>
+                        @endif
                     </ul>
                 </li>
                 <li class="dropdown">

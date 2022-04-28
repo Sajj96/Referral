@@ -9,7 +9,7 @@
 
     $days_between = ceil(abs($end - $start) / 86400);
     @endphp
-    @if($date != $launch_date)
+    @if($date > $launch_date)
     <div class="alert alert-info alert-has-icon show fade">
         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
         <div class="alert-body">
