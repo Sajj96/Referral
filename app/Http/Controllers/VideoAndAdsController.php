@@ -35,6 +35,13 @@ class VideoAndAdsController extends Controller
         return view('video.videos', compact('user','videos','video_ids'));
     }
 
+    public function getList()
+    {
+        $videos = VideoAndAds::all();
+        $serial = 1;
+        return view('video.video_list', compact('videos', 'serial'));
+    }
+
     /**
      * Show the video upload page.
      *
@@ -108,6 +115,18 @@ class VideoAndAdsController extends Controller
 
         } catch (\Exception $e) {
             return redirect()->route('video.show')->with('error',$e->getMessage());
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $video = VideoAndAds::find($request->id);
+            if($video->delete()){
+                return redirect()->route('video.list')->with('success','Video deleted successfully!');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('video.list')->with('error','Something went wrong while deleting a question!');
         }
     }
 }

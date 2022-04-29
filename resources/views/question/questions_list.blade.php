@@ -16,6 +16,7 @@
                         <div class="card-header">
                             <h4>{{ __('Questions')}}</h4>
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="table-1">

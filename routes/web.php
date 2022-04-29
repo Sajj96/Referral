@@ -51,8 +51,10 @@ Route::middleware(['auth','active.user'])->group(function ()
     
     Route::group(['prefix' => 'videos'], function(){
         Route::get('/', [App\Http\Controllers\VideoAndAdsController::class, 'index'])->name('video');
+        Route::get('/list', [App\Http\Controllers\VideoAndAdsController::class, 'getList'])->name('video.list');
         Route::get('/upload', [App\Http\Controllers\VideoAndAdsController::class, 'show'])->name('video.show')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\VideoAndAdsController::class, 'create'])->name('video.create')->middleware('user.type');
+        Route::delete('/', [App\Http\Controllers\VideoAndAdsController::class, 'delete'])->name('video.delete')->middleware('user.type');
     });
 
     Route::group(['prefix' => 'video-users'], function(){
@@ -91,6 +93,7 @@ Route::middleware(['auth','active.user'])->group(function ()
     Route::group(['prefix' => 'revenues'], function(){
         Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');
         Route::post('/', [App\Http\Controllers\RevenueController::class, 'create'])->name('revenue.create');
+        Route::post('/bulk', [App\Http\Controllers\RevenueController::class, 'createBulk'])->name('revenue.create.bulk');
     });
 
     Route::group(['prefix' => 'whatsapp_status'], function(){

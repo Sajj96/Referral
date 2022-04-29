@@ -68,7 +68,16 @@ class ScreenshotController extends Controller
         try {
 
             $user = Auth::user();
-            $check_screenshot = Screenshot::where('user_id', $user->id);
+            $check_screenshot = Screenshot::where('user_id', $user->id)->get();
+            $today = date('d-m-Y');
+
+            foreach($check_screenshot as $key=>$rows){
+                $created_date = date('d-m-Y', strtotime($rows->created_at));
+                
+                if($today == $created_date){
+                    return redirect()->route('screenshot')->with('error', "You can upload only one screenshot per day.");
+                }
+            }
 
             $fileName = $request->image->getClientOriginalName();
             $extension = $request->file('image')->extension();

@@ -136,6 +136,7 @@
                                         <form id="deactivate-form" action="{{ route('user.deactivate', $user->id)}}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+                                        @endif
                                         <a href="{{ route('user.delete', $user->id)}}" onclick="event.preventDefault(); document.getElementById('activate-form').submit();" class="btn btn-danger mr-1">
                                             {{ __('Delete') }}
                                         </a>
@@ -143,7 +144,6 @@
                                             @csrf
                                             @method('DELETE')
                                         </form>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="transaction" role="tabpanel" aria-labelledby="profile-tab2">
