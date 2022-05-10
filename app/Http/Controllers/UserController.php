@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Transaction;
 use DataTables;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -105,11 +106,12 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
         try {
-            $user = User::where('id', $request->user_id)->where('email', $request->email)->first();
+            $user = User::where('id', $request->user_id)->where('username', $request->username)->first();
             if($user) {
                 $user->name = $request->name;
                 $user->username = $request->username;
                 $user->phone = $request->phone;
+                $user->email = $request->email;
                 $user->country = $request->country;
                 $user->referrer_id = $request->referrer;
                 if($user->save()) {
@@ -119,6 +121,35 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('user.details', $request->user_id)->with('error','Please provide unique details!');
         }
+    }
+
+    public function updateDetails(Request $request)
+    {
+        try {
+            $user = Auth::user();
+
+            if(!empty($request->password)) {
+                if(strlen($request->password) < 6) {
+                    return redirect()->route('profile', $request->user_id)->with('error','Password must be at least 6 characters long!');
+                }
+            }
+
+            if($user) {
+                $user->name = $request->name;
+                $user->username = $request->username;
+                $user->phone = $request->phone;
+                $user->email = $request->email;
+                if(!empty($request->password)) {
+                    $user->password = Hash::make($request->password);
+                }
+                $user->country = $request->country;
+                if($user->save()) {
+                    return redirect()->route('profile', $request->user_id)->with('success','Profile updated successfully!');
+                }
+            } 
+        } catch (\Exception $e) {
+            return redirect()->route('profile', $request->user_id)->with('error','Please provide unique details!');
+        }  
     }
 
     public function activateUser(Request $request, $id)

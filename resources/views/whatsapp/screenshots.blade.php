@@ -15,11 +15,13 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>{{ __('WhatsApp Screenshots')}}</h4>
+                            @if(Auth::user()->user_type == 1)
                             <div class="card-header-action">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                     {{ __('Approve All')}}
                                 </button>
                             </div>
+                            @endif
                         </div>
                         @include('flash-message')
                         <div class="card-body">

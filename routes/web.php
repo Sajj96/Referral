@@ -88,7 +88,10 @@ Route::middleware(['auth','active.user'])->group(function ()
         Route::post('/profile/edit', [App\Http\Controllers\UserController::class, 'editProfile'])->name('profile.edit');
     });
 
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
+    Route::group(['prefix' => 'profile'], function(){
+        Route::get('/', [App\Http\Controllers\UserController::class, 'getProfile'])->name('profile');
+        Route::post('/', [App\Http\Controllers\UserController::class, 'updateDetails'])->name('profile.update');
+    });
 
     Route::group(['prefix' => 'revenues'], function(){
         Route::get('/', [App\Http\Controllers\RevenueController::class, 'index'])->name('revenue')->middleware('user.type');

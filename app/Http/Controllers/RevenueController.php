@@ -25,7 +25,7 @@ class RevenueController extends Controller
 
             if ($request->type == Revenue::TYPE_VIDEO) {
                 $video_users = Revenue::where('video_id', $request->video_id)->where('user_id', $request->user_id)
-                    ->get();
+                                        ->get();
 
                 if (count($video_users) > 0) {
                     return false;
@@ -54,7 +54,11 @@ class RevenueController extends Controller
     public function createBulk(Request $request)
     {
         try {
-            $screenshots = Screenshot::where('status', 0)->get();
+            $date = date('Y-m-d');
+            $screenshots = Screenshot::where('status', 0)
+                                    ->where('created_at', 'like', '%'.$date.'%')
+                                    ->where('status',Screenshot::SCREENSHOT_PENDING)
+                                    ->get();
 
             foreach ($screenshots as $key => $rows) {
                 $revenue = new Revenue;

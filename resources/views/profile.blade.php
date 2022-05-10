@@ -74,6 +74,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#about" role="tab" aria-selected="true">{{ __('About')}}</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab3" data-toggle="tab" href="#settings" role="tab" aria-selected="false">{{ __('Edit Profile')}}</a>
+                                </li>
                             </ul>
                             <div class="tab-content tab-bordered" id="myTab3Content">
                                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab2">
@@ -105,6 +108,52 @@
                                         <li>{{ __('Referral Link:')}} <a href="{{ Auth::user()->referral_link }}">{{ Auth::user()->referral_link }}</a></li>
                                         <li>{{ __('Referral Number:')}} {{ count(Auth::user()->referrals)  ?? '0' }}</li>
                                     </ul>
+                                </div>
+                                <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab3">
+                                    <form method="post" class="needs-validation" action="{{ route('profile.update')}}">
+                                        @csrf
+                                        <div class="card-header">
+                                            <h4>{{ __('Edit Details')}}</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>{{ __('Full Name')}}</label>
+                                                    <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                                                    <div class="invalid-feedback">
+                                                        {{ __('Please fill in the name')}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>{{ __('Username')}}</label>
+                                                    <input type="text" class="form-control" name="username" value="{{ Auth::user()->username }}" required readonly>
+                                                    <div class="invalid-feedback">
+                                                        {{ __('Please fill in the username')}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>{{ __('Email')}}</label>
+                                                    <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" required>
+                                                    <div class="invalid-feedback">
+                                                        {{ __('Please fill in the email')}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>{{ __('Phone')}}</label>
+                                                    <input id="phone" type="tel" class="form-control" name="phone" value="{{ Auth::user()->phone }}" readonly required>
+                                                </div>
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>{{ __('New password')}}</label>
+                                                    <input type="password" class="form-control" name="password" placeholder="******">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-right">
+                                            <button class="btn btn-primary" type="submit">{{ __('Save Changes')}}</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
